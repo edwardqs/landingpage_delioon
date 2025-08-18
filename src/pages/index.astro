@@ -5,35 +5,54 @@ import Layout from '../layouts/BaseLayout.astro';
 
 <Layout title="Delion - El Arte de la Ciencia">
     <main>
-        <section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black pt-[100px]">
+        
+        <section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black pt-[100px]" data-section-theme="dark">
             <div id="hero-carousel" class="absolute inset-0 w-full h-full">
-                <img 
-                  src="/613ad18f1f743e19dcd6436ac8b153af0428c405.png" 
-                  alt="Robot ilustrador representando la innovación" 
-                  class="carousel-slide absolute inset-0 w-full h-full object-cover object-center z-0 opacity-40 transition-opacity duration-1000 ease-in-out"
-                />
-                <img 
-                  src="/Banner2.svg" 
-                  alt="Banner secundario de Delion" 
-                  class="carousel-slide absolute inset-0 w-full h-full object-cover object-center z-0 opacity-0 transition-opacity duration-1000 ease-in-out"
-                />
-            </div>
-            
-            <div class="relative z-10 w-full h-full max-w-7xl mx-auto">
-                <div class="absolute top-1/2 right-32 -translate-y-1/2 text-white text-right">
-                    <h1 class="text-5xl md:text-6xl font-light leading-tight">
-                        Brindamos soluciones<br/>
-                        <span class="font-semibold">innovadoras y sostenibles</span>
-                    </h1>
-                </div>
-                <div class="absolute bottom-10 left-0 w-full px-8 flex justify-between items-center">
-                    <div class="text-white text-2xl font-serif italic">
-                        El arte de la ciencia
+
+                <div class="carousel-slide absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out opacity-100">
+                    <img 
+                      src="/613ad18f1f743e19dcd6436ac8b153af0428c405.png" 
+                      alt="Robot ilustrador representando la innovación" 
+                      class="absolute inset-0 w-full h-full object-cover object-center z-0 opacity-40"
+                    />
+                    <div class="relative z-10 w-full h-full max-w-7xl mx-auto">
+                        <div class="absolute top-1/2 right-32 -translate-y-1/2 text-white text-right">
+                            <h1 class="text-5xl md:text-6xl font-light leading-tight">
+                                Brindamos soluciones<br/>
+                                <span class="font-semibold">innovadoras y sostenibles</span>
+                            </h1>
+                        </div>
                     </div>
-                    <a href="/contacto" class="bg-red-600 text-white font-bold py-3 px-8 rounded hover:bg-red-700 transition-colors">
-                        Contáctanos
-                    </a>
                 </div>
+
+                <div class="carousel-slide absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out opacity-0">
+                    <img 
+                        src="/Banner2.svg" 
+                        alt="Maquinaria y tecnología en una cantera"
+                        class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-40"
+                    />
+                    <div class="relative z-20 w-full h-full flex flex-col items-center justify-center text-center px-6 text-white">
+                        <h1 class="text-5xl md:text-7xl font-bold mb-12">Nuestros Productos</h1>
+                        <nav class="flex items-center justify-center gap-x-8 md:gap-x-12 text-lg md:text-2xl font-semibold">
+                            <a href="/productos#explorer" class="flex items-center gap-x-2 text-white opacity-100 border-b-2 border-delion-red pb-2 transition">
+                                <img src="/logos/logoexplorer.svg" alt="Explorer Logo" class="h-8 w-auto">
+                            </a>
+                            <a href="/productos#hapza" class="text-white opacity-70 hover:opacity-100 transition pb-2 border-b-2 border-transparent hover:border-white/50">Hapza</a>
+                            <a href="/productos" class="text-white opacity-70 hover:opacity-100 transition pb-2 border-b-2 border-transparent hover:border-white/50">Pulsar</a>
+                            <a href="/productos" class="text-white opacity-70 hover:opacity-100 transition pb-2 border-b-2 border-transparent hover:border-white/50">DirectHole</a>
+                        </nav>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="absolute bottom-10 left-0 right-0 px-16 md:px-24 lg:px-40 flex justify-between items-center z-30 max-w-screen-2xl mx-auto">
+                <div class="text-white text-2xl font-serif italic">
+                    El arte de la ciencia
+                </div>
+                <a href="/contacto" class="bg-red-600 text-white font-bold py-3 px-8 rounded hover:bg-red-700 transition-colors">
+                    Contáctanos
+                </a>
             </div>
         </section>
 
@@ -152,13 +171,13 @@ import Layout from '../layouts/BaseLayout.astro';
 
         if (slides.length > 1) {
             setInterval(() => {
+                slides[currentSlide].classList.remove('opacity-100');
                 slides[currentSlide].classList.add('opacity-0');
-                slides[currentSlide].classList.remove('opacity-40');
 
                 currentSlide = (currentSlide + 1) % slides.length;
 
-                slides[currentSlide].classList.add('opacity-40');
                 slides[currentSlide].classList.remove('opacity-0');
+                slides[currentSlide].classList.add('opacity-100');
             }, 3000); // Cambia cada 3 segundos
         }
     });

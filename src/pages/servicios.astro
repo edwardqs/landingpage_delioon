@@ -1,0 +1,126 @@
+---
+// src/pages/servicios.astro
+import Layout from '../layouts/BaseLayout.astro';
+
+const services = [
+  { name: 'Diseño', icon: '/icons/icons-services/Design (1).svg' },
+  { name: 'Sismografía', icon: '/icons/icons-services/Infrared Sensor.svg' },
+  { name: 'Fragmentación', icon: '/icons/icons-services/Particle.svg' },
+  { name: 'Gases', icon: '/icons/icons-services/Central Heating.svg' },
+  { name: 'VOD', icon: '/icons/icons-services/Graph.svg' },
+  { name: 'QA/QC', icon: '/icons/icons-services/Guarantee.svg' },
+  { name: 'Capacitaciones', icon: '/icons/icons-services/Training.svg' },
+  { name: 'Consultorías', icon: '/icons/icons-services/Personal Trainer.svg' },
+];
+
+// Posiciones para layout circular en escritorio
+const processSteps = [
+    { number: 1, title: 'Definir Objetivo', position: 'top-[-4rem] left-1/2 -translate-x-1/2', alignment: 'flex-col items-center' },
+    { number: 2, title: 'Medir', position: 'top-[2rem] right-[-6rem]', alignment: 'flex-row items-center' },
+    { number: 3, title: 'Analizar', position: 'top-[8rem] right-[-7rem]', alignment: 'flex-row items-center' },
+    { number: 4, title: 'Calibrar', position: 'bottom-[-3rem] left-1/2 -translate-x-1/2', alignment: 'flex-col-reverse items-center' },
+    { number: 5, title: 'Diseñar y Simular', position: 'top-[8rem] left-[-10.5rem]', alignment: 'flex-row-reverse items-center' },
+    { number: 6, title: 'Ejecutar', position: 'top-[2rem] left-[-6rem]', alignment: 'flex-row-reverse items-center' },
+];
+---
+
+<Layout title="Nuestros Servicios - Delion">
+  <main>
+    <section class="relative h-screen w-full flex items-center justify-center text-white overflow-hidden" data-section-theme="dark">
+      <div class="absolute inset-0 z-0">
+        <img src="/images/servicios/bannerservicios.png" alt="Fondo de maquinaria minera" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-[#0C3C6F]/40"></div>
+      </div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-16">
+          <div>
+            <h1 class="text-4xl md:text-6xl font-bold text-center md:text-left">Nuestros Servicios</h1>
+            <p class="mt-2 text-lg md:text-xl text-gray-200 text-center md:text-left">Inteligencia Artificial al servicio de nuestros clientes</p>
+          </div>
+          <a href="#" class="bg-blue-500 text-white font-bold py-3 px-8 rounded-md hover:bg-blue-600 transition-colors flex-shrink-0">
+            Cotizar
+          </a>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-x-4 gap-y-8 text-center">
+          {services.map(service => (
+            <a href="#" class="flex flex-col items-center gap-3 hover:scale-105 transition-transform">
+              <div class="w-16 h-16 md:w-20 md:h-20 bg-white/10 rounded-full flex items-center justify-center border-2 border-white/20">
+                <img src={service.icon} alt={`Icono de ${service.name}`} class="w-8 h-8 md:w-10 md:h-10" />
+              </div>
+              <span class="font-semibold text-sm">{service.name}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="relative bg-white py-20 md:py-32" data-section-theme="light">
+      <img src="/images/servicios/bodyimg.svg" alt="Fondo decorativo de la sección de servicios" class="absolute inset-0 w-full h-full object-cover z-0">
+
+      <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+          <div>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+              <h2 class="text-4xl md:text-5xl font-bold text-gray-800 whitespace-nowrap">¿Como lo Hacemos?</h2>
+              <a href="#" class="bg-delion-red text-white font-bold py-3 px-8 rounded-md hover:bg-opacity-90 transition flex-shrink-0">
+                Brochure
+              </a>
+            </div>
+            <ul class="space-y-4">
+              {[
+                'Inteligencia Artificial.',
+                'Instrumentación especializada.',
+                'Ingenieros con amplia experiencia técnica.',
+                'Equipo de desarrollo de Software y Hardware.'
+              ].map(item => (
+                <li class="flex items-center gap-3 text-xl text-gray-700">
+                  <div class="w-7 h-7 flex-shrink-0 bg-green-500 rounded-full flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                  </div>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <div class="flex flex-col items-center justify-start h-full pt-0 md:pt-8">
+            <div class="hidden md:block relative w-48 h-48 mt-12">
+              <img src="/icons/icons-services/Positive Dynamic.svg" alt="Gráfico de análisis" class="w-16 h-16 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              {processSteps.map(step => (
+                <div class={`absolute ${step.position} flex gap-2 ${step.alignment}`}>
+                  <div class="w-8 h-8 flex-shrink-0 bg-delion-red text-white rounded-full flex items-center justify-center font-bold text-lg">
+                    {step.number}
+                  </div>
+                  <span class="font-bold text-gray-700 whitespace-nowrap">{step.title}</span>
+                </div>
+              ))}
+            </div>
+
+            <div class="md:hidden w-full mt-12 space-y-6">
+              {processSteps.sort((a, b) => a.number - b.number).map(step => (
+                <div class="flex items-center gap-4 text-left">
+                  <div class="w-10 h-10 flex-shrink-0 bg-delion-red text-white rounded-full flex items-center justify-center font-bold text-xl">
+                    {step.number}
+                  </div>
+                  <span class="font-bold text-gray-700 text-lg">{step.title}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-24 md:mt-40 text-center">
+          <ul class="space-y-4 text-xl md:text-2xl font-semibold text-gray-800">
+              <li>Optimizamos Procesos, Costos y Tiempos de Operación.</li>
+              <li>Realizamos entrenamiento teórico y práctica.</li>
+              <li>Definimos estándares y buenas prácticas.</li>
+              <li>Reforzamos la seguridad en la operación.</li>
+              <li>Desarrollamos módulos personalizados acorde a cada empresa.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
