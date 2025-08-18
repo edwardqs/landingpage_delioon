@@ -19,25 +19,22 @@ import Layout from '../layouts/BaseLayout.astro';
                         <p class="mt-2 text-lg text-gray-300">Desarrollamos nuestras propias soluciones</p>
                     </div>
                     <a href="#" class="bg-green-500 text-white font-bold py-3 px-8 rounded-md hover:bg-green-600 transition-colors flex-shrink-0">
-                        Cotizar
+                         Cotizar
                     </a>
                 </div>
                 <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Monitor 1 -->
                     <div class="relative w-full monitor-container">
                         <img src="/images/products/Monitor.png" alt="Monitor" class="w-full h-auto">
                         <div class="absolute monitor-screen">
                             <img src="/images/products/Desktop.png" alt="Interfaz HAPZA - Diseño de Voladuras" class="w-full h-full object-cover monitor-content">
                         </div>
                     </div>
-                    <!-- Monitor 2 -->
                     <div class="relative w-full monitor-container">
                         <img src="/images/products/Monitor.png" alt="Monitor" class="w-full h-auto">
                         <div class="absolute monitor-screen">
                             <img src="/images/products/Desktop.png" alt="Interfaz HAPZA - Dashboard Principal" class="w-full h-full object-cover monitor-content">
                         </div>
                     </div>
-                    <!-- Monitor 3 -->
                     <div class="relative w-full monitor-container">
                         <img src="/images/products/Monitor.png" alt="Monitor" class="w-full h-auto">
                         <div class="absolute monitor-screen">
@@ -77,7 +74,6 @@ import Layout from '../layouts/BaseLayout.astro';
                         transform: scale(1.01);
                     }
 
-                    /* Ajuste responsivo */
                     @media (max-width: 768px) {
                         .monitor-container {
                             --screen-top: 10.4%;
@@ -87,7 +83,6 @@ import Layout from '../layouts/BaseLayout.astro';
                         }
                     }
 
-                    /* Pantallas pequeñas */
                     @media (max-width: 480px) {
                         .monitor-container {
                             --screen-top: 10.6%;
@@ -102,7 +97,6 @@ import Layout from '../layouts/BaseLayout.astro';
 
         <section class="bg-white py-20 md:py-24" data-section-theme="light">
             <div class="max-w-7xl mx-auto px-6 lg:px-8">
-                
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                     <div>
                         <h2 class="text-5xl font-extrabold text-gray-800">HAPZA</h2>
@@ -114,7 +108,6 @@ import Layout from '../layouts/BaseLayout.astro';
                 </div>
         
                 <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
-                    
                     <div>
                         <ul class="list-disc list-inside space-y-3 text-gray-600">
                             <li>Aplicación WEB.</li>
@@ -132,7 +125,6 @@ import Layout from '../layouts/BaseLayout.astro';
                     </div>
         
                     <div class="space-y-6">
-                        
                         <div class="grid grid-cols-[1fr_auto] items-center gap-4">
                             <span class="text-2xl font-semibold text-gray-700 text-right">Polvorín</span>
                             <img src="/icons/icons-products/Dynamite.svg" alt="Icono de Polvorín" width="28" height="28">
@@ -149,7 +141,6 @@ import Layout from '../layouts/BaseLayout.astro';
                             <span class="text-2xl font-semibold text-gray-700 text-right">QA/QC</span>
                             <img src="/icons/icons-products/Guarantee.svg" alt="Icono de QA/QC" width="28" height="28">
                         </div>
-        
                     </div>
                 </div>
         
@@ -158,6 +149,60 @@ import Layout from '../layouts/BaseLayout.astro';
                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
                         Brochure
                     </a>
+                </div>
+            </div>
+        </section>
+
+        <div class="py-16 bg-white" data-section-theme="light">
+            <div class="h-2 max-w-lg mx-auto bg-delion-gradient rounded-full"></div>
+        </div>
+        <section class="bg-gray-50 py-20 md:py-24" data-section-theme="light">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+                    <div>
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 mb-2">
+                            <img src="/logos/Explorer.svg" alt="Logo de Explorer" class="h-12">
+                            <a href="#" class="mt-4 sm:mt-0 bg-yellow-400 text-gray-900 font-bold py-2 px-5 rounded-md hover:bg-yellow-500 transition-colors inline-block">
+                                Ingresar Aquí
+                            </a>
+                        </div>
+                        <p class="text-xl text-gray-500">Análisis de Fragmentación</p>
+        
+                        <ul class="list-disc list-inside space-y-3 text-gray-600 mt-8">
+                            <li>Aplicación WEB.</li>
+                            <li>Base de datos en la Nube (Opcional).</li>
+                            <li>03 Modos de Análizar.</li>
+                            <li>Aplicación Móvil para obtener imagen con referencial escalar.</li>
+                            <li>Explorer portable con procesamiento local (Cámara Estéreo).</li>
+                            <li>Análisis de Ortofotos con Drone.</li>
+                        </ul>
+                    </div>
+        
+                    <div class="flex flex-col">
+                        <img src="/images/HombreCantera.svg" alt="Hombre en cantera usando tecnología de drone y móvil para análisis" class="w-full h-auto rounded-lg shadow-md mb-8">
+                        
+                        <div class="grid grid-cols-3 gap-4 text-center text-sm font-semibold text-gray-700">
+                            <div class="flex flex-col items-center">
+                                <img src="/icons/icons-explorer/Ruler.svg" alt="Ícono de Referencia Escalar" class="h-8 w-8 mb-2">
+                                <span>Referencia Escalar</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                 <img src="/icons/icons-explorer/Opera Glasses.svg" alt="Ícono de Cámara Estéreo" class="h-8 w-8 mb-2">
+                                <span>Cámara Estéreo</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <img src="/icons/icons-explorer/Quadcopter.svg" alt="Ícono de Drones" class="h-8 w-8 mb-2">
+                                <span>Drones</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 flex justify-end">
+                            <a href="#" class="bg-[#DE1207] text-white font-bold py-3 px-6 rounded-md hover:bg-opacity-90 transition flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                                Brochure
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
