@@ -3,70 +3,50 @@
 ---
 
 <style>
-    /* Estilos para el tema claro del navbar */
-    .navbar-light-theme {
-        @apply text-gray-800;
-    }
-    
-    .navbar-light-theme a {
-        @apply text-gray-800;
-    }
-    
-    .navbar-light-theme a:hover {
-        @apply border-gray-800;
-    }
-    
-    .navbar-light-theme button {
-        @apply text-gray-800;
-    }
-    
-    .navbar-light-theme svg {
-        @apply stroke-gray-800;
-    }
+    /* Estilos adicionales se pueden mantener si son necesarios */
 </style>
 
-<nav id="main-navbar" class="w-full bg-transparent text-white py-3 z-40 transition-all duration-300">
+<nav id="main-navbar" class="w-full bg-gradient-to-r from-[#0A192F] to-[#4d0b1a] text-white py-3 z-40 transition-colors duration-300">
     <div class="max-w-7xl w-11/12 mx-auto flex justify-between items-center">
         
         <div>
             <a href="/" class="block h-10 w-35">
-                <img src="/logo_delion.png" alt="Logo Delion blanco" class="h-full w-full object-cover navbar-light-theme:hidden" />
-                <img src="/logo_delion_dark.png" alt="Logo Delion oscuro" class="h-full w-full object-cover hidden navbar-light-theme:block" />
+                <img src="/logo_delion.png" alt="Logo Delion blanco" class="h-full w-full object-cover" />
             </a>
         </div>
 
         <div class="hidden md:flex items-center gap-x-8">
             <ul class="flex items-center gap-x-8">
-                <li><a href="/" class="text-base pb-1.5 border-b-2 border-transparent hover:border-white transition-colors duration-300 navbar-light-theme:text-gray-800 navbar-light-theme:hover:border-gray-800">Inicio</a></li>
-                <li><a href="/productos" class="text-base pb-1.5 border-b-2 border-transparent hover:border-white transition-colors duration-300 navbar-light-theme:text-gray-800 navbar-light-theme:hover:border-gray-800">Productos</a></li>
-                <li><a href="/servicios" class="text-base pb-1.5 border-b-2 border-transparent hover:border-white transition-colors duration-300 navbar-light-theme:text-gray-800 navbar-light-theme:hover:border-gray-800">Servicios</a></li>
-                <li><a href="/nosotros" class="text-base pb-1.5 border-b-2 border-transparent hover:border-white transition-colors duration-300 navbar-light-theme:text-gray-800 navbar-light-theme:hover:border-gray-800">Nosotros</a></li>
-                <li><a href="/contacto" class="text-base pb-1.5 border-b-2 border-transparent hover:border-white transition-colors duration-300 navbar-light-theme:text-gray-800 navbar-light-theme:hover:border-gray-800">Contacto</a></li>
+                <li><a href="/" class="text-base pb-1.5 border-b-2 border-transparent hover:border-white transition-colors duration-300">Inicio</a></li>
+                <li><a href="/productos" class="text-base pb-1.5 border-b-2 border-transparent hover:border-white transition-colors duration-300">Productos</a></li>
+                <li><a href="/servicios" class="text-base pb-1.5 border-b-2 border-transparent hover:border-white transition-colors duration-300">Servicios</a></li>
+                <li><a href="/nosotros" class="text-base pb-1.5 border-b-2 border-transparent hover:border-white transition-colors duration-300">Nosotros</a></li>
+                <li><a href="/contacto" class="text-base pb-1.5 border-b-2 border-transparent hover:border-white transition-colors duration-300">Contacto</a></li>
             </ul>
             <div class="relative">
-                <button id="lang-toggle-button" class="flex items-center gap-2.5 text-base text-white transition-opacity navbar-light-theme:text-gray-800">
+                <button id="lang-toggle-button" class="flex items-center gap-2.5 text-base text-white transition-opacity">
                     <img id="current-lang-flag" src="/icons/Spain (ES).svg" alt="Bandera de España" class="h-5 w-5 object-contain rounded-full" />
                     <span id="current-lang-text">ESP</span>
-                    <svg id="chevron-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0.7 0.7 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 navbar-light-theme:stroke-gray-800"><path d="m6 9 6 6 6-6"/></svg>
+                    <svg id="chevron-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
                 </button>
                 <div id="lang-menu" class="absolute top-full mt-3 right-0 w-48 bg-white rounded-md shadow-lg hidden z-10">
                     <div class="py-1" role="menu">
-                        <a href="/es" class="lang-option flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" data-lang="ESP" data-flag="/icons/Spain (ES).svg">
+                         <a href="/es" class="lang-option flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" data-lang="ESP" data-flag="/icons/Spain (ES).svg">
                            <img src="/icons/Spain (ES).svg" alt="Bandera de España" class="h-5 w-5 object-contain rounded-full">
                            <span>Español (ES)</span>
-                        </a>
+                         </a>
                         <a href="/en" class="lang-option flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" data-lang="ENG" data-flag="/icons/English (EN).svg">
                              <img src="/icons/English (EN).svg" alt="Bandera de Reino Unido" class="h-5 w-5 object-contain rounded-full">
-                            <span>English (EN)</span>
+                             <span>English (EN)</span>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="md:hidden">
-            <button id="hamburger-button" class="text-white z-50 relative navbar-light-theme:text-gray-800">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0.7 0.7 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+         <div class="md:hidden">
+            <button id="hamburger-button" class="text-white z-50 relative">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
             </button>
         </div>
     </div>
@@ -82,7 +62,6 @@
         </button>
         <nav>
             <ul class="flex flex-col items-center gap-y-8 text-2xl">
-                 {/* CAMBIO: La ruta de Inicio ahora es "/" */}
                 <li><a href="/" class="hover:text-gray-300">Inicio</a></li>
                 <li><a href="/productos" class="hover:text-gray-300">Productos</a></li>
                 <li><a href="/servicios" class="hover:text-gray-300">Servicios</a></li>
@@ -95,14 +74,12 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // Lógica para el Selector de Idioma
         const langToggleButton = document.getElementById('lang-toggle-button');
         const langMenu = document.getElementById('lang-menu');
         const currentLangFlag = document.getElementById('current-lang-flag');
         const currentLangText = document.getElementById('current-lang-text');
         const chevronIcon = document.getElementById('chevron-icon');
         const langOptions = document.querySelectorAll('.lang-option');
-        
         if (langToggleButton && langMenu) {
             langToggleButton.addEventListener('click', (event) => {
                 event.stopPropagation();
@@ -114,17 +91,18 @@
                     event.preventDefault(); 
                     const newLang = (event.currentTarget as HTMLElement).dataset.lang;
                     const newFlag = (event.currentTarget as HTMLElement).dataset.flag;
+        
                     if (currentLangFlag && currentLangText) {
                         (currentLangFlag as HTMLImageElement).src = newFlag || '';
                         currentLangText.textContent = newLang || '';
                     }
+      
                     langMenu.classList.add('hidden');
                     if (chevronIcon) chevronIcon.classList.remove('rotate-180');
                 });
             });
         }
 
-        // Lógica para el Menú de Hamburguesa
         const hamburgerButton = document.getElementById('hamburger-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const closeMobileMenuButton = document.getElementById('close-mobile-menu');
@@ -143,7 +121,6 @@
             });
         }
 
-        // Cerrar menú móvil al hacer clic en enlaces
         if (mobileMenu) {
             const mobileMenuLinks = mobileMenu.querySelectorAll('a');
             mobileMenuLinks.forEach(link => {
@@ -163,45 +140,4 @@
             if (chevronIcon) chevronIcon.classList.remove('rotate-180');
         }
     });
-
-    // Sistema de detección automática de tema del navbar
-    const navbar = document.getElementById('main-navbar');
-    
-    // Función para actualizar el tema del navbar basada en data-section-theme
-    function updateNavbarTheme() {
-        if (!navbar) return;
-        
-        const scrollTop = window.scrollY;
-        const navbarHeight = navbar.offsetHeight;
-        
-        // Buscar la sección actual basada en la posición del scroll
-        const sections = document.querySelectorAll('[data-section-theme]');
-        let currentTheme = 'dark'; // Tema por defecto
-        
-        for (const section of sections) {
-            const rect = section.getBoundingClientRect();
-            const sectionTop = rect.top + scrollTop;
-            const sectionBottom = sectionTop + rect.height;
-            
-            // Si el navbar está dentro de esta sección
-            if (scrollTop + navbarHeight >= sectionTop && scrollTop <= sectionBottom) {
-                currentTheme = section.getAttribute('data-section-theme') || 'dark';
-                break;
-            }
-        }
-        
-        // Aplicar el tema correspondiente
-        if (currentTheme === 'light') {
-            navbar.classList.add('navbar-light-theme');
-        } else {
-            navbar.classList.remove('navbar-light-theme');
-        }
-    }
-
-    // Escuchar eventos de scroll y resize
-    window.addEventListener('scroll', updateNavbarTheme);
-    window.addEventListener('resize', updateNavbarTheme);
-    
-    // Ejecutar una vez al cargar
-    updateNavbarTheme();
 </script>

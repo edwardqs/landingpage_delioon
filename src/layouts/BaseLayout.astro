@@ -6,10 +6,10 @@ import Footer from '../components/Footer.astro';
 
 interface Props {
 	title: string;
-	showFooter?: boolean; // Prop opcional para controlar el footer
+	showFooter?: boolean;
 }
 
-const { title, showFooter = true } = Astro.props; // Por defecto, el footer se muestra
+const { title, showFooter = true } = Astro.props;
 ---
 <!doctype html>
 <html lang="es">
@@ -19,12 +19,13 @@ const { title, showFooter = true } = Astro.props; // Por defecto, el footer se m
 		<title>{title}</title>
 	</head>
 	<body>
-        <header class="fixed top-0 left-0 w-full z-50">
+        <header class="sticky top-0 left-0 w-full z-50">
             <Topbar />
             <Navbar />
         </header>
 
         <slot />
 
-        {showFooter && <Footer />} </body>
+        {showFooter && <Footer />}
+	</body>
 </html>
