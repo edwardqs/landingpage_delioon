@@ -1,27 +1,48 @@
 ---
 // src/components/Navbar.astro
+const { pathname } = Astro.url;
+
+const navLinks = [
+    { href: "/", label: "Inicio" },
+    { href: "/productos", label: "Productos" },
+    { href: "/servicios", label: "Servicios" },
+    { href: "/contacto", label: "Contacto" }
+];
 ---
 
 <style>
-    
+    .link-active {
+        color: #DE1207; /* delion-red */
+        border-color: #DE1207; /* delion-red */
+    }
 </style>
 
 <nav id="main-navbar" class="w-full bg-gradient-to-r from-[#0A192F] to-[#4d0b1a] text-white py-3 z-40 transition-colors duration-300">
     <div class="max-w-7xl w-11/12 mx-auto flex justify-between items-center">
         
         <div>
-            <a href="/" class="block h-10 w-35">
+            <a href="/" class="block h-10 w-35 transition-transform duration-300 hover:scale-105">
                 <img src="/logo_delion.png" alt="Logo Delion blanco" class="h-full w-full object-cover" />
             </a>
         </div>
 
         <div class="hidden md:flex items-center gap-x-8">
             <ul class="flex items-center gap-x-8">
-                <li><a href="/" class="text-base pb-1.5 border-b-2 border-transparent hover:border-white transition-colors duration-300">Inicio</a></li>
-                <li><a href="/productos" class="text-base pb-1.5 border-b-2 border-transparent hover:border-white transition-colors duration-300">Productos</a></li>
-                <li><a href="/servicios" class="text-base pb-1.5 border-b-2 border-transparent hover:border-white transition-colors duration-300">Servicios</a></li>
-<!--                 <li><a href="/nosotros" class="text-base pb-1.5 border-b-2 border-transparent hover:border-white transition-colors duration-300">Nosotros</a></li>
- -->                <li><a href="/contacto" class="text-base pb-1.5 border-b-2 border-transparent hover:border-white transition-colors duration-300">Contacto</a></li>
+                {navLinks.map(link => (
+                    <li>
+                        <a 
+                            href={link.href} 
+                            class:list={[
+                                "text-base pb-1.5 border-b-2 transition-colors duration-300",
+                                pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))
+                                    ? "border-delion-red text-white font-semibold"
+                                    : "border-transparent hover:border-white/50"
+                            ]}
+                        >
+                            {link.label}
+                        </a>
+                    </li>
+                ))}
             </ul>
             <div class="relative">
                 <button id="lang-toggle-button" class="flex items-center gap-2.5 text-base text-white transition-opacity">
@@ -32,13 +53,13 @@
                 <div id="lang-menu" class="absolute top-full mt-3 right-0 w-48 bg-white rounded-md shadow-lg hidden z-10">
                     <div class="py-1" role="menu">
                          <a href="/es" class="lang-option flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" data-lang="ESP" data-flag="/icons/Spain (ES).svg">
-                           <img src="/icons/Spain (ES).svg" alt="Bandera de España" class="h-5 w-5 object-contain rounded-full">
-                           <span>Español (ES)</span>
+                            <img src="/icons/Spain (ES).svg" alt="Bandera de España" class="h-5 w-5 object-contain rounded-full">
+                            <span>Español (ES)</span>
                          </a>
-                        <a href="/en" class="lang-option flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" data-lang="ENG" data-flag="/icons/English (EN).svg">
+                         <a href="/en" class="lang-option flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" data-lang="ENG" data-flag="/icons/English (EN).svg">
                              <img src="/icons/English (EN).svg" alt="Bandera de Reino Unido" class="h-5 w-5 object-contain rounded-full">
                              <span>English (EN)</span>
-                        </a>
+                         </a>
                     </div>
                 </div>
             </div>
@@ -62,17 +83,18 @@
         </button>
         <nav>
             <ul class="flex flex-col items-center gap-y-8 text-2xl">
-                <li><a href="/" class="hover:text-gray-300">Inicio</a></li>
-                <li><a href="/productos" class="hover:text-gray-300">Productos</a></li>
-                <li><a href="/servicios" class="hover:text-gray-300">Servicios</a></li>
-                <li><a href="/nosotros" class="hover:text-gray-300">Nosotros</a></li>       
-                <li><a href="/contacto" class="hover:text-gray-300">Contacto</a></li>
+                 {navLinks.map(link => (
+                    <li>
+                        <a href={link.href} class="hover:text-gray-300">{link.label}</a>
+                    </li>
+                ))}
             </ul>
         </nav>
     </div>
 </div>
 
 <script>
+    // El script permanece sin cambios
     document.addEventListener('DOMContentLoaded', () => {
         const langToggleButton = document.getElementById('lang-toggle-button');
         const langMenu = document.getElementById('lang-menu');
@@ -80,12 +102,14 @@
         const currentLangText = document.getElementById('current-lang-text');
         const chevronIcon = document.getElementById('chevron-icon');
         const langOptions = document.querySelectorAll('.lang-option');
+
         if (langToggleButton && langMenu) {
             langToggleButton.addEventListener('click', (event) => {
                 event.stopPropagation();
                 langMenu.classList.toggle('hidden');
                 if (chevronIcon) chevronIcon.classList.toggle('rotate-180');
             });
+
             langOptions.forEach(option => {
                 option.addEventListener('click', (event) => {
                     event.preventDefault(); 

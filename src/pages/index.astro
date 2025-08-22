@@ -13,14 +13,21 @@ import Layout from '../layouts/BaseLayout.astro';
                     <img 
                       src="/613ad18f1f743e19dcd6436ac8b153af0428c405.png" 
                       alt="Robot ilustrador representando la innovación" 
-                      class="absolute inset-0 w-full h-full object-cover object-center z-0 opacity-40 animate-float"
+                      class="absolute inset-0 w-full h-full object-cover object-center z-0 opacity-30 animate-float"
                     />
-                    <div class="relative z-10 w-full h-full max-w-7xl mx-auto">
-                        <div class="absolute top-1/2 right-32 -translate-y-1/2 text-white text-right animate-slide-in-right">
-                            <h1 class="text-5xl md:text-6xl font-light leading-tight animate-text-glow">
-                                Brindamos soluciones<br/>
-                                <span class="font-semibold animate-pulse">innovadoras y sostenibles</span>
+                    <div class="relative z-10 w-full h-full flex items-center justify-center">
+                        <div class="text-center text-white animate-fade-in-up">
+                            <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight animate-text-glow">
+                                Soluciones Innovadoras
                             </h1>
+                            <p class="mt-4 text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto">
+                                Brindamos soluciones innovadoras y sostenibles para potenciar tu negocio.
+                            </p>
+                            <div class="mt-8">
+                                 <a href="/contacto" class="bg-delion-red text-white font-bold py-3 px-8 rounded-md hover:bg-delion-redDark transition-all duration-300 hover:scale-110 hover:shadow-xl animate-pulse-slow">
+                                    Contáctanos
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -45,15 +52,6 @@ import Layout from '../layouts/BaseLayout.astro';
                 </div>
 
             </div>
-
-            <div class="absolute bottom-16 left-0 right-0 px-16 md:px-24 lg:px-40 flex justify-between items-center z-30 max-w-screen-2xl mx-auto animate-fade-in-up-delayed">
-                <div class="text-white text-2xl font-serif italic hover:scale-105 transition-transform duration-300 cursor-pointer">
-                    El arte de la ciencia
-                </div>
-                <a href="/contacto" class="bg-red-600 text-white font-bold py-3 px-8 rounded hover:bg-red-700 transition-all duration-300 hover:scale-110 hover:shadow-xl animate-pulse-slow">
-                    Contáctanos
-                </a>
-            </div>
         </section>
 
         <section class="text-white py-24 md:py-40 bg-gradient-to-b from-[#0A192F] to-[#4d0b1a] relative overflow-hidden">
@@ -62,7 +60,7 @@ import Layout from '../layouts/BaseLayout.astro';
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-16 items-center">
                     <div class="md:col-span-2 w-full animate-slide-in-left">
                         <img 
-                            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1887&auto=format&fit=crop" 
+                            src="teamdelion.svg" 
                             alt="Equipo de Delion trabajando en un proyecto tecnológico" 
                             class="w-full h-auto object-cover rounded-lg hover:scale-105 transition-transform duration-500 shadow-2xl hover:shadow-red-500/25"
                         >
@@ -96,13 +94,13 @@ import Layout from '../layouts/BaseLayout.astro';
                     </div>
                     <div class="bg-white p-8 rounded-lg border border-gray-200 shadow-sm hover:shadow-2xl hover:scale-105 transition-all duration-500 cursor-pointer animate-fade-in-up" style="animation-delay: 0.2s;">
                         <div class="flex justify-center items-center h-16 w-16 rounded-full bg-blue-50 mx-auto hover:scale-110 transition-transform duration-300">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0C3C6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-bounce-slow"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0C3C6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-bounce-slow"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
                         </div>
                         <h3 class="text-2xl font-bold mt-6 text-[#0C3C6F] hover:scale-105 transition-transform duration-300">Visión</h3>
                         <p class="mt-4 text-gray-600 text-sm">Ser líderes en el desarrollo de herramientas informáticas e instrumentación especializada.</p>
                     </div>
                     <div class="bg-white p-8 rounded-lg border border-gray-200 shadow-sm hover:shadow-2xl hover:scale-105 transition-all duration-500 cursor-pointer animate-fade-in-up" style="animation-delay: 0.3s;">
-                         <div class="flex justify-center items-center h-16 w-16 rounded-full bg-red-50 mx-auto hover:scale-110 transition-transform duration-300">
+                        <div class="flex justify-center items-center h-16 w-16 rounded-full bg-red-50 mx-auto hover:scale-110 transition-transform duration-300">
                              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#DE1207" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-pulse-slow"><path d="m12 1-2.2 4.8-5.2.4 4.1 3.4-1.2 5L12 12l4.4 2.6-1.2-5 4.1-3.4-5.2-.4Z"/></svg>
                         </div>
                         <h3 class="text-2xl font-bold mt-6 text-[#DE1207] hover:scale-105 transition-transform duration-300">Valores</h3>
@@ -167,6 +165,7 @@ import Layout from '../layouts/BaseLayout.astro';
 </Layout>
 
 <style>
+    /* Animaciones existentes y nuevas inspiradas en Norstar */
     @keyframes float {
         0%, 100% { transform: translateY(0px); }
         50% { transform: translateY(-20px); }
@@ -188,11 +187,6 @@ import Layout from '../layouts/BaseLayout.astro';
     }
     
     @keyframes fade-in-up {
-        0% { transform: translateY(50px); opacity: 0; }
-        100% { transform: translateY(0); opacity: 1; }
-    }
-    
-    @keyframes fade-in-up-delayed {
         0% { transform: translateY(50px); opacity: 0; }
         100% { transform: translateY(0); opacity: 1; }
     }
@@ -219,61 +213,21 @@ import Layout from '../layouts/BaseLayout.astro';
         50% { transform: translateX(20px); }
     }
     
-    .animate-float {
-        animation: float 6s ease-in-out infinite;
-    }
-    
-    .animate-float-delayed {
-        animation: float-delayed 8s ease-in-out infinite;
-    }
-    
-    .animate-slide-in-right {
-        animation: slide-in-right 1.5s ease-out;
-    }
-    
-    .animate-slide-in-left {
-        animation: slide-in-left 1.5s ease-out;
-    }
-    
-    .animate-fade-in-up {
-        animation: fade-in-up 1s ease-out forwards;
-    }
-    
-    .animate-fade-in-up-delayed {
-        animation: fade-in-up 1.5s ease-out 0.5s forwards;
-        opacity: 0;
-    }
-    
-    .animate-bounce-in {
-        animation: bounce-in 1.2s ease-out;
-    }
-    
-    .animate-shimmer {
-        animation: shimmer 3s ease-in-out infinite;
-    }
-    
-    .animate-slow-zoom {
-        animation: slow-zoom 20s ease-in-out infinite alternate;
-    }
-    
-    .animate-gradient-shift {
-        animation: gradient-shift 8s ease-in-out infinite;
-    }
-    
-    .animate-spin-slow {
-        animation: spin 8s linear infinite;
-    }
-    
-    .animate-bounce-slow {
-        animation: bounce 3s ease-in-out infinite;
-    }
-    
-    .animate-pulse-slow {
-        animation: pulse 4s ease-in-out infinite;
-    }
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    .animate-float-delayed { animation: float-delayed 8s ease-in-out infinite; }
+    .animate-slide-in-right { animation: slide-in-right 1.5s ease-out forwards; opacity: 0; }
+    .animate-slide-in-left { animation: slide-in-left 1.5s ease-out forwards; opacity: 0; }
+    .animate-fade-in-up { animation: fade-in-up 1s ease-out forwards; opacity: 0; }
+    .animate-bounce-in { animation: bounce-in 1.2s ease-out; }
+    .animate-shimmer { animation: shimmer 3s ease-in-out infinite; }
+    .animate-slow-zoom { animation: slow-zoom 20s ease-in-out infinite alternate; }
+    .animate-gradient-shift { animation: gradient-shift 8s ease-in-out infinite; }
+    .animate-spin-slow { animation: spin 8s linear infinite; }
+    .animate-bounce-slow { animation: bounce 3s ease-in-out infinite; }
+    .animate-pulse-slow { animation: pulse 4s ease-in-out infinite; }
     
     .animate-text-glow {
-        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.3), 0 0 20px rgba(222, 18, 7, 0.4);
     }
 </style>
 
@@ -291,10 +245,10 @@ import Layout from '../layouts/BaseLayout.astro';
 
                 slides[currentSlide].classList.remove('opacity-0');
                 slides[currentSlide].classList.add('opacity-100');
-            }, 3000); // Cambia cada 3 segundos
+            }, 5000); // Cambia cada 5 segundos para dar tiempo a leer
         }
         
-        // Animaciones al hacer scroll
+        // Animaciones al hacer scroll (ya existente)
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -302,19 +256,16 @@ import Layout from '../layouts/BaseLayout.astro';
         
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting && entry.target instanceof HTMLElement) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
-        
-        // Observar elementos para animaciones
-        document.querySelectorAll('.animate-fade-in-up').forEach(el => {
-            if (el instanceof HTMLElement) {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(50px)';
-                observer.observe(el);
+
+        document.querySelectorAll('[class*="animate-"]').forEach(el => {
+            if (el.matches('.animate-slide-in-right, .animate-slide-in-left, .animate-fade-in-up')) {
+                 observer.observe(el);
             }
         });
     });
