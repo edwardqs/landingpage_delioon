@@ -85,59 +85,77 @@ const contactInfo = {
             <h2 class="text-base sm:text-lg font-bold text-gray-800 uppercase mb-3">
               Contacto
             </h2>
-            <form action="#" class="space-y-4">
+            
+            <!-- Mensaje de estado -->
+            <div id="status-message" class="hidden mb-4 p-3 rounded-md text-sm"></div>
+            
+            <!-- Indicador de estado de EmailJS -->
+            <div id="emailjs-status" class="mb-4 p-2 rounded-md text-xs bg-gray-100 text-gray-600">
+                <span id="status-text">Cargando EmailJS...</span>
+            </div>
+            
+            <form id="contact-form" class="space-y-4">
               <div>
                 <input 
                   type="text" 
+                  name="nombre"
                   placeholder="Nombre" 
+                  required
                   class="w-full bg-gray-100 px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-delion-blue outline-none transition text-sm"
                 >
               </div>
               <div>
                 <input 
                   type="email" 
+                  name="email"
                   placeholder="Email" 
+                  required
                   class="w-full bg-gray-100 px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-delion-blue outline-none transition text-sm"
                 >
               </div>
               <div>
                 <input 
                   type="text" 
+                  name="empresa"
                   placeholder="Empresa" 
                   class="w-full bg-gray-100 px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-delion-blue outline-none transition text-sm"
                 >
               </div>
               <div>
-                <select class="w-full bg-gray-100 px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-delion-blue outline-none transition text-gray-500 text-sm">
-                  <option selected disabled>Categoría</option>
-                  <option>General</option>
-                  <option>Soporte</option>
-                  <option>Ventas</option>
+                <select name="categoria" required class="w-full bg-gray-100 px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-delion-blue outline-none transition text-gray-500 text-sm">
+                  <option value="" disabled selected>Categoría</option>
+                  <option value="general">General</option>
+                  <option value="soporte">Soporte</option>
+                  <option value="ventas">Ventas</option>
                 </select>
               </div>
               <div>
-                <select class="w-full bg-gray-100 px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-delion-blue outline-none transition text-gray-500 text-sm">
-                  <option selected disabled>Producto</option>
-                  <option>Explorer</option>
-                  <option>Hapza</option>
-                  <option>Pulsar</option>
-                  <option>DirectHole</option>
-                  <option>Otro</option>
+                <select name="producto" required class="w-full bg-gray-100 px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-delion-blue outline-none transition text-gray-500 text-sm">
+                  <option value="" disabled selected>Producto</option>
+                  <option value="explorer">Explorer</option>
+                  <option value="hapza">Hapza</option>
+                  <option value="pulsar">Pulsar</option>
+                  <option value="directhole">DirectHole</option>
+                  <option value="otro">Otro</option>
                 </select>
               </div>
               <div>
                 <textarea 
+                  name="mensaje"
                   placeholder="Mensaje" 
                   rows="4" 
+                  required
                   class="w-full bg-gray-100 px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-delion-blue outline-none transition resize-none text-sm"
                 ></textarea>
               </div>
               <div class="text-right pt-2">
                 <button 
                   type="submit" 
-                  class="bg-gradient-to-r from-[#0A192F] to-[#4d0b1a] text-white font-bold py-3 px-8 rounded-md hover:opacity-90 transition-opacity w-full sm:w-auto"
+                  id="submit-btn"
+                  class="bg-gradient-to-r from-[#0A192F] to-[#4d0b1a] text-white font-bold py-3 px-8 rounded-md hover:opacity-90 transition-opacity w-full sm:w-auto disabled:opacity-50"
                 >
-                  Enviar
+                  <span id="btn-text">Enviar</span>
+                  <span id="btn-loading" class="hidden">Enviando...</span>
                 </button>
               </div>
             </form>
@@ -148,3 +166,146 @@ const contactInfo = {
     </section>
   </main>
 </Layout>
+
+<script>
+// Declarar tipo global para EmailJS
+declare global {
+    interface Window {
+        emailjs: any;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Configuración de EmailJS desde variables de entorno
+    const EMAILJS_CONFIG = {
+        serviceID: import.meta.env.EMAILJS_SERVICE_ID || 'service_nnwj86i',
+        templateID: import.meta.env.EMAILJS_TEMPLATE_ID || 'template_hlj1vn5',
+        publicKey: import.meta.env.EMAILJS_PUBLIC_KEY || '0dnnYljiBXHZ_hYpj'
+    };
+
+    // Log para verificar que las variables se carguen correctamente
+    console.log('Variables de entorno cargadas:', {
+        serviceID: import.meta.env.EMAILJS_SERVICE_ID ? '✅ Cargada' : '❌ No encontrada',
+        templateID: import.meta.env.EMAILJS_TEMPLATE_ID ? '✅ Cargada' : '❌ No encontrada',
+        publicKey: import.meta.env.EMAILJS_PUBLIC_KEY ? '✅ Cargada' : '❌ No encontrada'
+    });
+
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const statusMessage = document.getElementById('status-message') as HTMLElement;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const btnText = document.getElementById('btn-text') as HTMLElement;
+    const btnLoading = document.getElementById('btn-loading') as HTMLElement;
+    const emailjsStatus = document.getElementById('emailjs-status') as HTMLElement;
+    const statusText = document.getElementById('status-text') as HTMLElement;
+
+    function showStatus(message: string, isError: boolean = false) {
+        
+        statusMessage.textContent = message;
+        
+        if (isError) {
+            statusMessage.className = 'mb-4 p-3 rounded-md text-sm bg-red-100 text-red-700 border border-red-300';
+        } else {
+            statusMessage.className = 'mb-4 p-3 rounded-md text-sm bg-green-100 text-green-700 border border-green-300';
+        }
+        
+        statusMessage.classList.remove('hidden');
+    }
+
+    function setLoading(loading: boolean) {
+        submitBtn.disabled = loading;
+        if (loading) {
+            btnText.classList.add('hidden');
+            btnLoading.classList.remove('hidden');
+        } else {
+            btnText.classList.remove('hidden');
+            btnLoading.classList.add('hidden');
+        }
+    }
+
+    // Cargar EmailJS al inicio
+    let emailjsLoaded = false;
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+    document.head.appendChild(script);
+    
+    script.onload = function() {
+        try {
+            window.emailjs.init(EMAILJS_CONFIG.publicKey);
+            emailjsLoaded = true;
+            console.log('EmailJS cargado correctamente');
+            emailjsStatus.className = 'mb-4 p-2 rounded-md text-xs bg-green-100 text-green-700';
+            statusText.textContent = 'EmailJS listo ✓';
+        } catch (error) {
+            console.error('Error al inicializar EmailJS:', error);
+            emailjsLoaded = false;
+            emailjsStatus.className = 'mb-4 p-2 rounded-md text-xs bg-red-100 text-red-700';
+            statusText.textContent = 'Error al inicializar EmailJS ✗';
+        }
+    };
+    
+    script.onerror = function() {
+        console.error('Error al cargar EmailJS');
+        emailjsLoaded = false;
+        emailjsStatus.className = 'mb-4 p-2 rounded-md text-xs bg-red-100 text-red-700';
+        statusText.textContent = 'Error al cargar EmailJS ✗';
+    };
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        setLoading(true);
+        statusMessage.classList.add('hidden');
+
+        // Verificar que EmailJS esté cargado
+        if (!emailjsLoaded) {
+            showStatus('EmailJS no está cargado. Por favor, recarga la página e intenta nuevamente.', true);
+            setLoading(false);
+            return;
+        }
+
+        try {
+            // Recopilar datos del formulario
+            const formData = new FormData(form);
+            const templateParams = {
+                desde_nombre: formData.get('nombre'),
+                desde_correo_electronico: formData.get('email'),
+                empresa: formData.get('empresa') || 'No especificada',
+                categoria: formData.get('categoria'),
+                producto: formData.get('producto'),
+                mensaje: formData.get('mensaje')
+            };
+
+            console.log('Enviando email con parámetros:', templateParams);
+
+            // Enviar email
+            window.emailjs.send(
+                EMAILJS_CONFIG.serviceID,
+                EMAILJS_CONFIG.templateID,
+                templateParams
+            ).then(function(result: any) {
+                console.log('Email enviado exitosamente:', result);
+                showStatus('¡Mensaje enviado correctamente! Te contactaremos pronto.', false);
+                form.reset();
+                setLoading(false);
+            }).catch(function(error: any) {
+                console.error('Error detallado al enviar email:', error);
+                let errorMessage = 'Error al enviar el mensaje. ';
+                if (error.text) {
+                    errorMessage += error.text;
+                } else if (error.message) {
+                    errorMessage += error.message;
+                } else {
+                    errorMessage += 'Por favor, intenta nuevamente.';
+                }
+                showStatus(errorMessage, true);
+                setLoading(false);
+            });
+
+        } catch (error: any) {
+            console.error('Error al procesar el formulario:', error);
+            showStatus('Error al procesar el formulario. Por favor, intenta nuevamente.', true);
+            setLoading(false);
+        }
+    });
+});
+</script>
