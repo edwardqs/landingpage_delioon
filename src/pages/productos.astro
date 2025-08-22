@@ -10,33 +10,33 @@ import Layout from '../layouts/BaseLayout.astro';
             <img 
                 src="/images/fondoproductos.svg" 
                 alt="Fondo abstracto de productos"
-                class="absolute top-0 left-0 w-full h-full object-cover z-0"
+                class="absolute top-0 left-0 w-full h-full object-cover z-0 animate-slow-zoom"
             >
             <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
                 <div class="flex flex-col md:flex-row justify-between md:items-center gap-8">
-                    <div>
-                        <h1 class="text-5xl md:text-6xl font-bold">Nuestros Productos</h1>
-                        <p class="mt-2 text-lg text-gray-300">Desarrollamos nuestras propias soluciones</p>
+                    <div class="animate-fade-in-up">
+                        <h1 class="text-5xl md:text-6xl font-bold hover:text-green-400 transition-colors duration-300">Nuestros Productos</h1>
+                        <p class="mt-2 text-lg text-gray-300 hover:text-white transition-colors duration-300">Desarrollamos nuestras propias soluciones</p>
                     </div>
-                    <a href="#" class="bg-green-500 text-white font-bold py-3 px-8 rounded-md hover:bg-green-600 transition-colors flex-shrink-0">
+                    <a href="#" class="bg-green-500 text-white font-bold py-3 px-8 rounded-md hover:bg-green-600 transition-all duration-300 flex-shrink-0 hover:scale-110 hover:shadow-xl hover:shadow-green-500/25 animate-bounce-in">
                          Cotizar
                     </a>
                 </div>
                 <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="relative w-full monitor-container">
-                        <img src="/images/products/Monitor.png" alt="Monitor" class="w-full h-auto">
+                    <div class="relative w-full monitor-container animate-fade-in-up" style="animation-delay: 0.1s;">
+                        <img src="/images/products/Monitor.png" alt="Monitor" class="w-full h-auto hover:scale-105 transition-transform duration-500">
                         <div class="absolute monitor-screen">
                             <img src="/images/products/Desktop.png" alt="Interfaz HAPZA - Diseño de Voladuras" class="w-full h-full object-cover monitor-content">
                         </div>
                     </div>
-                    <div class="relative w-full monitor-container">
-                        <img src="/images/products/Monitor.png" alt="Monitor" class="w-full h-auto">
+                    <div class="relative w-full monitor-container animate-fade-in-up" style="animation-delay: 0.2s;">
+                        <img src="/images/products/Monitor.png" alt="Monitor" class="w-full h-auto hover:scale-105 transition-transform duration-500">
                         <div class="absolute monitor-screen">
                             <img src="/images/products/Desktop.png" alt="Interfaz HAPZA - Dashboard Principal" class="w-full h-full object-cover monitor-content">
                         </div>
                     </div>
-                    <div class="relative w-full monitor-container">
-                        <img src="/images/products/Monitor.png" alt="Monitor" class="w-full h-auto">
+                    <div class="relative w-full monitor-container animate-fade-in-up" style="animation-delay: 0.3s;">
+                        <img src="/images/products/Monitor.png" alt="Monitor" class="w-full h-auto hover:scale-105 transition-transform duration-500">
                         <div class="absolute monitor-screen">
                             <img src="/images/products/Desktop.png" alt="Interfaz HAPZA - Análisis de Datos" class="w-full h-full object-cover monitor-content">
                         </div>
@@ -95,110 +95,113 @@ import Layout from '../layouts/BaseLayout.astro';
             </div>
         </section>
 
-        <section class="bg-white py-20 md:py-24" data-section-theme="light">
-            <div class="max-w-7xl mx-auto px-6 lg:px-8">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <section class="bg-white py-20 md:py-24 relative overflow-hidden" data-section-theme="light">
+            <div class="absolute inset-0 bg-gradient-to-r from-green-50/30 via-transparent to-blue-50/30 animate-gradient-shift"></div>
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 animate-fade-in-up">
                     <div>
-                        <h2 class="text-5xl font-extrabold text-gray-800">HAPZA</h2>
-                        <p class="text-xl text-gray-500 mt-1">Sistema Integral de Perforación y Voladura</p>
+                        <h2 class="text-5xl font-extrabold text-gray-800 hover:text-green-600 transition-colors duration-300">HAPZA</h2>
+                        <p class="text-xl text-gray-500 mt-1 hover:text-gray-700 transition-colors duration-300">Sistema Integral de Perforación y Voladura</p>
                     </div>
-                    <a href="#" class="border-2 border-gray-800 text-gray-800 font-bold py-2.5 px-6 rounded-md hover:bg-gray-100 transition flex-shrink-0">
+                    <a href="#" class="border-2 border-gray-800 text-gray-800 font-bold py-2.5 px-6 rounded-md hover:bg-gray-800 hover:text-white transition-all duration-300 flex-shrink-0 hover:scale-110 hover:shadow-lg">
                         Ingresar Aquí
                     </a>
                 </div>
         
                 <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
-                    <div>
+                    <div class="animate-slide-in-left">
                         <ul class="list-disc list-inside space-y-3 text-gray-600">
-                            <li>Aplicación WEB.</li>
-                            <li>Base de datos en la Nube.</li>
-                            <li>Integra datos de administración, diseño, servicios técnicos y QA/QC.</li>
-                            <li>Aplicación Móvil para conciliación de datos en terreno.</li>
-                            <li>Diseño de mallas de voladuras con IA.</li>
-                            <li>Sincronización con Explorer y otros Hardware.</li>
-                            <li>Compatible con detonadores electrónicos y pirotécnicos.</li>
-                            <li>Archivos DXF, CSV y KML.</li>
-                            <li>Simulación de Vibraciones Campo Cercano y Lejano, Fragmentación, Flyrock, Apilamiento, Isotiempos y otros.</li>
-                            <li>Generación de reportes administrativos y técnicos.</li>
-                            <li>Trazabilidad completa de la perforación y voladura.</li>
+                            <li class="hover:text-green-600 transition-colors duration-300 hover:scale-105 transform origin-left">Aplicación WEB.</li>
+                            <li class="hover:text-green-600 transition-colors duration-300 hover:scale-105 transform origin-left">Base de datos en la Nube.</li>
+                            <li class="hover:text-green-600 transition-colors duration-300 hover:scale-105 transform origin-left">Integra datos de administración, diseño, servicios técnicos y QA/QC.</li>
+                            <li class="hover:text-green-600 transition-colors duration-300 hover:scale-105 transform origin-left">Aplicación Móvil para conciliación de datos en terreno.</li>
+                            <li class="hover:text-green-600 transition-colors duration-300 hover:scale-105 transform origin-left">Diseño de mallas de voladuras con IA.</li>
+                            <li class="hover:text-green-600 transition-colors duration-300 hover:scale-105 transform origin-left">Sincronización con Explorer y otros Hardware.</li>
+                            <li class="hover:text-green-600 transition-colors duration-300 hover:scale-105 transform origin-left">Compatible con detonadores electrónicos y pirotécnicos.</li>
+                            <li class="hover:text-green-600 transition-colors duration-300 hover:scale-105 transform origin-left">Archivos DXF, CSV y KML.</li>
+                            <li class="hover:text-green-600 transition-colors duration-300 hover:scale-105 transform origin-left">Simulación de Vibraciones Campo Cercano y Lejano, Fragmentación, Flyrock, Apilamiento, Isotiempos y otros.</li>
+                            <li class="hover:text-green-600 transition-colors duration-300 hover:scale-105 transform origin-left">Generación de reportes administrativos y técnicos.</li>
+                            <li class="hover:text-green-600 transition-colors duration-300 hover:scale-105 transform origin-left">Trazabilidad completa de la perforación y voladura.</li>
                         </ul>
                     </div>
         
-                    <div class="space-y-6">
-                        <div class="grid grid-cols-[1fr_auto] items-center gap-4">
-                            <span class="text-2xl font-semibold text-gray-700 text-right">Polvorín</span>
-                            <img src="/icons/icons-products/Dynamite.svg" alt="Icono de Polvorín" width="28" height="28">
+                    <div class="space-y-6 animate-slide-in-right">
+                        <div class="grid grid-cols-[1fr_auto] items-center gap-4 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                            <span class="text-2xl font-semibold text-gray-700 text-right hover:text-green-600 transition-colors duration-300">Polvorín</span>
+                            <img src="/icons/icons-products/Dynamite.svg" alt="Icono de Polvorín" width="28" height="28" class="hover:rotate-12 transition-transform duration-300">
                         </div>
-                         <div class="grid grid-cols-[1fr_auto] items-center gap-4">
-                            <span class="text-2xl font-semibold text-gray-700 text-right">Servicios Técnicos</span>
-                            <img src="/icons/icons-products/Service.svg" alt="Icono de Servicios Técnicos" width="28" height="28">
+                         <div class="grid grid-cols-[1fr_auto] items-center gap-4 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                            <span class="text-2xl font-semibold text-gray-700 text-right hover:text-green-600 transition-colors duration-300">Servicios Técnicos</span>
+                            <img src="/icons/icons-products/Service.svg" alt="Icono de Servicios Técnicos" width="28" height="28" class="hover:rotate-12 transition-transform duration-300">
                         </div>
-                         <div class="grid grid-cols-[1fr_auto] items-center gap-4">
-                            <span class="text-2xl font-semibold text-gray-700 text-right">Diseño de Voladuras</span>
-                            <img src="/icons/icons-products/Design.svg" alt="Icono de Diseño de Voladuras" width="28" height="28">
+                         <div class="grid grid-cols-[1fr_auto] items-center gap-4 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                            <span class="text-2xl font-semibold text-gray-700 text-right hover:text-green-600 transition-colors duration-300">Diseño de Voladuras</span>
+                            <img src="/icons/icons-products/Design.svg" alt="Icono de Diseño de Voladuras" width="28" height="28" class="hover:rotate-12 transition-transform duration-300">
                         </div>
-                         <div class="grid grid-cols-[1fr_auto] items-center gap-4">
-                            <span class="text-2xl font-semibold text-gray-700 text-right">QA/QC</span>
-                            <img src="/icons/icons-products/Guarantee.svg" alt="Icono de QA/QC" width="28" height="28">
+                         <div class="grid grid-cols-[1fr_auto] items-center gap-4 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                            <span class="text-2xl font-semibold text-gray-700 text-right hover:text-green-600 transition-colors duration-300">QA/QC</span>
+                            <img src="/icons/icons-products/Guarantee.svg" alt="Icono de QA/QC" width="28" height="28" class="hover:rotate-12 transition-transform duration-300">
                         </div>
                     </div>
                 </div>
         
-                <div class="mt-12 flex justify-end">
-                    <a href="#" class="bg-[#DE1207] text-white font-bold py-3 px-6 rounded-md hover:bg-opacity-90 transition flex items-center gap-2">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                <div class="mt-12 flex justify-end animate-fade-in-up" style="animation-delay: 0.5s;">
+                    <a href="#" class="bg-[#DE1207] text-white font-bold py-3 px-6 rounded-md hover:bg-opacity-90 transition-all duration-300 flex items-center gap-2 hover:scale-110 hover:shadow-xl hover:shadow-red-500/25">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hover:translate-y-1 transition-transform duration-300"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
                         Brochure
                     </a>
                 </div>
             </div>
         </section>
 
-        <div class="py-16 bg-white" data-section-theme="light">
-            <div class="h-2 max-w-lg mx-auto bg-delion-gradient rounded-full"></div>
+        <div class="py-16 bg-white relative overflow-hidden" data-section-theme="light">
+            <div class="h-2 max-w-lg mx-auto bg-delion-gradient rounded-full animate-pulse-slow"></div>
         </div>
-        <section class="bg-gray-50 py-20 md:py-24" data-section-theme="light">
-            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        
+        <section class="bg-gray-50 py-20 md:py-24 relative overflow-hidden" data-section-theme="light">
+            <div class="absolute inset-0 bg-gradient-to-l from-yellow-50/30 via-transparent to-red-50/30 animate-gradient-shift-reverse"></div>
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-                    <div>
+                    <div class="animate-slide-in-left">
                         <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 mb-2">
-                            <img src="/logos/Explorer.svg" alt="Logo de Explorer" class="h-12">
-                            <a href="#" class="mt-4 sm:mt-0 bg-yellow-400 text-gray-900 font-bold py-2 px-5 rounded-md hover:bg-yellow-500 transition-colors inline-block">
+                            <img src="/logos/Explorer.svg" alt="Logo de Explorer" class="h-12 hover:scale-110 transition-transform duration-300">
+                            <a href="#" class="mt-4 sm:mt-0 bg-yellow-400 text-gray-900 font-bold py-2 px-5 rounded-md hover:bg-yellow-500 transition-all duration-300 inline-block hover:scale-110 hover:shadow-lg">
                                 Ingresar Aquí
                             </a>
                         </div>
-                        <p class="text-xl text-gray-500">Análisis de Fragmentación</p>
+                        <p class="text-xl text-gray-500 hover:text-gray-700 transition-colors duration-300">Análisis de Fragmentación
         
                         <ul class="list-disc list-inside space-y-3 text-gray-600 mt-8">
-                            <li>Aplicación WEB.</li>
-                            <li>Base de datos en la Nube (Opcional).</li>
-                            <li>03 Modos de Análizar.</li>
-                            <li>Aplicación Móvil para obtener imagen con referencial escalar.</li>
-                            <li>Explorer portable con procesamiento local (Cámara Estéreo).</li>
-                            <li>Análisis de Ortofotos con Drone.</li>
+                            <li class="hover:text-yellow-600 transition-colors duration-300 hover:scale-105 transform origin-left">Aplicación WEB.</li>
+                            <li class="hover:text-yellow-600 transition-colors duration-300 hover:scale-105 transform origin-left">Base de datos en la Nube (Opcional).</li>
+                            <li class="hover:text-yellow-600 transition-colors duration-300 hover:scale-105 transform origin-left">03 Modos de Análizar.</li>
+                            <li class="hover:text-yellow-600 transition-colors duration-300 hover:scale-105 transform origin-left">Aplicación Móvil para obtener imagen con referencial escalar.</li>
+                            <li class="hover:text-yellow-600 transition-colors duration-300 hover:scale-105 transform origin-left">Explorer portable con procesamiento local (Cámara Estéreo).</li>
+                            <li class="hover:text-yellow-600 transition-colors duration-300 hover:scale-105 transform origin-left">Análisis de Ortofotos con Drone.</li>
                         </ul>
                     </div>
         
-                    <div class="flex flex-col">
-                        <img src="/images/HombreCantera.svg" alt="Hombre en cantera usando tecnología de drone y móvil para análisis" class="w-full h-auto rounded-lg shadow-md mb-8">
+                    <div class="flex flex-col animate-slide-in-right">
+                        <img src="/images/HombreCantera.svg" alt="Hombre en cantera usando tecnología de drone y móvil para análisis" class="w-full h-auto rounded-lg shadow-md mb-8 hover:scale-105 transition-transform duration-500 hover:shadow-2xl hover:shadow-yellow-500/25">
                         
                         <div class="grid grid-cols-3 gap-4 text-center text-sm font-semibold text-gray-700">
-                            <div class="flex flex-col items-center">
-                                <img src="/icons/icons-explorer/Ruler.svg" alt="Ícono de Referencia Escalar" class="h-8 w-8 mb-2">
-                                <span>Referencia Escalar</span>
+                            <div class="flex flex-col items-center hover:scale-110 transition-transform duration-300 cursor-pointer">
+                                <img src="/icons/icons-explorer/Ruler.svg" alt="Ícono de Referencia Escalar" class="h-8 w-8 mb-2 hover:rotate-12 transition-transform duration-300">
+                                <span class="hover:text-yellow-600 transition-colors duration-300">Referencia Escalar</span>
                             </div>
-                            <div class="flex flex-col items-center">
-                                 <img src="/icons/icons-explorer/Opera Glasses.svg" alt="Ícono de Cámara Estéreo" class="h-8 w-8 mb-2">
-                                <span>Cámara Estéreo</span>
+                            <div class="flex flex-col items-center hover:scale-110 transition-transform duration-300 cursor-pointer">
+                                 <img src="/icons/icons-explorer/Opera Glasses.svg" alt="Ícono de Cámara Estéreo" class="h-8 w-8 mb-2 hover:rotate-12 transition-transform duration-300">
+                                <span class="hover:text-yellow-600 transition-colors duration-300">Cámara Estéreo</span>
                             </div>
-                            <div class="flex flex-col items-center">
-                                <img src="/icons/icons-explorer/Quadcopter.svg" alt="Ícono de Drones" class="h-8 w-8 mb-2">
-                                <span>Drones</span>
+                            <div class="flex flex-col items-center hover:scale-110 transition-transform duration-300 cursor-pointer">
+                                <img src="/icons/icons-explorer/Quadcopter.svg" alt="Ícono de Drones" class="h-8 w-8 mb-2 hover:rotate-12 transition-transform duration-300">
+                                <span class="hover:text-yellow-600 transition-colors duration-300">Drones</span>
                             </div>
                         </div>
 
-                        <div class="mt-8 flex justify-end">
-                            <a href="#" class="bg-[#DE1207] text-white font-bold py-3 px-6 rounded-md hover:bg-opacity-90 transition flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                        <div class="mt-8 flex justify-end animate-fade-in-up" style="animation-delay: 0.5s;">
+                            <a href="#" class="bg-[#DE1207] text-white font-bold py-3 px-6 rounded-md hover:bg-opacity-90 transition-all duration-300 flex items-center gap-2 hover:scale-110 hover:shadow-xl hover:shadow-red-500/25">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hover:translate-y-1 transition-transform duration-300"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
                                 Brochure
                             </a>
                         </div>
@@ -209,3 +212,104 @@ import Layout from '../layouts/BaseLayout.astro';
 
     </main>
 </Layout>
+
+<style>
+    @keyframes slow-zoom {
+        0% { transform: scale(1); }
+        100% { transform: scale(1.1); }
+    }
+    
+    @keyframes fade-in-up {
+        0% { transform: translateY(50px); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
+    }
+    
+    @keyframes slide-in-left {
+        0% { transform: translateX(-100px); opacity: 0; }
+        100% { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes slide-in-right {
+        0% { transform: translateX(100px); opacity: 0; }
+        100% { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes bounce-in {
+        0% { transform: scale(0.3); opacity: 0; }
+        50% { transform: scale(1.05); }
+        70% { transform: scale(0.9); }
+        100% { transform: scale(1); opacity: 1; }
+    }
+    
+    @keyframes gradient-shift {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(20px); }
+    }
+    
+    @keyframes gradient-shift-reverse {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(-20px); }
+    }
+    
+    .animate-slow-zoom {
+        animation: slow-zoom 20s ease-in-out infinite alternate;
+    }
+    
+    .animate-fade-in-up {
+        animation: fade-in-up 1s ease-out forwards;
+        opacity: 0;
+    }
+    
+    .animate-slide-in-left {
+        animation: slide-in-left 1.2s ease-out;
+    }
+    
+    .animate-slide-in-right {
+        animation: slide-in-right 1.2s ease-out 0.3s forwards;
+        opacity: 0;
+    }
+    
+    .animate-bounce-in {
+        animation: bounce-in 1.2s ease-out;
+    }
+    
+    .animate-gradient-shift {
+        animation: gradient-shift 8s ease-in-out infinite;
+    }
+    
+    .animate-gradient-shift-reverse {
+        animation: gradient-shift-reverse 8s ease-in-out infinite;
+    }
+    
+    .animate-pulse-slow {
+        animation: pulse 4s ease-in-out infinite;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Animaciones al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target instanceof HTMLElement) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observar elementos para animaciones
+        document.querySelectorAll('.animate-fade-in-up').forEach(el => {
+            if (el instanceof HTMLElement) {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(50px)';
+                observer.observe(el);
+            }
+        });
+    });
+</script>

@@ -28,43 +28,44 @@ const processSteps = [
   <main>
     <section class="relative h-screen w-full flex items-center justify-center text-white overflow-hidden" data-section-theme="dark">
       <div class="absolute inset-0 z-0">
-        <img src="/images/servicios/bannerservicios.png" alt="Fondo de maquinaria minera" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-[#0C3C6F]/40"></div>
+        <img src="/images/servicios/bannerservicios.png" alt="Fondo de maquinaria minera" class="w-full h-full object-cover animate-slow-zoom">
+        <div class="absolute inset-0 bg-[#0C3C6F]/40 animate-pulse-slow"></div>
       </div>
 
       <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
         <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-16">
-          <div>
-            <h1 class="text-4xl md:text-6xl font-bold text-center md:text-left">Nuestros Servicios</h1>
-            <p class="mt-2 text-lg md:text-xl text-gray-200 text-center md:text-left">Inteligencia Artificial al servicio de nuestros clientes</p>
+          <div class="animate-fade-in-up">
+            <h1 class="text-4xl md:text-6xl font-bold text-center md:text-left hover:text-blue-300 transition-colors duration-300">Nuestros Servicios</h1>
+            <p class="mt-2 text-lg md:text-xl text-gray-200 text-center md:text-left hover:text-white transition-colors duration-300">Inteligencia Artificial al servicio de nuestros clientes</p>
           </div>
-          <a href="#" class="bg-blue-500 text-white font-bold py-3 px-8 rounded-md hover:bg-blue-600 transition-colors flex-shrink-0">
+          <a href="#" class="bg-blue-500 text-white font-bold py-3 px-8 rounded-md hover:bg-blue-600 transition-all duration-300 flex-shrink-0 hover:scale-110 hover:shadow-xl hover:shadow-blue-500/25 animate-bounce-in">
             Cotizar
           </a>
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-x-4 gap-y-8 text-center">
-          {services.map(service => (
-            <a href="#" class="flex flex-col items-center gap-3 hover:scale-105 transition-transform">
-              <div class="w-16 h-16 md:w-20 md:h-20 bg-white/10 rounded-full flex items-center justify-center border-2 border-white/20">
-                <img src={service.icon} alt={`Icono de ${service.name}`} class="w-8 h-8 md:w-10 md:h-10" />
+          {services.map((service, index) => (
+            <a href="#" class="flex flex-col items-center gap-3 hover:scale-110 transition-all duration-300 animate-fade-in-up" style={`animation-delay: ${index * 0.1}s`}>
+              <div class="w-16 h-16 md:w-20 md:h-20 bg-white/10 rounded-full flex items-center justify-center border-2 border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 group">
+                <img src={service.icon} alt={`Icono de ${service.name}`} class="w-8 h-8 md:w-10 md:h-10 group-hover:rotate-12 transition-transform duration-300" />
               </div>
-              <span class="font-semibold text-sm">{service.name}</span>
+              <span class="font-semibold text-sm hover:text-blue-300 transition-colors duration-300">{service.name}</span>
             </a>
           ))}
         </div>
       </div>
     </section>
 
-    <section class="relative bg-white py-20 md:py-32" data-section-theme="light">
-      <img src="/images/servicios/bodyimg.svg" alt="Fondo decorativo de la sección de servicios" class="absolute inset-0 w-full h-full object-cover z-0">
+    <section class="relative bg-white py-20 md:py-32 overflow-hidden" data-section-theme="light">
+      <img src="/images/servicios/bodyimg.svg" alt="Fondo decorativo de la sección de servicios" class="absolute inset-0 w-full h-full object-cover z-0 animate-slow-float">
+      <div class="absolute inset-0 bg-gradient-to-r from-blue-50/20 via-transparent to-green-50/20 animate-gradient-shift"></div>
 
       <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-          <div>
+          <div class="animate-slide-in-left">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-              <h2 class="text-4xl md:text-5xl font-bold text-gray-800 whitespace-nowrap">¿Como lo Hacemos?</h2>
-              <a href="#" class="bg-delion-red text-white font-bold py-3 px-8 rounded-md hover:bg-opacity-90 transition flex-shrink-0">
+              <h2 class="text-4xl md:text-5xl font-bold text-gray-800 whitespace-nowrap hover:text-blue-600 transition-colors duration-300">¿Como lo Hacemos?</h2>
+              <a href="#" class="bg-delion-red text-white font-bold py-3 px-8 rounded-md hover:bg-opacity-90 transition-all duration-300 flex-shrink-0 hover:scale-110 hover:shadow-xl hover:shadow-red-500/25">
                 Brochure
               </a>
             </div>
@@ -74,53 +75,158 @@ const processSteps = [
                 'Instrumentación especializada.',
                 'Ingenieros con amplia experiencia técnica.',
                 'Equipo de desarrollo de Software y Hardware.'
-              ].map(item => (
-                <li class="flex items-center gap-3 text-xl text-gray-700">
-                  <div class="w-7 h-7 flex-shrink-0 bg-green-500 rounded-full flex items-center justify-center">
+              ].map((item, index) => (
+                <li class="flex items-center gap-3 text-xl text-gray-700 hover:scale-105 transition-all duration-300 cursor-pointer group animate-fade-in-up" style={`animation-delay: ${index * 0.1}s`}>
+                  <div class="w-7 h-7 flex-shrink-0 bg-green-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
                   </div>
-                  <span>{item}</span>
+                  <span class="group-hover:text-blue-600 transition-colors duration-300">{item}</span>
                 </li>
               ))}
             </ul>
           </div>
           
-          <div class="flex flex-col items-center justify-start h-full pt-0 md:pt-8">
+          <div class="flex flex-col items-center justify-start h-full pt-0 md:pt-8 animate-slide-in-right">
             <div class="hidden md:block relative w-48 h-48 mt-12">
-              <img src="/icons/icons-services/Positive Dynamic.svg" alt="Gráfico de análisis" class="w-16 h-16 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              {processSteps.map(step => (
-                <div class={`absolute ${step.position} flex gap-2 ${step.alignment}`}>
-                  <div class="w-8 h-8 flex-shrink-0 bg-delion-red text-white rounded-full flex items-center justify-center font-bold text-lg">
+              <img src="/icons/icons-services/Positive Dynamic.svg" alt="Gráfico de análisis" class="w-16 h-16 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-spin-slow">
+              {processSteps.map((step, index) => (
+                <div class={`absolute ${step.position} flex gap-2 ${step.alignment} animate-fade-in-up`} style={`animation-delay: ${index * 0.2}s`}>
+                  <div class="w-8 h-8 flex-shrink-0 bg-delion-red text-white rounded-full flex items-center justify-center font-bold text-lg hover:scale-110 transition-transform duration-300 cursor-pointer">
                     {step.number}
                   </div>
-                  <span class="font-bold text-gray-700 whitespace-nowrap">{step.title}</span>
+                  <span class="font-bold text-gray-700 whitespace-nowrap hover:text-blue-600 transition-colors duration-300">{step.title}</span>
                 </div>
               ))}
             </div>
 
             <div class="md:hidden w-full mt-12 space-y-6">
-              {processSteps.sort((a, b) => a.number - b.number).map(step => (
-                <div class="flex items-center gap-4 text-left">
-                  <div class="w-10 h-10 flex-shrink-0 bg-delion-red text-white rounded-full flex items-center justify-center font-bold text-xl">
+              {processSteps.sort((a, b) => a.number - b.number).map((step, index) => (
+                <div class="flex items-center gap-4 text-left hover:scale-105 transition-transform duration-300 cursor-pointer animate-fade-in-up" style={`animation-delay: ${index * 0.1}s`}>
+                  <div class="w-10 h-10 flex-shrink-0 bg-delion-red text-white rounded-full flex items-center justify-center font-bold text-xl hover:scale-110 transition-transform duration-300">
                     {step.number}
                   </div>
-                  <span class="font-bold text-gray-700 text-lg">{step.title}</span>
+                  <span class="font-bold text-gray-700 text-lg hover:text-blue-600 transition-colors duration-300">{step.title}</span>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        <div class="mt-24 md:mt-40 text-center">
+        <div class="mt-24 md:mt-40 text-center animate-fade-in-up" style="animation-delay: 0.8s;">
           <ul class="space-y-4 text-xl md:text-2xl font-semibold text-gray-800">
-              <li>Optimizamos Procesos, Costos y Tiempos de Operación.</li>
-              <li>Realizamos entrenamiento teórico y práctica.</li>
-              <li>Definimos estándares y buenas prácticas.</li>
-              <li>Reforzamos la seguridad en la operación.</li>
-              <li>Desarrollamos módulos personalizados acorde a cada empresa.</li>
+              <li class="hover:text-blue-600 transition-colors duration-300 hover:scale-105 transform origin-center cursor-pointer">Optimizamos Procesos, Costos y Tiempos de Operación.</li>
+              <li class="hover:text-blue-600 transition-colors duration-300 hover:scale-105 transform origin-center cursor-pointer">Realizamos entrenamiento teórico y práctica.</li>
+              <li class="hover:text-blue-600 transition-colors duration-300 hover:scale-105 transform origin-center cursor-pointer">Definimos estándares y buenas prácticas.</li>
+              <li class="hover:text-blue-600 transition-colors duration-300 hover:scale-105 transform origin-center cursor-pointer">Reforzamos la seguridad en la operación.</li>
+              <li class="hover:text-blue-600 transition-colors duration-300 hover:scale-105 transform origin-center cursor-pointer">Desarrollamos módulos personalizados acorde a cada empresa.</li>
           </ul>
         </div>
       </div>
     </section>
   </main>
 </Layout>
+
+<style>
+    @keyframes slow-zoom {
+        0% { transform: scale(1); }
+        100% { transform: scale(1.1); }
+    }
+    
+    @keyframes slow-float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-15px) rotate(1deg); }
+    }
+    
+    @keyframes fade-in-up {
+        0% { transform: translateY(50px); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
+    }
+    
+    @keyframes slide-in-left {
+        0% { transform: translateX(-100px); opacity: 0; }
+        100% { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes slide-in-right {
+        0% { transform: translateX(100px); opacity: 0; }
+        100% { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes bounce-in {
+        0% { transform: scale(0.3); opacity: 0; }
+        50% { transform: scale(1.05); }
+        70% { transform: scale(0.9); }
+        100% { transform: scale(1); opacity: 1; }
+    }
+    
+    @keyframes gradient-shift {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(20px); }
+    }
+    
+    .animate-slow-zoom {
+        animation: slow-zoom 20s ease-in-out infinite alternate;
+    }
+    
+    .animate-slow-float {
+        animation: slow-float 10s ease-in-out infinite;
+    }
+    
+    .animate-fade-in-up {
+        animation: fade-in-up 1s ease-out forwards;
+        opacity: 0;
+    }
+    
+    .animate-slide-in-left {
+        animation: slide-in-left 1.2s ease-out;
+    }
+    
+    .animate-slide-in-right {
+        animation: slide-in-right 1.2s ease-out 0.3s forwards;
+        opacity: 0;
+    }
+    
+    .animate-bounce-in {
+        animation: bounce-in 1.2s ease-out;
+    }
+    
+    .animate-gradient-shift {
+        animation: gradient-shift 8s ease-in-out infinite;
+    }
+    
+    .animate-spin-slow {
+        animation: spin 15s linear infinite;
+    }
+    
+    .animate-pulse-slow {
+        animation: pulse 4s ease-in-out infinite;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Animaciones al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target instanceof HTMLElement) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observar elementos para animaciones
+        document.querySelectorAll('.animate-fade-in-up').forEach(el => {
+            if (el instanceof HTMLElement) {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(50px)';
+                observer.observe(el);
+            }
+        });
+    });
+</script>
