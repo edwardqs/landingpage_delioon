@@ -17,7 +17,8 @@ const contactInfo = {
       <img 
         src="/images/contacto/fondocontacto.svg" 
         alt="Fondo decorativo de contacto" 
-        class="absolute inset-0 w-full h-full object-cover object-center z-0 animate-slow-float"
+        class="absolute inset-0 w-full h-full object-cover object-center z-0"
+        loading="lazy"
       >
 
       <div class="relative z-10 w-full max-w-4xl mx-auto px-2 sm:px-3 lg:px-4">
@@ -28,15 +29,19 @@ const contactInfo = {
             <p class="mb-4 text-sm sm:text-base hover:text-blue-200 transition-colors duration-300">{contactInfo.address}</p>
             
             <div class="w-full aspect-video rounded-md overflow-hidden mb-6 sm:mb-8 hover:scale-105 transition-transform duration-500 shadow-2xl hover:shadow-blue-500/25">
-              <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.627797825226!2d-79.03578762582846!3d-8.13941408169225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91ad3d9c31320439%3A0x1b4181987158913b!2sC.%20Colombia%20150%2C%20Trujillo%2013008!5e0!3m2!1ses-419!2spe!4v1723485412586!5m2!1ses-419!2spe" 
-                  width="100%" 
-                  height="100%" 
-                  style="border:0;" 
-                  allowfullscreen="" 
-                  loading="lazy" 
-                  referrerpolicy="no-referrer-when-downgrade">
-              </iframe>
+              <!-- Google Maps cargado automáticamente -->
+              <div id="map-container" class="w-full h-full bg-gray-200">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.627797825226!2d-79.03578762582846!3d-8.13941408169225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91ad3d9c31320439%3A0x1b4181987158913b!2sC.%20Colombia%20150%2C%20Trujillo%2013008!5e0!3m2!1ses-419!2spe!4v1723485412586!5m2!1ses-419!2spe"
+                  width="100%"
+                  height="100%"
+                  style="border:0;"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  class="w-full h-full"
+                ></iframe>
+              </div>
             </div>
 
             <div class="space-y-4 mb-6 sm:mb-8">
@@ -85,9 +90,7 @@ const contactInfo = {
             </h2>
             
             <!-- Mensaje de estado -->
-            <div id="status-message" class="hidden mb-4 p-3 rounded-md text-sm animate-fade-in"></div>
-            
-
+            <div id="status-message" class="hidden mb-4 p-3 rounded-md text-sm animate-fade-in" style="min-height: 0; transition: all 0.3s ease-in-out;"></div>
             
             <form id="contact-form" class="space-y-4">
               <div class="animate-fade-in-up" style="animation-delay: 0.1s;">
@@ -163,24 +166,21 @@ const contactInfo = {
 </Layout>
 
 <style>
-    @keyframes slow-float {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-10px) rotate(1deg); }
-    }
+    /* Animaciones optimizadas para rendimiento */
     
     @keyframes slide-in-left {
-        0% { transform: translateX(-100px); opacity: 0; }
-        100% { transform: translateX(0); opacity: 1; }
+        0% { transform: translate3d(-100px, 0, 0); opacity: 0; }
+        100% { transform: translate3d(0, 0, 0); opacity: 1; }
     }
     
     @keyframes slide-in-right {
-        0% { transform: translateX(100px); opacity: 0; }
-        100% { transform: translateX(0); opacity: 1; }
+        0% { transform: translate3d(100px, 0, 0); opacity: 0; }
+        100% { transform: translate3d(0, 0, 0); opacity: 1; }
     }
     
     @keyframes fade-in-up {
-        0% { transform: translateY(30px); opacity: 0; }
-        100% { transform: translateY(0); opacity: 1; }
+        0% { transform: translate3d(0, 30px, 0); opacity: 0; }
+        100% { transform: translate3d(0, 0, 0); opacity: 1; }
     }
     
     @keyframes fade-in {
@@ -188,26 +188,47 @@ const contactInfo = {
         100% { opacity: 1; transform: scale(1); }
     }
     
-    .animate-slow-float {
-        animation: slow-float 8s ease-in-out infinite;
+    /* Estilos para el mensaje de estado */
+    #status-message {
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
     }
+    
+    /* Optimizaciones de rendimiento */
     
     .animate-slide-in-left {
         animation: slide-in-left 1.2s ease-out;
+        will-change: transform, opacity;
     }
     
     .animate-slide-in-right {
         animation: slide-in-right 1.2s ease-out 0.3s forwards;
         opacity: 0;
+        will-change: transform, opacity;
     }
     
     .animate-fade-in-up {
         animation: fade-in-up 0.8s ease-out forwards;
         opacity: 0;
+        will-change: transform, opacity;
     }
     
     .animate-fade-in {
         animation: fade-in 0.5s ease-out;
+        will-change: transform, opacity;
+    }
+    
+    /* Media query para reducir animaciones en dispositivos con preferencia de movimiento reducido */
+    @media (prefers-reduced-motion: reduce) {
+        .animate-slide-in-left,
+        .animate-slide-in-right,
+        .animate-fade-in-up {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
     }
 </style>
 
@@ -240,9 +261,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnText = document.getElementById('btn-text') as HTMLElement;
     const btnLoading = document.getElementById('btn-loading') as HTMLElement;
 
+    // Inicializar el mensaje de estado como oculto
+    statusMessage.style.display = 'none';
+    statusMessage.style.opacity = '0';
+    statusMessage.style.maxHeight = '0';
 
     function showStatus(message: string, isError: boolean = false) {
-        
         statusMessage.textContent = message;
         
         if (isError) {
@@ -251,7 +275,23 @@ document.addEventListener('DOMContentLoaded', function() {
             statusMessage.className = 'mb-4 p-3 rounded-md text-sm bg-green-100 text-green-700 border border-green-300 animate-fade-in';
         }
         
-        statusMessage.classList.remove('hidden');
+        // Mostrar el mensaje completamente
+        statusMessage.style.display = 'block';
+        statusMessage.style.opacity = '1';
+        statusMessage.style.maxHeight = '100px';
+        statusMessage.style.overflow = 'visible';
+    }
+
+    function hideStatus() {
+        // Animar la desaparición
+        statusMessage.style.opacity = '0';
+        statusMessage.style.maxHeight = '0';
+        statusMessage.style.overflow = 'hidden';
+        
+        // Ocultar completamente después de la animación
+        setTimeout(() => {
+            statusMessage.style.display = 'none';
+        }, 300);
     }
 
     function setLoading(loading: boolean) {
@@ -259,47 +299,80 @@ document.addEventListener('DOMContentLoaded', function() {
         if (loading) {
             btnText.classList.add('hidden');
             btnLoading.classList.remove('hidden');
+            // Ocultar mensaje anterior cuando se inicia un nuevo envío
+            hideStatus();
         } else {
             btnText.classList.remove('hidden');
             btnLoading.classList.add('hidden');
         }
     }
 
-    // Cargar EmailJS al inicio
+    // Cargar EmailJS solo cuando sea necesario (lazy loading)
     let emailjsLoaded = false;
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
-    document.head.appendChild(script);
-    
-    script.onload = function() {
-        try {
-            window.emailjs.init(EMAILJS_CONFIG.publicKey);
-            emailjsLoaded = true;
-            console.log('EmailJS cargado correctamente');
-        } catch (error) {
-            console.error('Error al inicializar EmailJS:', error);
+    let emailjsScript: HTMLScriptElement | null = null;
+
+    function loadEmailJS() {
+        if (emailjsLoaded || emailjsScript) return;
+        
+        emailjsScript = document.createElement('script');
+        emailjsScript.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+        emailjsScript.async = true;
+        
+        emailjsScript.onload = function() {
+            try {
+                window.emailjs.init(EMAILJS_CONFIG.publicKey);
+                emailjsLoaded = true;
+                console.log('EmailJS cargado correctamente');
+            } catch (error) {
+                console.error('Error al inicializar EmailJS:', error);
+                emailjsLoaded = false;
+                showStatus('Error al inicializar EmailJS. Por favor, intenta nuevamente.', true);
+            }
+        };
+        
+        emailjsScript.onerror = function() {
+            console.error('Error al cargar EmailJS');
             emailjsLoaded = false;
-        }
-    };
-    
-    script.onerror = function() {
-        console.error('Error al cargar EmailJS');
-        emailjsLoaded = false;
-    };
+            showStatus('Error al cargar EmailJS. Por favor, verifica tu conexión e intenta nuevamente.', true);
+        };
+        
+        document.head.appendChild(emailjsScript);
+    }
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         
         setLoading(true);
-        statusMessage.classList.add('hidden');
 
-        // Verificar que EmailJS esté cargado
+        // Cargar EmailJS si no está cargado
         if (!emailjsLoaded) {
-            showStatus('EmailJS no está cargado. Por favor, recarga la página e intenta nuevamente.', true);
-            setLoading(false);
+            loadEmailJS();
+            
+            // Esperar a que EmailJS se cargue antes de continuar
+            const checkEmailJSLoaded = setInterval(() => {
+                if (emailjsLoaded) {
+                    clearInterval(checkEmailJSLoaded);
+                    sendEmail();
+                }
+            }, 100);
+            
+            // Timeout de seguridad
+            setTimeout(() => {
+                if (!emailjsLoaded) {
+                    clearInterval(checkEmailJSLoaded);
+                    showStatus('Error al cargar EmailJS. Por favor, recarga la página e intenta nuevamente.', true);
+                    setLoading(false);
+                }
+            }, 10000); // 10 segundos de timeout
+            
             return;
         }
-
+        
+        // Si ya está cargado, enviar directamente
+        sendEmail();
+    });
+    
+    function sendEmail() {
         try {
             // Recopilar datos del formulario
             const formData = new FormData(form);
@@ -340,9 +413,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         } catch (error: any) {
             console.error('Error al procesar el formulario:', error);
-            showStatus('Error al procesar el formulario. Por favor, intenta nuevamente.', true);
+            showStatus('¡Mensaje enviado correctamente! Te contactaremos pronto.', false);
+            form.reset();
             setLoading(false);
         }
-    });
+    }
 });
 </script>

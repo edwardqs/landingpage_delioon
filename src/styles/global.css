@@ -2,11 +2,171 @@
 @tailwind components;
 @tailwind utilities;
 
-html { scroll-behavior: smooth; }
-.section { @apply py-16 md:py-24; }
-.container-prose { @apply max-w-6xl mx-auto px-4; }
+/* Estilos base optimizados */
+@layer base {
+  /* Reset y optimizaciones de rendimiento */
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* Optimizaciones de imágenes */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Optimizaciones de enlaces */
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  
+  /* Optimizaciones de botones */
+  button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  
+  /* Optimizaciones de formularios */
+  input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+  }
+}
 
+/* Componentes optimizados */
+@layer components {
+  /* Botones optimizados */
+  .btn-primary {
+    @apply bg-delion-red text-white font-bold py-3 px-8 rounded-md hover:bg-delion-redDark transition-all duration-300 hover:scale-105 hover:shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply bg-delion-blue text-white font-bold py-3 px-8 rounded-md hover:opacity-90 transition-all duration-300 hover:scale-105 hover:shadow-lg;
+  }
+  
+  /* Cards optimizadas */
+  .card {
+    @apply bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105;
+  }
+  
+  /* Gradientes optimizados */
+  .gradient-primary {
+    background: linear-gradient(135deg, #0C3C6F 0%, #DE1207 100%);
+  }
+  
+  .gradient-secondary {
+    background: linear-gradient(135deg, #DE1207 0%, #B30E05 100%);
+  }
+}
 
-/* Reveal opcional */
-.reveal { opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
-.reveal.in { opacity:1; transform:translateY(0); }
+/* Utilidades optimizadas */
+@layer utilities {
+  /* Animaciones optimizadas para rendimiento */
+  .animate-optimized {
+    will-change: transform, opacity;
+    transform: translate3d(0, 0, 0);
+  }
+  
+  /* Sombras optimizadas */
+  .shadow-optimized {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  /* Transiciones optimizadas */
+  .transition-optimized {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Texto optimizado */
+  .text-optimized {
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: "kern" 1;
+    font-feature-settings: "kern" 1;
+  }
+  
+  /* Contenedor optimizado */
+  .container-optimized {
+    @apply max-w-7xl mx-auto px-6 lg:px-8;
+  }
+}
+
+/* Media queries para preferencias de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Optimizaciones para dispositivos móviles */
+@media (max-width: 768px) {
+  .container-optimized {
+    @apply px-4;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    @apply py-2 px-6 text-sm;
+  }
+}
+
+/* Optimizaciones para dispositivos de alta densidad */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .text-optimized {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Optimizaciones para modo oscuro del sistema */
+@media (prefers-color-scheme: dark) {
+  .card {
+    @apply bg-gray-800 text-white;
+  }
+}
+
+/* Optimizaciones de accesibilidad */
+@media (prefers-contrast: high) {
+  .btn-primary,
+  .btn-secondary {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Optimizaciones de impresión */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}

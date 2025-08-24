@@ -42,7 +42,7 @@ const outcomes = [
   <main>
     <section class="relative h-[70vh] w-full flex items-center justify-center text-white overflow-hidden" data-section-theme="dark">
       <div class="absolute inset-0 z-0">
-        <img src="/images/servicios/bannerservicios.png" alt="Fondo de maquinaria minera" class="w-full h-full object-cover animate-slow-zoom">
+        <img src="/images/servicios/bannerservicios.png" alt="Fondo de maquinaria minera" class="w-full h-full object-cover animate-slow-zoom" fetchpriority="high">
         <div class="absolute inset-0 bg-gradient-to-t from-delion-blue/80 to-black/40"></div>
       </div>
 
@@ -63,7 +63,7 @@ const outcomes = [
               {services.map((service, index) => (
                 <div class="group bg-delion-gradient text-white rounded-lg shadow-lg p-6 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl hover:brightness-125 animate-fade-in-up" style={`animation-delay: ${index * 0.1}s`}>
                   <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto border-4 border-transparent group-hover:border-white/50 transition-all duration-300">
-                    <img src={service.icon} alt={`Icono de ${service.name}`} class="w-10 h-10 transition-transform duration-300 group-hover:scale-110" style="filter: brightness(0) invert(1);" />
+                    <img src={service.icon} alt={`Icono de ${service.name}`} class="w-10 h-10 transition-transform duration-300 group-hover:scale-110" style="filter: brightness(0) invert(1);" loading="lazy" />
                   </div>
                   <h3 class="mt-5 font-bold text-lg">{service.name}</h3>
                 </div>
@@ -94,7 +94,7 @@ const outcomes = [
             </ul>
              <a href="#" class="mt-8 inline-block bg-delion-red text-white font-bold py-3 px-8 rounded-md hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105">
                 Ver Brochure
-              </a>
+            </a>
           </div>
           
           <div class="animate-slide-in-right">
@@ -133,19 +133,87 @@ const outcomes = [
 </Layout>
 
 <style>
-    @keyframes slow-zoom { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
-    @keyframes fade-in-up { 0% { transform: translateY(50px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
-    @keyframes slide-in-left { 0% { transform: translateX(-100px); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
-    @keyframes slide-in-right { 0% { transform: translateX(100px); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
-    @keyframes bounce-in { 0% { transform: scale(0.3); opacity: 0; } 50% { transform: scale(1.05); } 70% { transform: scale(0.9); } 100% { transform: scale(1); opacity: 1; } }
-    @keyframes gradient-shift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    /* Animaciones optimizadas para rendimiento */
+    @keyframes slow-zoom { 
+        0% { transform: translate3d(0, 0, 0) scale(1); } 
+        100% { transform: translate3d(0, 0, 0) scale(1.15); } 
+    }
+    @keyframes fade-in-up { 
+        0% { transform: translate3d(0, 50px, 0); opacity: 0; } 
+        100% { transform: translate3d(0, 0, 0); opacity: 1; } 
+    }
+    @keyframes slide-in-left { 
+        0% { transform: translate3d(-100px, 0, 0); opacity: 0; } 
+        100% { transform: translate3d(0, 0, 0); opacity: 1; } 
+    }
+    @keyframes slide-in-right { 
+        0% { transform: translate3d(100px, 0, 0); opacity: 0; } 
+        100% { transform: translate3d(0, 0, 0); opacity: 1; } 
+    }
+    @keyframes bounce-in { 
+        0% { transform: scale(0.3); opacity: 0; } 
+        50% { transform: scale(1.05); } 
+        70% { transform: scale(0.9); } 
+        100% { transform: scale(1); opacity: 1; } 
+    }
+    @keyframes gradient-shift { 
+        0%, 100% { background-position: 0% 50%; } 
+        50% { background-position: 100% 50%; } 
+    }
     
-    .animate-slow-zoom { animation: slow-zoom 20s ease-in-out infinite alternate; }
-    .animate-fade-in-up { animation: fade-in-up 1s ease-out forwards; opacity: 0; }
-    .animate-slide-in-left { animation: slide-in-left 1.2s ease-out forwards; opacity: 0; }
-    .animate-slide-in-right { animation: slide-in-right 1.2s ease-out 0.3s forwards; opacity: 0; }
-    .animate-bounce-in { animation: bounce-in 1.2s ease-out 0.5s forwards; opacity: 0; }
-    .animate-gradient-shift { animation: gradient-shift 15s ease infinite; background-size: 200% 200%; }
-    .animate-text-glow { text-shadow: 0 0 10px rgba(255, 255, 255, 0.4), 0 0 25px rgba(255, 255, 255, 0.2); }
-    .text-shadow-lg { text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    /* Optimizaciones de rendimiento */
+    .animate-slow-zoom { 
+        animation: slow-zoom 20s ease-in-out infinite alternate; 
+        will-change: transform;
+    }
+    .animate-fade-in-up { 
+        animation: fade-in-up 1s ease-out forwards; 
+        opacity: 0; 
+        will-change: transform, opacity;
+    }
+    .animate-slide-in-left { 
+        animation: slide-in-left 1.2s ease-out forwards; 
+        opacity: 0; 
+        will-change: transform, opacity;
+    }
+    .animate-slide-in-right { 
+        animation: slide-in-right 1.2s ease-out 0.3s forwards; 
+        opacity: 0; 
+        will-change: transform, opacity;
+    }
+    .animate-bounce-in { 
+        animation: bounce-in 1.2s ease-out 0.5s forwards; 
+        opacity: 0; 
+        will-change: transform, opacity;
+    }
+    .animate-gradient-shift { 
+        animation: gradient-shift 15s ease infinite; 
+        background-size: 200% 200%; 
+        will-change: background-position;
+    }
+    .animate-text-glow { 
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.4), 0 0 25px rgba(255, 255, 255, 0.2); 
+    }
+    .text-shadow-lg { 
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3); 
+    }
+    
+    /* Media query para reducir animaciones en dispositivos con preferencia de movimiento reducido */
+    @media (prefers-reduced-motion: reduce) {
+        .animate-slow-zoom,
+        .animate-gradient-shift {
+            animation: none;
+        }
+        
+        .animate-fade-in-up,
+        .animate-slide-in-left,
+        .animate-slide-in-right,
+        .animate-bounce-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+    }
 </style>

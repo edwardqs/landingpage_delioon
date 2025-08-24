@@ -34,6 +34,7 @@ const products = [
                 src="/images/fondoproductos.png" 
                 alt="Fondo abstracto de productos"
                 class="absolute top-0 left-0 w-full h-full object-cover z-0 animate-slow-zoom"
+                fetchpriority="high"
             >
             <div class="absolute inset-0 bg-gradient-to-t from-delion-blue/80 to-black/30"></div>
             <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center animate-fade-in-up">
@@ -55,7 +56,7 @@ const products = [
                             </div>
                             <div class="flex-grow pt-10">
                                 {product.logo ? (
-                                    <img src={product.logo} alt={`Logo ${product.name}`} class="h-12 mb-6 transition-transform duration-300 group-hover:scale-105"/>
+                                    <img src={product.logo} alt={`Logo ${product.name}`} class="h-12 mb-6 transition-transform duration-300 group-hover:scale-105" loading="lazy"/>
                                 ) : (
                                     <h2 class="text-4xl font-bold text-gray-800 mb-6">{product.name}</h2>
                                 )}
@@ -78,28 +79,63 @@ const products = [
 </Layout>
 
 <style>
+    /* Animaciones optimizadas para rendimiento */
     @keyframes slow-zoom {
-        0% { transform: scale(1); }
-        100% { transform: scale(1.1); }
+        0% { transform: translate3d(0, 0, 0) scale(1); }
+        100% { transform: translate3d(0, 0, 0) scale(1.1); }
     }
     @keyframes fade-in-up {
-        0% { transform: translateY(50px); opacity: 0; }
-        100% { transform: translateY(0); opacity: 1; }
+        0% { transform: translate3d(0, 50px, 0); opacity: 0; }
+        100% { transform: translate3d(0, 0, 0); opacity: 1; }
     }
     @keyframes slide-in-up {
-        0% { transform: translateY(60px); opacity: 0; }
-        100% { transform: translateY(0); opacity: 1; }
+        0% { transform: translate3d(0, 60px, 0); opacity: 0; }
+        100% { transform: translate3d(0, 0, 0); opacity: 1; }
     }
     @keyframes bounce-in {
         0% { transform: scale(0.5); opacity: 0; }
         60% { transform: scale(1.05); }
         100% { transform: scale(1); opacity: 1; }
     }
-    .animate-slow-zoom { animation: slow-zoom 25s ease-in-out infinite alternate; }
-    .animate-fade-in-up { animation: fade-in-up 1s ease-out forwards; opacity: 0; }
-    .animate-slide-in-up { animation: slide-in-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; opacity: 0; }
-    .animate-bounce-in { animation: bounce-in 1s ease-out 0.5s forwards; opacity: 0; }
+    
+    /* Optimizaciones de rendimiento */
+    .animate-slow-zoom { 
+        animation: slow-zoom 25s ease-in-out infinite alternate; 
+        will-change: transform;
+    }
+    .animate-fade-in-up { 
+        animation: fade-in-up 1s ease-out forwards; 
+        opacity: 0; 
+        will-change: transform, opacity;
+    }
+    .animate-slide-in-up { 
+        animation: slide-in-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; 
+        opacity: 0; 
+        will-change: transform, opacity;
+    }
+    .animate-bounce-in { 
+        animation: bounce-in 1s ease-out 0.5s forwards; 
+        opacity: 0; 
+        will-change: transform, opacity;
+    }
     .animate-text-glow {
         text-shadow: 0 0 10px rgba(255, 255, 255, 0.4), 0 0 25px rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Media query para reducir animaciones en dispositivos con preferencia de movimiento reducido */
+    @media (prefers-reduced-motion: reduce) {
+        .animate-slow-zoom {
+            animation: none;
+        }
+        
+        .animate-fade-in-up,
+        .animate-slide-in-up,
+        .animate-bounce-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
     }
 </style>

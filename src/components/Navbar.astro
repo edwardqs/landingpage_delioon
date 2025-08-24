@@ -22,7 +22,7 @@ const navLinks = [
         
         <div>
             <a href="/" class="block h-10 w-35 transition-transform duration-300 hover:scale-105">
-                <img src="/logo_delion.png" alt="Logo Delion blanco" class="h-full w-full object-cover" />
+                <img src="/logo_delion.png" alt="Logo Delion blanco" class="h-full w-full object-cover" fetchpriority="high" />
             </a>
         </div>
 
@@ -46,18 +46,18 @@ const navLinks = [
             </ul>
             <div class="relative">
                 <button id="lang-toggle-button" class="flex items-center gap-2.5 text-base text-white transition-opacity">
-                    <img id="current-lang-flag" src="/icons/Spain (ES).svg" alt="Bandera de España" class="h-5 w-5 object-contain rounded-full" />
+                    <img id="current-lang-flag" src="/icons/Spain (ES).svg" alt="Bandera de España" class="h-5 w-5 object-contain rounded-full" loading="lazy" />
                     <span id="current-lang-text">ESP</span>
                     <svg id="chevron-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
                 </button>
                 <div id="lang-menu" class="absolute top-full mt-3 right-0 w-48 bg-white rounded-md shadow-lg hidden z-10">
                     <div class="py-1" role="menu">
                          <a href="/es" class="lang-option flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" data-lang="ESP" data-flag="/icons/Spain (ES).svg">
-                            <img src="/icons/Spain (ES).svg" alt="Bandera de España" class="h-5 w-5 object-contain rounded-full">
+                            <img src="/icons/Spain (ES).svg" alt="Bandera de España" class="h-5 w-5 object-contain rounded-full" loading="lazy">
                             <span>Español (ES)</span>
                          </a>
                          <a href="/en" class="lang-option flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" data-lang="ENG" data-flag="/icons/English (EN).svg">
-                             <img src="/icons/English (EN).svg" alt="Bandera de Reino Unido" class="h-5 w-5 object-contain rounded-full">
+                             <img src="/icons/English (EN).svg" alt="Bandera de Reino Unido" class="h-5 w-5 object-contain rounded-full" loading="lazy">
                              <span>English (EN)</span>
                          </a>
                     </div>
@@ -73,7 +73,7 @@ const navLinks = [
     </div>
 </nav>
 
-<div id="mobile-menu" class="fixed inset-0 bg-[#0A192F] text-white hidden z-40">
+<div id="mobile-menu" class="fixed inset-0 bg-[#0C3C6F] text-white hidden z-40">
     <div class="flex flex-col items-center justify-center h-full">
         <button id="close-mobile-menu" class="absolute top-6 right-6 text-white text-2xl hover:text-gray-300">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -94,74 +94,99 @@ const navLinks = [
 </div>
 
 <script>
-    // El script permanece sin cambios
+    // Script optimizado para mejor rendimiento
     document.addEventListener('DOMContentLoaded', () => {
-        const langToggleButton = document.getElementById('lang-toggle-button');
-        const langMenu = document.getElementById('lang-menu');
-        const currentLangFlag = document.getElementById('current-lang-flag');
-        const currentLangText = document.getElementById('current-lang-text');
-        const chevronIcon = document.getElementById('chevron-icon');
-        const langOptions = document.querySelectorAll('.lang-option');
+        // Cache de elementos DOM para evitar búsquedas repetidas
+        const elements = {
+            langToggleButton: document.getElementById('lang-toggle-button'),
+            langMenu: document.getElementById('lang-menu'),
+            currentLangFlag: document.getElementById('current-lang-flag'),
+            currentLangText: document.getElementById('current-lang-text'),
+            chevronIcon: document.getElementById('chevron-icon'),
+            langOptions: document.querySelectorAll('.lang-option'),
+            hamburgerButton: document.getElementById('hamburger-button'),
+            mobileMenu: document.getElementById('mobile-menu'),
+            closeMobileMenuButton: document.getElementById('close-mobile-menu')
+        };
 
-        if (langToggleButton && langMenu) {
-            langToggleButton.addEventListener('click', (event) => {
-                event.stopPropagation();
-                langMenu.classList.toggle('hidden');
-                if (chevronIcon) chevronIcon.classList.toggle('rotate-180');
-            });
+        // Función para manejar el toggle del menú de idiomas
+        function handleLangToggle(event: Event) {
+            event.stopPropagation();
+            if (elements.langMenu) {
+                elements.langMenu.classList.toggle('hidden');
+                if (elements.chevronIcon) {
+                    elements.chevronIcon.classList.toggle('rotate-180');
+                }
+            }
+        }
 
-            langOptions.forEach(option => {
-                option.addEventListener('click', (event) => {
-                    event.preventDefault(); 
-                    const newLang = (event.currentTarget as HTMLElement).dataset.lang;
-                    const newFlag = (event.currentTarget as HTMLElement).dataset.flag;
-        
-                    if (currentLangFlag && currentLangText) {
-                        (currentLangFlag as HTMLImageElement).src = newFlag || '';
-                        currentLangText.textContent = newLang || '';
-                    }
+        // Función para manejar el cambio de idioma
+        function handleLangChange(event: Event) {
+            event.preventDefault(); 
+            const target = event.currentTarget as HTMLElement;
+            const newLang = target.dataset.lang;
+            const newFlag = target.dataset.flag;
+    
+            if (elements.currentLangFlag && elements.currentLangText) {
+                (elements.currentLangFlag as HTMLImageElement).src = newFlag || '';
+                elements.currentLangText.textContent = newLang || '';
+            }
       
-                    langMenu.classList.add('hidden');
-                    if (chevronIcon) chevronIcon.classList.remove('rotate-180');
-                });
-            });
+            if (elements.langMenu) {
+                elements.langMenu.classList.add('hidden');
+            }
+            if (elements.chevronIcon) {
+                elements.chevronIcon.classList.remove('rotate-180');
+            }
         }
 
-        const hamburgerButton = document.getElementById('hamburger-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
-
-        if (hamburgerButton && mobileMenu) {
-            hamburgerButton.addEventListener('click', () => {
-                mobileMenu.classList.remove('hidden');
+        // Función para manejar el menú móvil
+        function handleMobileMenu() {
+            if (elements.mobileMenu) {
+                elements.mobileMenu.classList.remove('hidden');
                 document.body.classList.add('overflow-hidden');
-            });
+            }
         }
 
-        if (closeMobileMenuButton && mobileMenu) {
-            closeMobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+        function closeMobileMenu() {
+            if (elements.mobileMenu) {
+                elements.mobileMenu.classList.add('hidden');
                 document.body.classList.remove('overflow-hidden');
-            });
+            }
         }
 
-        if (mobileMenu) {
-            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        // Event listeners optimizados
+        if (elements.langToggleButton && elements.langMenu) {
+            elements.langToggleButton.addEventListener('click', handleLangToggle);
+        }
+
+        elements.langOptions.forEach(option => {
+            option.addEventListener('click', handleLangChange);
+        });
+
+        if (elements.hamburgerButton && elements.mobileMenu) {
+            elements.hamburgerButton.addEventListener('click', handleMobileMenu);
+        }
+
+        if (elements.closeMobileMenuButton && elements.mobileMenu) {
+            elements.closeMobileMenuButton.addEventListener('click', closeMobileMenu);
+        }
+
+        if (elements.mobileMenu) {
+            const mobileMenuLinks = elements.mobileMenu.querySelectorAll('a');
             mobileMenuLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                    document.body.classList.remove('overflow-hidden');
-                });
+                link.addEventListener('click', closeMobileMenu);
             });
         }
-    });
 
-    document.addEventListener('click', () => {
-        const langMenu = document.getElementById('lang-menu');
-        const chevronIcon = document.getElementById('chevron-icon');
-        if (langMenu && !langMenu.classList.contains('hidden')) {
-            langMenu.classList.add('hidden');
-            if (chevronIcon) chevronIcon.classList.remove('rotate-180');
-        }
+        // Cerrar menú de idiomas al hacer clic fuera
+        document.addEventListener('click', () => {
+            if (elements.langMenu && !elements.langMenu.classList.contains('hidden')) {
+                elements.langMenu.classList.add('hidden');
+                if (elements.chevronIcon) {
+                    elements.chevronIcon.classList.remove('rotate-180');
+                }
+            }
+        });
     });
 </script>
