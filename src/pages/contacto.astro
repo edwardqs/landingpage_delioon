@@ -1,6 +1,7 @@
 ---
 // src/pages/contacto.astro
 import Layout from '../layouts/BaseLayout.astro';
+import '../styles/pages/contacto.css';
 
 const contactInfo = {
     address: "Calle Colombia 150, Urb. El Recreo - Trujillo, La Libertad, Perú",
@@ -11,7 +12,15 @@ const contactInfo = {
 };
 ---
 
-<Layout title="Contacto - Delion" showFooter={false}>
+<Layout 
+  title="Contacto - Delion" 
+  showFooter={false}
+  showLoader={true}
+  loaderType="minimal"
+  preloadImages={[
+    '/images/contacto/fondocontacto.svg'
+  ]}
+>
   <main class="overflow-x-hidden">
     <section class="relative w-full py-20 sm:py-24 flex items-start justify-center min-h-screen" data-section-theme="light">
       <img 
@@ -167,62 +176,58 @@ const contactInfo = {
 
 <style>
     /* Animaciones optimizadas para rendimiento */
+    @keyframes fade-in-up {
+        0% { transform: translate3d(0, 3.125rem, 0); opacity: 0; }
+        100% { transform: translate3d(0, 0, 0); opacity: 1; }
+    }
+    @keyframes slide-in-right {
+        0% { transform: translate3d(6.25rem, 0, 0); opacity: 0; }
+        100% { transform: translate3d(0, 0, 0); opacity: 1; }
+    }
+    @keyframes fade-in {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
     
     @keyframes slide-in-left {
-        0% { transform: translate3d(-100px, 0, 0); opacity: 0; }
-        100% { transform: translate3d(0, 0, 0); opacity: 1; }
-    }
-    
-    @keyframes slide-in-right {
-        0% { transform: translate3d(100px, 0, 0); opacity: 0; }
-        100% { transform: translate3d(0, 0, 0); opacity: 1; }
-    }
-    
-    @keyframes fade-in-up {
-        0% { transform: translate3d(0, 30px, 0); opacity: 0; }
-        100% { transform: translate3d(0, 0, 0); opacity: 1; }
-    }
-    
-    @keyframes fade-in {
-        0% { opacity: 0; transform: scale(0.95); }
-        100% { opacity: 1; transform: scale(1); }
-    }
-    
-    /* Estilos para el mensaje de estado */
-    #status-message {
-        transition: all 0.3s ease-in-out;
-        overflow: hidden;
+        0% { transform: translateX(-3.125rem); opacity: 0; }
+        100% { transform: translateX(0); opacity: 1; }
     }
     
     /* Optimizaciones de rendimiento */
-    
-    .animate-slide-in-left {
-        animation: slide-in-left 1.2s ease-out;
+    .animate-fade-in-up {
+        animation: fade-in-up 1s ease-out forwards;
+        opacity: 0;
         will-change: transform, opacity;
     }
-    
     .animate-slide-in-right {
         animation: slide-in-right 1.2s ease-out 0.3s forwards;
         opacity: 0;
         will-change: transform, opacity;
     }
-    
-    .animate-fade-in-up {
-        animation: fade-in-up 0.8s ease-out forwards;
+    .animate-slide-in-left {
+        animation: slide-in-left 1.2s ease-out 0.2s forwards;
         opacity: 0;
         will-change: transform, opacity;
     }
-    
     .animate-fade-in {
-        animation: fade-in 0.5s ease-out;
-        will-change: transform, opacity;
+        animation: fade-in 0.8s ease-out forwards;
+        opacity: 0;
+        will-change: opacity;
+    }
+    
+    /* Estilos específicos para el mensaje de estado */
+    #status-message {
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
     }
     
     /* Media query para reducir animaciones en dispositivos con preferencia de movimiento reducido */
     @media (prefers-reduced-motion: reduce) {
+        .animate-fade-in-up,
         .animate-slide-in-left,
         .animate-slide-in-right,
-        .animate-fade-in-up {
+        .animate-fade-in {
             animation: fadeIn 0.5s ease-out forwards;
         }
         
@@ -278,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Mostrar el mensaje completamente
         statusMessage.style.display = 'block';
         statusMessage.style.opacity = '1';
-        statusMessage.style.maxHeight = '100px';
+        statusMessage.style.maxHeight = '6.25rem';
         statusMessage.style.overflow = 'visible';
     }
 

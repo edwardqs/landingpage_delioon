@@ -1,0 +1,503 @@
+/* ==========================================================================
+   PÁGINA DE CONTACTO - ESTILOS ESPECÍFICOS
+   ========================================================================== */
+
+/* Main Section */
+.contacto-main {
+  @apply overflow-x-hidden;
+}
+
+.contacto-section {
+  @apply relative w-full py-20 sm:py-24 flex items-start justify-center min-h-screen;
+}
+
+.contacto-bg {
+  @apply absolute inset-0 w-full h-full object-cover object-center z-0;
+}
+
+.contacto-container {
+  @apply relative z-10 w-full max-w-4xl mx-auto px-2 sm:px-3 lg:px-4;
+}
+
+.contacto-card {
+  @apply grid grid-cols-1 lg:grid-cols-2 shadow-xl rounded-lg overflow-hidden bg-white/10;
+  backdrop-filter: blur(4px);
+}
+
+/* Left Panel - Contact Info */
+.contacto-info-panel {
+  @apply bg-[#0C3C6F]/90 text-white p-4 sm:p-6 lg:p-8 flex flex-col order-2 lg:order-1;
+  backdrop-filter: blur(4px);
+}
+
+.contacto-location-title {
+  @apply text-2xl sm:text-3xl font-bold mb-2 hover:text-blue-300 transition-colors duration-300;
+}
+
+.contacto-address {
+  @apply mb-4 text-sm sm:text-base hover:text-blue-200 transition-colors duration-300;
+}
+
+.contacto-map-container {
+  @apply w-full aspect-video rounded-md overflow-hidden mb-6 sm:mb-8 hover:scale-105 transition-transform duration-500 shadow-2xl hover:shadow-blue-500/25;
+}
+
+.contacto-map {
+  @apply w-full h-full bg-gray-200;
+}
+
+.contacto-map iframe {
+  @apply w-full h-full;
+}
+
+.contacto-contact-methods {
+  @apply space-y-4 mb-6 sm:mb-8;
+}
+
+.contacto-contact-item {
+  @apply flex items-center gap-3 hover:scale-105 transition-transform duration-300 cursor-pointer;
+}
+
+.contacto-contact-icon {
+  @apply flex-shrink-0 group-hover:rotate-12 transition-transform duration-300;
+}
+
+.contacto-contact-link {
+  @apply hover:underline text-sm sm:text-base break-all hover:text-blue-300 transition-colors duration-300;
+}
+
+.contacto-social-section {
+  @apply mt-auto;
+}
+
+.contacto-social-title {
+  @apply text-xl sm:text-2xl font-bold mb-4 hover:text-blue-300 transition-colors duration-300;
+}
+
+.contacto-social-links {
+  @apply flex gap-4 mb-6 sm:mb-8;
+}
+
+.contacto-social-link {
+  @apply hover:opacity-80 transition-all duration-300 hover:scale-110 hover:rotate-12;
+}
+
+.contacto-privacy {
+  @apply text-xs sm:text-sm text-gray-400 hover:text-gray-300 transition-colors duration-300;
+}
+
+/* Right Panel - Contact Form */
+.contacto-form-panel {
+  @apply bg-white/90 p-3 sm:p-4 lg:p-6 order-1 lg:order-2;
+  backdrop-filter: blur(4px);
+}
+
+.contacto-form-title {
+  @apply text-base sm:text-lg font-bold text-gray-800 uppercase mb-3 hover:text-blue-600 transition-colors duration-300;
+}
+
+.contacto-form {
+  @apply space-y-4;
+}
+
+.contacto-form-group {
+  @apply space-y-2;
+}
+
+.contacto-form-label {
+  @apply block text-sm font-medium text-gray-700;
+}
+
+.contacto-form-input {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300;
+}
+
+.contacto-form-select {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 bg-white;
+}
+
+.contacto-form-textarea {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300;
+  resize: vertical;
+}
+
+.contacto-form-button {
+  @apply w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-300 font-medium relative overflow-hidden;
+}
+
+.contacto-form-button:disabled {
+  @apply bg-gray-400 cursor-not-allowed;
+}
+
+.contacto-form-button-text {
+  @apply transition-opacity duration-300;
+}
+
+.contacto-form-button-loading {
+  @apply absolute inset-0 flex items-center justify-center;
+}
+
+.contacto-form-spinner {
+  @apply animate-spin rounded-full h-5 w-5 border-b-2 border-white;
+}
+
+/* Status Message */
+.contacto-status-message {
+  @apply mb-4 p-3 rounded-md text-sm transition-all duration-300;
+}
+
+.contacto-status-success {
+  @apply bg-green-100 text-green-700 border border-green-300;
+}
+
+.contacto-status-error {
+  @apply bg-red-100 text-red-700 border border-red-300;
+}
+
+/* Product Selection */
+.contacto-product-grid {
+  @apply grid grid-cols-2 gap-2;
+}
+
+.contacto-product-option {
+  @apply flex items-center space-x-2 p-2 border border-gray-200 rounded-md hover:bg-gray-50 transition-colors duration-300;
+}
+
+.contacto-product-checkbox {
+  @apply rounded border-gray-300 text-blue-600 focus:ring-blue-500;
+}
+
+.contacto-product-label {
+  @apply text-sm text-gray-700 cursor-pointer;
+}
+
+/* Animaciones específicas de contacto */
+@keyframes fade-in-up {
+  0% { transform: translate3d(0, 3.125rem, 0); opacity: 0; }
+  100% { transform: translate3d(0, 0, 0); opacity: 1; }
+}
+
+@keyframes slide-in-left {
+  0% { transform: translate3d(-3.125rem, 0, 0); opacity: 0; }
+  100% { transform: translate3d(0, 0, 0); opacity: 1; }
+}
+
+@keyframes slide-in-right {
+  0% { transform: translate3d(3.125rem, 0, 0); opacity: 0; }
+  100% { transform: translate3d(0, 0, 0); opacity: 1; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.3); }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.8s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.8s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Focus states */
+.contacto-form-input:focus,
+.contacto-form-select:focus,
+.contacto-form-textarea:focus {
+  @apply ring-2 ring-blue-500 border-blue-500;
+}
+
+/* Hover effects */
+.contacto-form-input:hover,
+.contacto-form-select:hover,
+.contacto-form-textarea:hover {
+  @apply border-gray-400;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .contacto-card {
+    @apply grid-cols-1;
+  }
+  
+  .contacto-info-panel {
+    @apply order-1;
+  }
+  
+  .contacto-form-panel {
+    @apply order-2;
+  }
+}
+
+@media (max-width: 640px) {
+  .contacto-section {
+    @apply py-12;
+  }
+  
+  .contacto-container {
+    @apply px-4;
+  }
+  
+  .contacto-info-panel,
+  .contacto-form-panel {
+    @apply p-4;
+  }
+  
+  .contacto-product-grid {
+    @apply grid-cols-1;
+  }
+  
+  .contacto-social-links {
+    @apply justify-center;
+  }
+}
+
+/* Optimización de imágenes para móviles */
+@media only screen and (max-width: 768px) {
+  .contacto-bg {
+    /* Mejora la calidad de renderizado en móviles */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    object-fit: cover;
+    object-position: center;
+    /* Optimización de memoria */
+    will-change: auto;
+  }
+  
+  /* Optimización para imágenes dentro de contacto */
+  .contacto-section img,
+  .contacto-product-grid img {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: auto;
+    image-rendering: -webkit-optimize-contrast;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    border-radius: 0.5rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .contacto-bg,
+  .contacto-form-panel {
+    @apply hidden;
+  }
+  
+  .contacto-info-panel {
+    @apply bg-white text-black;
+  }
+}
+
+/* Optimizaciones específicas para orientación horizontal en móviles */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  /* Main Section en landscape */
+  .contacto-section {
+    @apply py-8 min-h-screen;
+  }
+  
+  .contacto-container {
+    @apply max-w-6xl px-4;
+  }
+  
+  .contacto-card {
+    @apply grid-cols-2 gap-0;
+  }
+  
+  /* Left Panel - Contact Info en landscape */
+  .contacto-info-panel {
+    @apply p-4 order-1;
+  }
+  
+  .contacto-location-title {
+    @apply text-xl mb-1;
+  }
+  
+  .contacto-address {
+    @apply mb-2 text-sm;
+  }
+  
+  .contacto-map-container {
+    @apply aspect-[4/3] mb-3;
+  }
+  
+  .contacto-contact-methods {
+    @apply space-y-2 mb-3;
+  }
+  
+  .contacto-contact-item {
+    @apply gap-2;
+  }
+  
+  .contacto-contact-link {
+    @apply text-sm;
+  }
+  
+  .contacto-social-title {
+    @apply text-lg mb-2;
+  }
+  
+  .contacto-social-links {
+    @apply gap-3 mb-3;
+  }
+  
+  .contacto-privacy {
+    @apply text-xs;
+  }
+  
+  /* Right Panel - Contact Form en landscape */
+  .contacto-form-panel {
+    @apply p-4 order-2;
+  }
+  
+  .contacto-form-title {
+    @apply text-base mb-2;
+  }
+  
+  .contacto-form {
+    @apply space-y-3;
+  }
+  
+  .contacto-form-group {
+    @apply space-y-1;
+  }
+  
+  .contacto-form-label {
+    @apply text-sm;
+  }
+  
+  .contacto-form-input,
+  .contacto-form-select {
+    @apply px-2 py-1.5 text-sm;
+  }
+  
+  .contacto-form-textarea {
+    @apply px-2 py-1.5 text-sm;
+    min-height: 80px;
+  }
+  
+  .contacto-form-button {
+    @apply py-2 px-3 text-sm;
+  }
+  
+  .contacto-product-grid {
+    @apply grid-cols-2 gap-1;
+  }
+  
+  .contacto-product-option {
+    @apply p-1.5;
+  }
+  
+  .contacto-product-label {
+    @apply text-xs;
+  }
+  
+  .contacto-status-message {
+    @apply mb-2 p-2 text-xs;
+  }
+}
+
+/* Optimizaciones adicionales para dispositivos muy pequeños en landscape */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .contacto-section {
+    @apply py-4;
+  }
+  
+  .contacto-container {
+    @apply px-2;
+  }
+  
+  .contacto-info-panel,
+  .contacto-form-panel {
+    @apply p-3;
+  }
+  
+  .contacto-location-title {
+    @apply text-lg mb-1;
+  }
+  
+  .contacto-address {
+    @apply mb-2 text-xs;
+  }
+  
+  .contacto-map-container {
+    @apply aspect-[5/3] mb-2;
+  }
+  
+  .contacto-contact-methods {
+    @apply space-y-1 mb-2;
+  }
+  
+  .contacto-contact-link {
+    @apply text-xs;
+  }
+  
+  .contacto-social-title {
+    @apply text-base mb-1;
+  }
+  
+  .contacto-social-links {
+    @apply gap-2 mb-2;
+  }
+  
+  .contacto-privacy {
+    @apply text-xs;
+  }
+  
+  .contacto-form-title {
+    @apply text-sm mb-1;
+  }
+  
+  .contacto-form {
+    @apply space-y-2;
+  }
+  
+  .contacto-form-group {
+    @apply space-y-0.5;
+  }
+  
+  .contacto-form-label {
+    @apply text-xs;
+  }
+  
+  .contacto-form-input,
+  .contacto-form-select {
+    @apply px-2 py-1 text-xs;
+  }
+  
+  .contacto-form-textarea {
+    @apply px-2 py-1 text-xs;
+    min-height: 60px;
+  }
+  
+  .contacto-form-button {
+    @apply py-1.5 px-2 text-xs;
+  }
+  
+  .contacto-product-grid {
+    @apply grid-cols-2 gap-0.5;
+  }
+  
+  .contacto-product-option {
+    @apply p-1;
+  }
+  
+  .contacto-product-label {
+    @apply text-xs;
+  }
+  
+  .contacto-status-message {
+    @apply mb-1 p-1.5 text-xs;
+  }
+}

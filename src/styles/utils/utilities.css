@@ -1,0 +1,510 @@
+/* ==========================================================================
+   UTILIDADES CSS - CLASES AUXILIARES Y HELPERS
+   ========================================================================== */
+
+/* Spacing Utilities */
+.spacing-section {
+  @apply py-16 sm:py-20 lg:py-24;
+}
+
+.spacing-container {
+  @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.spacing-content {
+  @apply max-w-4xl mx-auto;
+}
+
+.spacing-narrow {
+  @apply max-w-2xl mx-auto;
+}
+
+.spacing-wide {
+  @apply max-w-7xl mx-auto;
+}
+
+/* Text Utilities */
+.text-gradient {
+  @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+}
+
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.text-shadow-lg {
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.text-outline {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+  text-stroke: 1px rgba(255, 255, 255, 0.8);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Background Utilities */
+.bg-gradient-primary {
+  @apply bg-gradient-to-r from-blue-600 to-blue-800;
+}
+
+.bg-gradient-secondary {
+  @apply bg-gradient-to-r from-gray-600 to-gray-800;
+}
+
+.bg-gradient-hero {
+  @apply bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900;
+}
+
+.bg-gradient-overlay {
+  background: linear-gradient(135deg, rgba(12, 60, 111, 0.9) 0%, rgba(59, 130, 246, 0.8) 100%);
+}
+
+.bg-pattern-dots {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.bg-pattern-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Border Utilities */
+.border-gradient {
+  border: 2px solid;
+  border-image: linear-gradient(45deg, #3b82f6, #8b5cf6) 1;
+}
+
+.border-glow {
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+}
+
+.border-glow-hover:hover {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+/* Shadow Utilities */
+.shadow-soft {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-medium {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-strong {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-colored {
+  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.2), 0 4px 6px -2px rgba(59, 130, 246, 0.1);
+}
+
+.shadow-inner-soft {
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* Transform Utilities */
+.transform-gpu {
+  transform: translate3d(0, 0, 0);
+}
+
+.hover-lift:hover {
+  @apply -translate-y-1;
+}
+
+.hover-scale:hover {
+  @apply scale-105;
+}
+
+.hover-rotate:hover {
+  @apply rotate-3;
+}
+
+.hover-skew:hover {
+  @apply skew-x-3;
+}
+
+/* Transition Utilities */
+.transition-smooth {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.transition-fast {
+  @apply transition-all duration-150 ease-in-out;
+}
+
+.transition-slow {
+  @apply transition-all duration-500 ease-in-out;
+}
+
+.transition-bounce {
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Animation Utilities */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce 2s infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-in-up {
+  animation: slideInUp 0.6s ease-out forwards;
+}
+
+.animate-slide-in-down {
+  animation: slideInDown 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+.animate-zoom-in {
+  animation: zoomIn 0.6s ease-out forwards;
+}
+
+.animate-rotate-in {
+  animation: rotateIn 0.6s ease-out forwards;
+}
+
+/* Keyframe Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInDown {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-30px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(30px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes rotateIn {
+  from { transform: rotate(-10deg) scale(0.9); opacity: 0; }
+  to { transform: rotate(0deg) scale(1); opacity: 1; }
+}
+
+/* Scroll Utilities */
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+.scroll-snap-x {
+  scroll-snap-type: x mandatory;
+}
+
+.scroll-snap-y {
+  scroll-snap-type: y mandatory;
+}
+
+.scroll-snap-start {
+  scroll-snap-align: start;
+}
+
+.scroll-snap-center {
+  scroll-snap-align: center;
+}
+
+.scroll-snap-end {
+  scroll-snap-align: end;
+}
+
+/* Visibility Utilities */
+.visible-on-hover {
+  @apply opacity-0 transition-opacity duration-300;
+}
+
+.visible-on-hover:hover .visible-on-hover,
+.group:hover .visible-on-hover {
+  @apply opacity-100;
+}
+
+.hidden-on-mobile {
+  @apply hidden sm:block;
+}
+
+.visible-on-mobile {
+  @apply block sm:hidden;
+}
+
+/* Focus Utilities */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+}
+
+.focus-ring-inset {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset;
+}
+
+.focus-visible {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2;
+}
+
+/* Accessibility Utilities */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.not-sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Print Utilities */
+@media print {
+  .print-hidden {
+    @apply hidden;
+  }
+  
+  .print-visible {
+    @apply block;
+  }
+  
+  .print-break-before {
+    page-break-before: always;
+  }
+  
+  .print-break-after {
+    page-break-after: always;
+  }
+  
+  .print-break-inside-avoid {
+    page-break-inside: avoid;
+  }
+}
+
+/* Dark Mode Utilities */
+@media (prefers-color-scheme: dark) {
+  .dark-mode-invert {
+    filter: invert(1);
+  }
+  
+  .dark-mode-text {
+    @apply text-white;
+  }
+  
+  .dark-mode-bg {
+    @apply bg-gray-900;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .high-contrast-border {
+    @apply border-2 border-black;
+  }
+  
+  .high-contrast-text {
+    @apply text-black;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .motion-safe-animate {
+    animation: none;
+  }
+  
+  .motion-safe-transition {
+    transition: none;
+  }
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(59, 130, 246, 0.5) rgba(0, 0, 0, 0.1);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.5);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.7);
+}
+
+/* Aspect Ratio Utilities */
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-photo {
+  aspect-ratio: 4 / 3;
+}
+
+.aspect-portrait {
+  aspect-ratio: 3 / 4;
+}
+
+/* Container Queries */
+@container (min-width: 320px) {
+  .container-sm {
+    @apply text-sm;
+  }
+}
+
+@container (min-width: 768px) {
+  .container-md {
+    @apply text-base;
+  }
+}
+
+@container (min-width: 1024px) {
+  .container-lg {
+    @apply text-lg;
+  }
+}
+
+/* Performance Utilities */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.will-change-scroll {
+  will-change: scroll-position;
+}
+
+.contain-layout {
+  contain: layout;
+}
+
+.contain-paint {
+  contain: paint;
+}
+
+.contain-size {
+  contain: size;
+}
+
+.contain-strict {
+  contain: strict;
+}
+
+/* Optimización de imágenes para móviles - Utilidades */
+@media only screen and (max-width: 768px) {
+  /* Clase para imágenes responsivas de alta calidad */
+  .img-mobile-optimized {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
+  /* Clase para imágenes que deben mantener proporción */
+  .img-mobile-contain {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    max-width: 100%;
+  }
+  
+  /* Optimización para imágenes de fondo en móviles */
+  .bg-mobile-optimized {
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: scroll !important;
+    background-repeat: no-repeat !important;
+  }
+}
+
+/* Media queries para pantallas de alta densidad en móviles */
+@media only screen and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2),
+       only screen and (max-width: 768px) and (min-resolution: 192dpi),
+       only screen and (max-width: 768px) and (min-resolution: 2dppx) {
+  
+  /* Fuerza el uso de imágenes de alta resolución */
+  .img-retina-mobile {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  /* Optimización específica para fondos en pantallas Retina móviles */
+  .bg-retina-mobile {
+    background-size: cover;
+    background-position: center;
+    image-rendering: -webkit-optimize-contrast;
+  }
+}

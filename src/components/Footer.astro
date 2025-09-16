@@ -1,60 +1,744 @@
 ---
+/* src/components/Footer.astro */
 // src/components/Footer.astro
-const phoneNumber = "+51913851514";
-const email = "info@delionperu.com";
-const address = "Calle Colombia 150, Urb. El Recreo - Trujillo, La Libertad, Perú";
-const schedule = "Lun. a vier. 9:00 a 18:00 hrs";
-const facebookUrl = "https://www.facebook.com/profile.php?id=61569052543658";
-const linkedinUrl = "https://www.linkedin.com/company/delion-peru/posts/?feedView=all";
+const {
+  theme = 'dark',
+  showBackground = false,
+  showCarousel = false,
+  phoneNumber = '+51913851514',
+  email = 'info@delionperu.com',
+  addressUrl = 'https://maps.google.com/?q=Calle%20Colombia%20150%2C%20Trujillo',
+  linkedinUrl = 'https://www.linkedin.com/company/delion-peru/posts/?feedView=all',
+  facebookUrl = 'https://www.facebook.com/profile.php?id=61569052543658',
+} = Astro.props;
+
+const logos = [
+  { name: 'LOGO1', src: '/images/footer/logos/LOGO1.png', alt: 'Logo 1' },
+  { name: 'LOGO2', src: '/images/footer/logos/LOGO2.png', alt: 'Logo 2' },
+  { name: 'LOGO3', src: '/images/footer/logos/LOGO3.png', alt: 'Logo 3' },
+  { name: 'LOGO4', src: '/images/footer/logos/LOGO4.png', alt: 'Logo 4' },
+  { name: 'LOGO5', src: '/images/footer/logos/LOGO5.png', alt: 'Logo 5' },
+
+
+];
+const safeLogos = logos.filter(l => !!l.src);
 ---
 
-<footer class="bg-[#0C3C6F] text-white py-16">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div class="flex flex-col">
-                <div class="space-y-4">
-                    <div class="flex items-center gap-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                        <a href={`tel:${phoneNumber}`} class="hover:underline">{phoneNumber}</a>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                        <a href={`mailto:${email}`} class="hover:underline">{email}</a>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        <span>Horario de atención: {schedule}</span>
-                    </div>
-                </div>
-                <div class="flex gap-4 mt-6">
-                    <a href={linkedinUrl} target="_blank" class="hover:opacity-80 transition-opacity">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-                    </a>
-                    <a href={facebookUrl} target="_blank" class="hover:opacity-80 transition-opacity">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                    </a>
-                </div>
-                <div class="mt-8 pt-8 border-t border-white/20">
-                    <img src="/logo_delion.png" alt="Logo Delion" class="h-10 w-auto">
-                </div>
+<footer class={`dl-footer ${theme}`}>
+  <div class={`dl-footer__main ${showBackground ? 'with-background' : ''}`}>
+    <div class="dl-footer__inner">
+      <div class="dl-footer__information">
+        {showCarousel && (
+          <div class="dl-footer__carousel-section">
+            <!-- Texto antes del carrusel -->
+            <h3 class="dl-footer__carousel-title">Empresas que confían en nosotros</h3>
+            <!-- Carrusel de logos -->
+            <div class="dl-footer__logos-carousel">
+              <div class="dl-footer__logos">
+                {safeLogos.map((logo) => (
+                  <div class="dl-footer__logo">
+                    <img src={logo.src} alt={logo.alt} />
+                  </div>
+                ))}
+                {safeLogos.map((logo) => (
+                  <div class="dl-footer__logo">
+                    <img src={logo.src} alt={logo.alt} />
+                  </div>
+                ))}
+                {safeLogos.map((logo) => (
+                  <div class="dl-footer__logo">
+                    <img src={logo.src} alt={logo.alt} />
+                  </div>
+                ))}
+              </div>
             </div>
-            <div>
-                 <div class="flex items-start gap-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                    <span>{address}</span>
-                </div>
-                <div class="mt-4 rounded-md overflow-hidden aspect-video">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.627797825226!2d-79.03578762582846!3d-8.13941408169225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91ad3d9c31320439%3A0x1b4181987158913b!2sC.%20Colombia%20150%2C%20Trujillo%2013008!5e0!3m2!1ses-419!2spe!4v1723485412586!5m2!1ses-419!2spe" 
-                        width="100%" 
-                        height="100%" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
+          </div>
+        )}
+        
+        <div class="dl-footer__content">
+          <div class="dl-footer__separator" aria-hidden="true"></div>
+          
+          <div class="dl-footer__title-section">
+            <div class="dl-footer__title-text">
+              <h2 class="dl-footer__title">CONTÁCTANOS</h2>
             </div>
+            <div class="dl-footer__subtitle-text">
+              <p class="dl-footer__subtitle">Consulta nuestros canales y horario de atención</p>
+            </div>
+          </div>
+
+          <nav class="dl-footer__icons" aria-label="Canales de contacto">
+            <a class="dl-footer__icon dl-footer__icon--phone" href={`tel:${phoneNumber}`} aria-label="Teléfono">
+              <img src="/images/footer/Phone.svg" alt="" />
+            </a>
+            <a class="dl-footer__icon dl-footer__icon--email" href={`mailto:${email}`} aria-label="Correo">
+              <img src="/images/footer/Email.svg" alt="" />
+            </a>
+            <a class="dl-footer__icon dl-footer__icon--linkedin" href={linkedinUrl} target="_blank" rel="noopener" aria-label="LinkedIn">
+              <img src="/images/footer/LinkedIn.svg" alt="" />
+            </a>
+            <a class="dl-footer__icon dl-footer__icon--facebook" href={facebookUrl} target="_blank" rel="noopener" aria-label="Facebook">
+              <img src="/images/footer/Facebook.svg" alt="" />
+            </a>
+            <span class="dl-footer__icon dl-footer__icon--clock" aria-hidden="true">
+              <img src="/images/footer/Clock.svg" alt="" />
+            </span>
+            <a class="dl-footer__icon dl-footer__icon--address" href={addressUrl} target="_blank" rel="noopener" aria-label="Dirección">
+              <img src="/images/footer/Address.svg" alt="" />
+            </a>
+          </nav>
         </div>
+      </div>
     </div>
+  </div>
+  
+  <div class="dl-footer__copyright">
+    <div class="dl-footer__copy">
+      <span class="dl-footer__rule" aria-hidden="true"></span>
+      <small>© 2025 Delion. Todos los derechos reservados.</small>
+      <span class="dl-footer__rule" aria-hidden="true"></span>
+    </div>
+  </div>
 </footer>
+
+
+
+<style is:inline>
+  .dl-footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .dl-footer__main {
+    background: transparent;
+    min-height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .dl-footer__main:not(.with-background) {
+    background: transparent !important;
+  }
+
+  .dl-footer__main:not(.with-background) .dl-footer__inner,
+  .dl-footer__main:not(.with-background) .dl-footer__information,
+  .dl-footer__main:not(.with-background) .dl-footer__content,
+  .dl-footer__main:not(.with-background) .dl-footer__title-section,
+  .dl-footer__main:not(.with-background) .dl-footer__icons {
+    background: transparent !important;
+  }
+
+  .dl-footer__main.with-background {
+    background: url('/images/footer/Background-Footer.svg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+  }
+
+  .dl-footer__inner {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 1.5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .dl-footer__information {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    max-width: 1280px;
+    min-height: 250px;
+    overflow: visible;
+  }
+
+  /* ===== ESTILOS PROPIOS DEL FOOTER ===== */
+  
+  .dl-footer__carousel-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .dl-footer__carousel-title {
+    width: 397px;
+    height: 29px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    color: #FFFFFF;
+    margin: 0;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    max-width: 100%;
+  }
+  
+  .dl-footer__logos-carousel {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 120vw;
+    height: 180px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    margin-left: calc(-60vw + 50%);
+    z-index: 1;
+  }
+
+  .dl-footer__logos {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    height: 100%;
+    animation: footer-carousel-scroll 45s linear infinite;
+    width: fit-content;
+  }
+
+  .dl-footer__logos:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes footer-carousel-scroll {
+    0% {
+      transform: translateX(20%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .dl-footer__logo {
+    width: 280px;
+    height: 160px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .dl-footer__logo:hover {
+    transform: scale(1.1);
+  }
+
+  .dl-footer__logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
+  }
+
+  .dl-footer__logo:hover img {
+    filter: brightness(0) invert(1);
+  }
+
+  .dl-footer.light .dl-footer__logo img {
+    filter: none;
+  }
+
+  /* ===== FIN DEL CARRUSEL ===== */
+
+  .dl-footer__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    gap: 24px;
+    width: 488px;
+    height: auto;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    max-width: 100%;
+    position: relative;
+  }
+
+  .dl-footer__separator {
+    width: 100px;
+    height: 2px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    border: 2px solid #FFFFFF;
+    border-radius: 999px;
+    background: #FFFFFF;
+  }
+
+  .dl-footer__title-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+  }
+
+  .dl-footer__title-text {
+  width: 100%; /* Asegura que ocupe todo el ancho disponible */
+  display: flex; /* Añadido para mejor control del centrado */
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+  .dl-footer__title {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Añadido para centrado horizontal */
+  text-align: center;
+  font-variant: small-caps;
+  color: #FFFFFF;
+  text-shadow: 0px 0px 50px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Asegura que ocupe todo el ancho disponible */
+}
+
+  .dl-footer__subtitle-text {
+    height: auto;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    max-width: 100%;
+  }
+
+  .dl-footer__subtitle {
+    margin: 0;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    vertical-align: middle;
+    color: #FFFFFF;
+  }
+
+  .dl-footer__icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    gap: 28px;
+    width: 380px;
+    height: 40px;
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .dl-footer__icon {
+    width: 40px;
+    height: 40px;
+    flex: none;
+    flex-grow: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+  }
+
+  .dl-footer__icon:hover {
+    transform: translateY(-2px) scale(1.05);
+  }
+
+/* Iconos blancos para tema oscuro (por defecto) */
+.dl-footer__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0) invert(1); /* Blanco */
+  transition: transform 0.2s ease;
+}
+
+/* Configuración para tema claro */
+.dl-footer.light .dl-footer__icon {
+  position: relative;
+}
+
+/* Ocultar la imagen original en tema claro */
+.dl-footer.light .dl-footer__icon img {
+  opacity: 0;
+}
+
+/* Crear el pseudo-elemento con el color exacto #0C3D71 */
+.dl-footer.light .dl-footer__icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0C3D71; /* Color exacto */
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+/* Definir las máscaras específicas para cada icono */
+.dl-footer.light .dl-footer__icon--phone::before {
+  -webkit-mask-image: url('/images/footer/Phone.svg');
+  mask-image: url('/images/footer/Phone.svg');
+}
+
+.dl-footer.light .dl-footer__icon--email::before {
+  -webkit-mask-image: url('/images/footer/Email.svg');
+  mask-image: url('/images/footer/Email.svg');
+}
+
+.dl-footer.light .dl-footer__icon--linkedin::before {
+  -webkit-mask-image: url('/images/footer/LinkedIn.svg');
+  mask-image: url('/images/footer/LinkedIn.svg');
+}
+
+.dl-footer.light .dl-footer__icon--facebook::before {
+  -webkit-mask-image: url('/images/footer/Facebook.svg');
+  mask-image: url('/images/footer/Facebook.svg');
+}
+
+.dl-footer.light .dl-footer__icon--clock::before {
+  -webkit-mask-image: url('/images/footer/Clock.svg');
+  mask-image: url('/images/footer/Clock.svg');
+}
+
+.dl-footer.light .dl-footer__icon--address::before {
+  -webkit-mask-image: url('/images/footer/Address.svg');
+  mask-image: url('/images/footer/Address.svg');
+}
+
+/* En tema claro (con background), los iconos deben ser blancos */
+.dl-footer.light .dl-footer__icon::before {
+  background-color: #FFFFFF; /* Iconos blancos */
+}
+
+/* Mantener el hover effect en tema claro */
+.dl-footer.light .dl-footer__icon:hover::before {
+  background-color: rgba(255, 255, 255, 0.8); /* Blanco con transparencia para hover */
+}
+
+/* Órdenes de los iconos */
+.dl-footer__icon--phone { order: 0; }
+.dl-footer__icon--email { order: 1; }
+.dl-footer__icon--linkedin { order: 2; }
+.dl-footer__icon--facebook { order: 3; }
+.dl-footer__icon--clock { order: 4; }
+.dl-footer__icon--address { order: 5; }
+
+  .dl-footer__copyright {
+    background: #FFFFFF;
+    width: 100%;
+    height: 46px;
+    padding: 0 10px;
+    box-shadow: 0px -4px 12px rgba(196, 228, 233, 0.08);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+    margin-top: auto;
+  }
+
+  .dl-footer__main:not(.with-background) .dl-footer__copyright {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .dl-footer__main:not(.with-background) .dl-footer__separator {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .dl-footer__copy {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    max-width: 1280px;
+    height: auto;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .dl-footer__copy small {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #0C3D71;
+    text-align: center;
+    white-space: nowrap;
+    margin: 0;
+  }
+
+  .dl-footer__rule {
+    width: 120px;
+    height: 1px;
+    background: #0C3D71;
+    opacity: 0.3;
+    flex: none;
+  }
+
+  .dl-footer__rule:first-child { order: -1; }
+  .dl-footer__rule:last-child { order: 1; }
+
+  .dl-footer__copy:hover .dl-footer__rule {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+
+  .dl-footer__copy:hover small {
+    color: #1a5490;
+    transition: color 0.3s ease;
+  }
+
+  .dl-footer.light .dl-footer__separator {
+    border-color: #0C3D71;
+    background: #0C3D71;
+  }
+
+  .dl-footer.light .dl-footer__title {
+    color: #FFFFFF;
+    text-shadow: 0px 0px 50px rgba(0, 0, 0, 0.1);
+  }
+
+  .dl-footer.light .dl-footer__subtitle {
+    color: #FFFFFF;
+  }
+
+  .dl-footer.light .dl-footer__carousel-title {
+    color: #FFFFFF;
+  }
+
+  /* Responsive */
+  @media (max-width: 1320px) {
+    .dl-footer__information {
+      width: 100%;
+      padding: 0 20px;
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .dl-footer__information {
+      min-height: auto;
+      width: 100%;
+      padding: 0 20px;
+      max-width: none;
+    }
+    
+    .dl-footer__carousel-section {
+      gap: 1.5rem;
+    }
+    
+    .dl-footer__carousel-title {
+      font-size: 20px;
+      line-height: 24px;
+      width: 100%;
+      max-width: 320px;
+    }
+    
+    .dl-footer__logos-carousel {
+      height: 120px;
+    }
+    
+    .dl-footer__logo {
+      width: 200px;
+      height: 100px;
+    }
+    
+    .dl-footer__logos {
+      gap: 60px;
+      height: 80px;
+    }
+    
+    .dl-footer__logo {
+      width: 120px; /* Ancho fijo del "slide" */
+      height: 80px;
+    }
+    
+    .dl-footer__content {
+      width: 100%;
+      height: auto;
+      gap: 32px;
+      padding: 0 20px;
+    }
+    
+    .dl-footer__title-section {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+    
+    .dl-footer__title-text {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }    
+  .dl-footer__subtitle-text {
+      width: 100%;
+      height: auto;
+    }
+    
+    .dl-footer__title {
+    font-size: 36px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+    
+    .dl-footer__subtitle {
+      position: relative;
+      font-size: 18px;
+      line-height: 22px;
+      font-weight: 300;
+    }
+    
+    .dl-footer__icons {
+      width: 100%;
+      height: auto;
+      gap: 20px;
+    }
+    
+    .dl-footer__copy {
+      height: 28px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .dl-footer__carousel-section {
+      gap: 1rem;
+    }
+    
+    .dl-footer__carousel-title {
+      font-size: 18px;
+      line-height: 22px;
+      width: 100%;
+      max-width: 280px;
+    }
+    
+    .dl-footer__logos-carousel {
+      height: 100px;
+    }
+    
+    .dl-footer__logo {
+      width: 160px;
+      height: 80px;
+    }
+    
+    .dl-footer__logos {
+      gap: 40px;
+      height: 60px;
+    }
+    
+    .dl-footer__logo {
+      width: 80px; /* Ancho fijo del "slide" */
+      height: 60px;
+    }
+    
+    .dl-footer__title {
+    font-size: 28px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .dl-footer__title-text {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+    
+    .dl-footer__subtitle {
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: 300;
+    }
+    
+    .dl-footer__content {
+      gap: 24px;
+    }
+    
+    .dl-footer__copy {
+      flex-direction: column;
+      gap: 6px;
+      padding: 6px 15px;
+      height: auto;
+    }
+    
+    .dl-footer__copy small {
+      font-size: 10px;
+      line-height: 12px;
+    }
+    
+    .dl-footer__rule {
+      width: 60px;
+      order: 0 !important;
+    }
+    
+    .dl-footer__rule:last-child {
+      display: none;
+    }
+  }
+</style>

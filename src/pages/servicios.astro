@@ -1,6 +1,7 @@
 ---
 // src/pages/servicios.astro
 import Layout from '../layouts/BaseLayout.astro';
+import '../styles/pages/servicios.css';
 
 const services = [
   { name: 'Diseño', icon: '/icons/icons-services/Design (1).svg' },
@@ -38,73 +39,92 @@ const outcomes = [
 ];
 ---
 
-<Layout title="Nuestros Servicios - Delion">
-  <main>
-    <section class="relative h-[70vh] w-full flex items-center justify-center text-white overflow-hidden" data-section-theme="dark">
-      <div class="absolute inset-0 z-0">
-        <img src="/images/servicios/bannerservicios.png" alt="Fondo de maquinaria minera" class="w-full h-full object-cover animate-slow-zoom" fetchpriority="high">
-        <div class="absolute inset-0 bg-gradient-to-t from-delion-blue/80 to-black/40"></div>
-      </div>
-
-      <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center">
-        <div class="animate-fade-in-up">
-            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight animate-text-glow">Nuestros Servicios</h1>
-            <p class="mt-4 text-lg md:text-xl text-gray-200 max-w-2xl mx-auto">Inteligencia Artificial y experiencia al servicio de nuestros clientes.</p>
-             <a href="/contacto" class="mt-8 inline-block bg-delion-red text-white font-bold py-4 px-12 rounded-lg shadow-lg hover:bg-delion-redDark transition-all duration-300 transform hover:scale-110 hover:shadow-2xl hover:shadow-red-500/40 animate-bounce-in">
-              Cotizar Servicio
-            </a>
+<Layout 
+  title="Nuestros Servicios - Delion"
+  showLoader={true}
+  loaderType="minimal"
+  footerBackground={false}
+  preloadImages={[
+    '/images/servicios/Background-Services.png',
+    '/icons/icons-services/Design (1).svg',
+    '/icons/icons-services/Infrared Sensor.svg',
+    '/icons/icons-services/Particle.svg',
+    '/icons/icons-services/Central Heating.svg'
+  ]}
+  bodyClass="servicios-body"
+>
+    <main class="servicios-main-content">
+    <section class="servicios-hero-section" data-section-theme="dark">
+      <div class="hero-servicios">
+        <div class="texto-hero-servicios animate-fade-in-up">
+            <div class="texto-hero">
+                <p class="hero-subtitle animate-text-glow">Impulsa tu empresa</p>
+                <h1 class="hero-title animate-text-glow">Nuestros Servicios</h1>
+                <p class="hero-description animate-text-glow" style="margin-bottom: 5rem;">Inteligencia Artificial para transformar tu negocio</p>
+            </div>
+            <div class="btn-hero animate-bounce-in">
+                <a href="#" class="btn-grande-rojo-borde">Ver Brochure</a>
+                <a href="/contacto" class="btn-grande-rojo">Cotizar Servicio</a>
+            </div>
         </div>
       </div>
     </section>
 
-    <section class="py-20 md:py-24 bg-gray-100">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+    <!-- Carrusel de servicios después de los botones -->
+    <section class="servicios-carousel-section" data-section-theme="light">
+        <div class="servicios-carousel-container">
+            <div id="servicios-carousel-track" class="servicios-carousel-track">
+              {/* Primera serie de iconos */}
               {services.map((service, index) => (
-                <div class="group bg-delion-gradient text-white rounded-lg shadow-lg p-6 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl hover:brightness-125 animate-fade-in-up" style={`animation-delay: ${index * 0.1}s`}>
-                  <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto border-4 border-transparent group-hover:border-white/50 transition-all duration-300">
-                    <img src={service.icon} alt={`Icono de ${service.name}`} class="w-10 h-10 transition-transform duration-300 group-hover:scale-110" style="filter: brightness(0) invert(1);" loading="lazy" />
-                  </div>
-                  <h3 class="mt-5 font-bold text-lg">{service.name}</h3>
+                <div class="service-icon-carousel">
+                  <img src={service.icon} alt={`Icono de ${service.name}`} class="service-icon-only" loading="lazy" />
+                  <span class="service-icon-title">{service.name}</span>
+                </div>
+              ))}
+              {/* Segunda serie para scroll infinito */}
+              {services.map((service, index) => (
+                <div class="service-icon-carousel">
+                  <img src={service.icon} alt={`Icono de ${service.name}`} class="service-icon-only" loading="lazy" />
+                  <span class="service-icon-title">{service.name}</span>
                 </div>
               ))}
             </div>
+            <div class="servicios-carousel-fade-left"></div>
+            <div class="servicios-carousel-fade-right"></div>
         </div>
     </section>
 
-    <section class="relative bg-white py-20 md:py-32 overflow-hidden" data-section-theme="light">
-      <div class="absolute inset-0 bg-gradient-to-r from-blue-50/20 via-transparent to-green-50/20 animate-gradient-shift"></div>
-
-      <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-800">¿Cómo lo Hacemos?</h2>
-            <p class="mt-4 text-lg text-gray-600">Nuestra metodología combina tecnología de punta y experiencia probada.</p>
+    <section class="how-it-works-section scroll-animate" data-section-theme="light">
+      <div class="how-it-works-container">
+        <div class="how-it-works-header scroll-animate">
+            <h2 class="how-it-works-title animate-fade-in-up">¿Cómo lo Hacemos?</h2>
+            <p class="how-it-works-subtitle animate-fade-in-up">Nuestra metodología combina tecnología de punta y experiencia probada.</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div class="animate-slide-in-left">
-            <ul class="space-y-4">
+        <div class="how-it-works-content">
+          <div class="scroll-animate animate-slide-in-left">
+            <ul class="how-it-works-list">
               {howItWorks.map((item, index) => (
-                <li class="flex items-center gap-4 text-xl text-gray-700 p-4 rounded-lg transition-all duration-300 hover:bg-green-50 hover:shadow-md" style={`animation-delay: ${index * 0.1}s`}>
-                  <div class="w-8 h-8 flex-shrink-0 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
+                <li class="how-it-works-item scroll-animate" style={`animation-delay: ${index * 0.1}s`}>
+                  <div class="how-it-works-item-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
                   </div>
                   <span class="font-semibold">{item}</span>
                 </li>
               ))}
             </ul>
-             <a href="#" class="mt-8 inline-block bg-delion-red text-white font-bold py-3 px-8 rounded-md hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105">
+             <a href="#" class="how-it-works-brochure-btn">
                 Ver Brochure
             </a>
           </div>
           
-          <div class="animate-slide-in-right">
-            <div class="relative w-full">
+          <div class="scroll-animate animate-slide-in-right">
+            <div class="process-steps-container">
               {processSteps.map((step, index) => (
-                <div class="flex items-center gap-6 my-4 transition-all duration-300 transform hover:scale-105" style={`animation-delay: ${index * 0.15}s`}>
-                  <div class="w-16 h-16 flex-shrink-0 bg-delion-blue text-white rounded-full flex items-center justify-center font-bold text-3xl shadow-lg">
+                <div class="process-step scroll-animate" style={`animation-delay: ${index * 0.15}s`}>
+                  <div class="process-step-number">
                     {step.number}
                   </div>
-                  <span class="font-bold text-gray-700 text-2xl">{step.title}</span>
+                  <span class="process-step-title">{step.title}</span>
                 </div>
               ))}
             </div>
@@ -113,17 +133,22 @@ const outcomes = [
       </div>
     </section>
 
-    <div class="py-12 bg-gray-100">
-        <div class="h-2 max-w-lg mx-auto bg-delion-gradient rounded-full"></div>
+    <div class="divider-section">
+        <div class="divider-line"></div>
     </div>
 
-    <section class="bg-delion-gradient text-white py-20 md:py-24">
-        <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-bold mb-10 text-shadow-lg">Resultados Optimizados</h2>
-            <ul class="space-y-5 text-xl font-light">
+    <section class="outcomes-section scroll-animate">
+        <div class="outcomes-container">
+            <div class="outcomes-header scroll-animate">
+                <h2 class="outcomes-title animate-fade-in-up">Resultados Optimizados</h2>
+            </div>
+            <ul class="outcomes-list">
                 {outcomes.map((item, index) => (
-                    <li class="opacity-0 animate-fade-in-up" style={`animation-delay: ${index * 0.2}s`}>
-                        {item}
+                    <li class="outcomes-item scroll-animate animate-fade-in-up" style={`animation-delay: ${index * 0.2}s`}>
+                        <div class="outcomes-item-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        </div>
+                        <span>{item}</span>
                     </li>
                 ))}
             </ul>
@@ -131,7 +156,6 @@ const outcomes = [
     </section>
   </main>
 </Layout>
-
 <style>
     /* Animaciones optimizadas para rendimiento */
     @keyframes slow-zoom { 
@@ -139,15 +163,15 @@ const outcomes = [
         100% { transform: translate3d(0, 0, 0) scale(1.15); } 
     }
     @keyframes fade-in-up { 
-        0% { transform: translate3d(0, 50px, 0); opacity: 0; } 
+        0% { transform: translate3d(0, 3.125rem, 0); opacity: 0; } 
         100% { transform: translate3d(0, 0, 0); opacity: 1; } 
     }
     @keyframes slide-in-left { 
-        0% { transform: translate3d(-100px, 0, 0); opacity: 0; } 
+        0% { transform: translate3d(-6.25rem, 0, 0); opacity: 0; } 
         100% { transform: translate3d(0, 0, 0); opacity: 1; } 
     }
     @keyframes slide-in-right { 
-        0% { transform: translate3d(100px, 0, 0); opacity: 0; } 
+        0% { transform: translate3d(6.25rem, 0, 0); opacity: 0; } 
         100% { transform: translate3d(0, 0, 0); opacity: 1; } 
     }
     @keyframes bounce-in { 
@@ -161,6 +185,193 @@ const outcomes = [
         50% { background-position: 100% 50%; } 
     }
     
+    /* Hero Servicios Styles */
+    .hero-servicios {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        gap: 5rem;
+        position: absolute;
+        width: 43.625rem;
+        height: 19.5rem;
+        left: 50%;
+        top: 40%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .texto-hero-servicios {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0;
+        width: 43.625rem;
+        height: 10.5rem;
+        flex: none;
+        order: 0;
+        align-self: stretch;
+        flex-grow: 0;
+    }
+    
+    .texto-hero {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        width: 43.625rem;
+        height: 10.5rem;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+    }
+    
+    .hero-subtitle {
+        width: 43.625rem;
+        height: 2.8125rem;
+        font-family: 'Play', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 2.5rem;
+        line-height: 2.8125rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-variant: all-small-caps;
+        color: #FFFFFF;
+        text-shadow: 0 0 6.25rem #3D648D;
+        flex: none;
+        order: 0;
+        align-self: stretch;
+        flex-grow: 0;
+        margin-bottom: 0.5rem;
+    }
+    
+    .hero-title {
+        width: 43.625rem;
+        height: 4.625rem;
+        font-family: 'Play', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 4rem;
+        line-height: 4.625rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-variant: small-caps;
+        color: #FFFFFF;
+        text-shadow: 0 -0.25rem 0.25rem rgba(255, 255, 255, 0.08), 0 0.25rem 0.25rem rgba(255, 255, 255, 0.08), 0 0 6.25rem #3D648D;
+        flex: none;
+        order: 1;
+        align-self: stretch;
+        flex-grow: 0;
+        margin-bottom: 0.5rem;
+    }
+    
+    .hero-description {
+        width: 43.625rem;
+        height: 3.5625rem;
+        font-family: 'Syne', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 1rem;
+        line-height: 1.1875rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        text-shadow: 0 0 3.125rem #3D648D;
+        flex: none;
+        order: 2;
+        align-self: stretch;
+        flex-grow: 0;
+        margin: 0;
+    }
+    
+    .btn-hero {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        gap: 4rem;
+        width: 34.375rem;
+        height: 4rem;
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+        margin: 0 auto;
+    }
+    
+    .btn-grande-rojo-borde {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0.75rem 2.75rem;
+        gap: 0.625rem;
+        width: 13.0625rem;
+        height: 4rem;
+        background: rgba(255, 255, 255, 0.08);
+        border: 0.125rem solid #D12407;
+        box-shadow: 0 0 1.25rem rgba(255, 255, 255, 0.08);
+        border-radius: 1.25rem;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        font-family: 'Syne', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+        text-align: center;
+        color: #FFFFFF;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-grande-rojo {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0.75rem 2.75rem;
+        gap: 0.625rem;
+        width: 17.3125rem;
+        height: 4rem;
+        background: #D12407;
+        box-shadow: 0 0 1.25rem rgba(255, 255, 255, 0.08);
+        border-radius: 1.25rem;
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+        font-family: 'Syne', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+        text-align: center;
+        color: #FFFFFF;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-grande-rojo-borde:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: scale(1.05);
+    }
+    
+    .btn-grande-rojo:hover {
+        background: #B01E06;
+        transform: scale(1.05);
+    }
+
     /* Optimizaciones de rendimiento */
     .animate-slow-zoom { 
         animation: slow-zoom 20s ease-in-out infinite alternate; 
@@ -192,10 +403,10 @@ const outcomes = [
         will-change: background-position;
     }
     .animate-text-glow { 
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.4), 0 0 25px rgba(255, 255, 255, 0.2); 
+        text-shadow: 0 0 0.625rem rgba(255, 255, 255, 0.4), 0 0 1.5625rem rgba(255, 255, 255, 0.2); 
     }
     .text-shadow-lg { 
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.3); 
+        text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.3); 
     }
     
     /* Media query para reducir animaciones en dispositivos con preferencia de movimiento reducido */
@@ -217,3 +428,109 @@ const outcomes = [
         }
     }
 </style>
+
+<script>
+  /* ===== SERVICES CAROUSEL CONTROLLER ===== */
+  class ServicesCarouselController {
+    track: HTMLElement | null;
+    isHovered: boolean;
+    
+    constructor() {
+      this.track = null;
+      this.isHovered = false;
+      this.init();
+    }
+    
+    init() {
+      this.track = document.getElementById('servicios-carousel-track');
+      if (!this.track) return;
+      
+      this.bindEvents();
+      this.ensureSmoothLoop();
+    }
+    
+    bindEvents() {
+      if (!this.track) return;
+      
+      // Pausar animación al hacer hover
+      this.track.addEventListener('mouseenter', () => {
+        this.isHovered = true;
+        if (this.track) {
+          this.track.style.animationPlayState = 'paused';
+        }
+      });
+      
+      this.track.addEventListener('mouseleave', () => {
+        this.isHovered = false;
+        if (this.track) {
+          this.track.style.animationPlayState = 'running';
+        }
+      });
+      
+      // Reiniciar animación cuando termine para evitar saltos
+      this.track.addEventListener('animationiteration', () => {
+        if (!this.isHovered) {
+          this.resetPosition();
+        }
+      });
+    }
+    
+    ensureSmoothLoop() {
+       if (!this.track) return;
+       
+       // Asegurar que el carrusel tenga suficientes elementos para scroll suave
+       const icons = this.track.querySelectorAll('.service-icon-carousel');
+       const totalWidth = icons.length * (120 + 48); // width + margin
+       const viewportWidth = window.innerWidth;
+       
+       // Si necesitamos más copias para scroll suave
+       if (totalWidth < viewportWidth * 3) {
+         this.duplicateIcons();
+       }
+     }
+     
+     duplicateIcons() {
+       if (!this.track) return;
+       
+       const originalIcons = Array.from(this.track.querySelectorAll('.service-icon-carousel')).slice(0, 8);
+       originalIcons.forEach(icon => {
+         const clone = icon.cloneNode(true);
+         this.track!.appendChild(clone);
+       });
+     }
+    
+    resetPosition() {
+      if (!this.track) return;
+      
+      // Resetear posición sin salto visual
+      this.track.style.transform = 'translateX(0)';
+    }
+  }
+  
+  // Inicializar el carrusel cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    new ServicesCarouselController();
+    
+    // Intersection Observer para animaciones de scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+        }
+      });
+    }, observerOptions);
+    
+    // Observar todos los elementos con clase scroll-animate
+    const animateElements = document.querySelectorAll('.scroll-animate');
+    animateElements.forEach(el => {
+      (el as HTMLElement).style.opacity = '0';
+      (el as HTMLElement).style.transform = 'translateY(1.875rem)';
+      observer.observe(el);
+    });
+  });
+</script>

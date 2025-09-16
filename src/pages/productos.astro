@@ -4,138 +4,843 @@ import Layout from '../layouts/BaseLayout.astro';
 
 const products = [
     {
+        id: '01',
         name: 'Explorer',
-        logo: '/logos/Explorer.svg',
-        features: ['Portable', 'Crusher'],
-        category: 'Fragmentación'
+        logo: '/images/servicios/Logo-Explorer.png',
+        features: ['• Portable', '• Crusher'],
+        category: 'Fragmentación',
+        animation: 'fade-in-up'
     },
     {
+        id: '02',
         name: 'Hapza',
-        features: ['Diseño y Simulación', 'Predicciones', 'QA/QC'],
-        category: 'Inteligencia Artificial'
-    },
-    {
-        name: 'OndaX',
-        features: ['Portable', 'Estación Móvil'],
-        category: 'Vibraciones'
-    },
-    {
-        name: 'ViewHole',
-        features: ['Profundidad de Taladros', 'Desviación de Perforación', 'Inclinación de Taladros'],
-        category: 'QA/QC'
+        logo: '/images/servicios/Logo-Hapza.svg',
+        features: ['• Diseño y simulación', '• Predicciones', '• QA/QC'],
+        category: 'Inteligencia artificial',
+        animation: 'fade-in-up'
     }
 ];
 ---
 
-<Layout title="Nuestros Productos - Delion">
-    <main>
-        <section class="relative h-[70vh] w-full flex items-center justify-center text-white overflow-hidden" data-section-theme="dark">
-            <img 
-                src="/images/fondoproductos.png" 
-                alt="Fondo abstracto de productos"
-                class="absolute top-0 left-0 w-full h-full object-cover z-0 animate-slow-zoom"
-                fetchpriority="high"
-            >
-            <div class="absolute inset-0 bg-gradient-to-t from-delion-blue/80 to-black/30"></div>
-            <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center animate-fade-in-up">
-                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight animate-text-glow">Nuestros Productos</h1>
-                <p class="mt-4 text-lg md:text-xl text-gray-200 max-w-2xl mx-auto">Desarrollamos soluciones de vanguardia para la industria moderna.</p>
-                <a href="/contacto" class="mt-8 inline-block bg-green-500 text-white font-bold py-4 px-12 rounded-lg shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-110 hover:shadow-2xl hover:shadow-green-500/40 animate-bounce-in">
-                    Cotizar Ahora
-                </a>
-            </div>
-        </section>
+<Layout 
+  title="Nuestros Productos - Delion"
+  showLoader={true}
+  loaderType="minimal"
+  footerBackground={true}
+  preloadImages={[
+    '/images/servicios/Background-Productos.png',
+    '/images/servicios/Background-Productos@2x.png',
+    '/logos/Explorer.svg',
+    '/images/servicios/logoexplorer.svg'
+  ]}
+>
 
-        <section class="bg-gradient-to-b from-gray-50 to-gray-200 py-20 md:py-24" data-section-theme="light">
-            <div class="max-w-5xl mx-auto px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    {products.map((product, index) => (
-                        <div class="group relative bg-white rounded-xl shadow-lg hover:shadow-2xl p-8 flex flex-col transition-all duration-300 transform hover:-translate-y-2 animate-slide-in-up" style={`animation-delay: ${index * 0.15}s`}>
-                            <div class="absolute -top-3 -left-3 w-16 h-16 bg-delion-red rounded-full flex items-center justify-center text-white font-bold text-3xl transform group-hover:scale-110 group-hover:rotate-[-12deg] transition-transform duration-300 shadow-lg">
-                                {product.name.substring(0, 2)}
-                            </div>
-                            <div class="flex-grow pt-10">
-                                {product.logo ? (
-                                    <img src={product.logo} alt={`Logo ${product.name}`} class="h-12 mb-6 transition-transform duration-300 group-hover:scale-105" loading="lazy"/>
-                                ) : (
-                                    <h2 class="text-4xl font-bold text-gray-800 mb-6">{product.name}</h2>
-                                )}
-                                <ul class="space-y-3">
-                                    {product.features.map(feature => (
-                                        <li class="flex items-center group/item">
-                                            <span class="font-bold text-delion-red mr-3 text-xl transition-transform duration-300 group-hover/item:translate-x-1">•</span>
-                                            <span class="text-gray-700 text-lg">{feature}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <p class="text-right text-delion-blue font-bold tracking-wider mt-8 text-lg uppercase">{product.category}</p>
-                        </div>
-                    ))}
+<main id="main-content">
+    <!-- Hero Section con overlay oscuro -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-text-wrapper">
+                <p class="hero-subtitle">Transforma tu negocio con lo mejor</p>
+                <h1 class="hero-title">NUESTROS PRODUCTOS</h1>
+                <p class="hero-description">Soluciones personalizadas para cada desafío</p>
+                
+                <div class="hero-buttons">
+                    <a href="#productos" class="btn-outline">
+                        Conoce más
+                    </a>
+                    <a href="/contacto" class="btn-primary">
+                        Cotiza con nosotros
+                    </a>
                 </div>
             </div>
-        </section>
-    </main>
-</Layout>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="productos" class="products-section">
+        <div class="container">
+            <!-- Section Title -->
+            <div class="section-header">
+                <h2 class="section-title">Explora lo que hemos creado</h2>
+            </div>
+            
+            <!-- Products Grid -->
+            <div class="products-grid">
+                {products.map((product, index) => (
+                    <div class={`product-card ${product.name.toLowerCase()}-card scroll-animate ${product.animation}`} 
+                         data-delay={index * 200}>
+                        
+                        <!-- Frame 1: Contenido Superior -->
+                        <div class="frame-1">
+                            <!-- Product Logo Container -->
+                            <div class="product-logo-container">
+                                {product.name === 'Explorer' ? (
+                                    <div class="explorer-logo"></div>
+                                ) : (
+                                    <div class="hapza-logo"></div>
+                                )}
+                            </div>
+                            
+                            <!-- Product Description -->
+                            <div class="product-description">
+                                <!-- Product Section -->
+                                <div class="product-section">
+                                    <span class="product-category">{product.category}</span>
+                                    <h3 class="product-name">{product.name}</h3>
+                                </div>
+                                
+                                <!-- Features List -->
+                                <div class="product-list">
+                                    {product.features.map((feature) => (
+                                        <div class="feature-text">{feature}</div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Frame 2: Botón -->
+                        <div class="frame-2">
+                            <button class="btn-red">
+                                <span class="btn-text">Ver detalles</span>
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+</main>
 
 <style>
-    /* Animaciones optimizadas para rendimiento */
-    @keyframes slow-zoom {
-        0% { transform: translate3d(0, 0, 0) scale(1); }
-        100% { transform: translate3d(0, 0, 0) scale(1.1); }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ==========================================================================
+   PRODUCTOS SECTION - ESTILOS SEGÚN FIGMA
+   ========================================================================== */
+
+/* Variables según Figma */
+:root {
+    --color-primary: #D12407;
+    --color-primary-dark: #B01E06;
+    --color-blue: #0C3D71;
+    --color-blue-dark: #07223F;
+    --color-text-light: #FFFFFF;
+    --color-text-dark: #07223F;
+    --color-text-gray: #4a5568;
+    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Main Content */
+#main-content {
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 740px;
+    background-image: url('/images/servicios/Background-Productos.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Overlay con gradiente oscuro según Figma */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.28));
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1280px;
+    padding: 0 2rem;
+    margin: 0 auto;
+}
+
+.hero-text-wrapper {
+    text-align: center;
+    color: var(--color-text-light);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: clamp(18px, 2vw, 36px);
+    line-height: 1.4;
+    text-transform: none;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+    text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+.hero-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: clamp(24px, 3vw, 100px);
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease 0.2s forwards;
+    text-shadow: 
+        0px -4px 4px rgba(255, 255, 255, 0.1),
+        0px 4px 4px rgba(0, 0, 0, 0.3),
+        0px 0px 60px rgba(61, 100, 141, 0.6);
+}
+
+.hero-description {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: clamp(16px, 1.5vw, 32px);
+    line-height: 1.4;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease 0.4s forwards;
+    text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Hero Buttons */
+.hero-buttons {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease 0.6s forwards;
+}
+
+.btn-outline,
+.btn-primary {
+    padding: 14px 40px;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    text-decoration: none;
+    transition: var(--transition-base);
+    display: inline-block;
+    min-width: 200px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-outline {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--color-primary);
+    color: var(--color-text-light);
+    backdrop-filter: blur(10px);
+}
+
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(209, 36, 7, 0.3);
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: var(--color-text-light);
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 4px 20px rgba(209, 36, 7, 0.2);
+}
+
+.btn-primary:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(209, 36, 7, 0.4);
+}
+
+/* Products Section - Según especificaciones exactas de Figma */
+.products-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 0;
+    gap: 48px;
+    position: relative;
+    width: 100%;
+    background: #ffffff;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 48px;
+    position: relative;
+    width: 896px;
+    max-width: 896px;
+}
+
+/* Section Header - Title - CORREGIDO */
+.section-header {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.section-title {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 150%;
+    text-align: center;
+    color: var(--color-blue);
+    margin: 0;
+    /* Eliminados todos los estilos de posición absoluta */
+    position: static;
+    width: auto;
+}
+
+/* Products Grid */
+.products-grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 56px;
+    width: 896px;
+    max-width: 896px;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+/* Product Card Base */
+.product-card {
+    width: 420px;
+    height: 340px;
+    background: rgba(209, 36, 7, 0.02);
+    box-shadow: 0px 0px 12px rgba(12, 61, 113, 0.25);
+    border-radius: 12px;
+    flex: none;
+    flex-grow: 0;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: var(--transition-base);
+}
+
+.product-card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 4px 20px rgba(12, 61, 113, 0.35);
+}
+
+/* Frame 1 - Contenido Superior */
+.frame-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    gap: 24px;
+    position: absolute;
+    width: 420px;
+    left: calc(50% - 420px/2);
+    top: 0px;
+}
+
+/* Explorer Card - Frame 1 específico */
+.explorer-card .frame-1 {
+    height: 240px;
+}
+
+/* Hapza Card - Frame 1 específico */
+.hapza-card .frame-1 {
+    height: 264px;
+}
+
+/* Product Logo Container */
+.product-logo-container {
+    /* Disposición automática */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 27px;
+    
+    width: 372px;
+    height: 40px;
+    
+    /* Auto layout interior */
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+/* Explorer Logo */
+.explorer-logo {
+    width: 280px;
+    height: 55px;
+    
+    background: url('/images/servicios/Logo-Explorer.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+    filter: drop-shadow(0px 0px 12px rgba(255, 255, 255, 0.4));
+    
+    /* Auto layout interior */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+/* Hapza Logo */
+.hapza-logo {
+    width: 160px;
+    height: 55px;
+    
+    background: url('/images/servicios/LogoHapza.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+    
+    /* Auto layout interior */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+/* Product Description */
+.product-description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 12px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+/* Explorer Card - Product Description */
+.explorer-card .product-description {
+    width: 129px;
+    height: 128px;
+}
+
+/* Hapza Card - Product Description */
+.hapza-card .product-description {
+    width: 129px;
+    height: 152px;
+}
+
+/* Product Section */
+.product-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+    width: 129px;
+    height: 68px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+/* Product Category */
+.product-category {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    display: flex;
+    align-items: center;
+    color: var(--color-text-dark);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: -4px 0px;
+}
+
+/* Explorer Card - Category width */
+.explorer-card .product-category {
+    width: 114px;
+    height: 24px;
+}
+
+/* Hapza Card - Category width */
+.hapza-card .product-category {
+    width: 152px;
+    height: 24px;
+}
+
+/* Product Name */
+.product-name {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 150%;
+    display: flex;
+    align-items: center;
+    color: var(--color-text-dark);
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0;
+}
+
+/* Explorer Card - Name width */
+.explorer-card .product-name {
+    width: 129px;
+    height: 48px;
+}
+
+/* Hapza Card - Name width */
+.hapza-card .product-name {
+    width: 99px;
+    height: 48px;
+}
+
+/* Product List */
+.product-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 0px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+/* Explorer Card - Product List */
+.explorer-card .product-list {
+    width: 88px;
+    height: 48px;
+}
+
+/* Hapza Card - Product List */
+.hapza-card .product-list {
+    width: 174px;
+    height: 72px;
+}
+
+/* Feature Text */
+.feature-text {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    display: flex;
+    align-items: center;
+    color: var(--color-text-dark);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.5s ease;
+}
+
+.product-card.animate-in .feature-text {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Explorer Card - Feature Text */
+.explorer-card .feature-text {
+    width: 88px;
+    height: 20px;
+}
+
+/* Hapza Card - Feature Text específicas para múltiples features */
+.hapza-card .feature-text {
+    width: 174px;
+    height: 24px;
+}
+
+/* Frame 2 - Botón */
+.frame-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    gap: 10px;
+    position: absolute;
+    width: 420px;
+    height: 91px;
+    left: calc(50% - 420px/2);
+    bottom: 0px;
+}
+
+/* Btn Red */
+.btn-red {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 44px;
+    gap: 10px;
+    width: 372px;
+    height: 43px;
+    background: var(--color-primary);
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    transition: var(--transition-base);
+}
+
+.btn-red:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 25px rgba(209, 36, 7, 0.3);
+}
+
+/* Btn Text */
+.btn-text {
+    width: 91px;
+    height: 19px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--color-text-light);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
-    @keyframes fade-in-up {
-        0% { transform: translate3d(0, 50px, 0); opacity: 0; }
-        100% { transform: translate3d(0, 0, 0); opacity: 1; }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
-    @keyframes slide-in-up {
-        0% { transform: translate3d(0, 60px, 0); opacity: 0; }
-        100% { transform: translate3d(0, 0, 0); opacity: 1; }
-    }
-    @keyframes bounce-in {
-        0% { transform: scale(0.5); opacity: 0; }
-        60% { transform: scale(1.05); }
-        100% { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .container {
+        width: auto;
+        height: auto;
+        max-width: 896px;
+        padding: 0 2rem;
     }
     
-    /* Optimizaciones de rendimiento */
-    .animate-slow-zoom { 
-        animation: slow-zoom 25s ease-in-out infinite alternate; 
-        will-change: transform;
-    }
-    .animate-fade-in-up { 
-        animation: fade-in-up 1s ease-out forwards; 
-        opacity: 0; 
-        will-change: transform, opacity;
-    }
-    .animate-slide-in-up { 
-        animation: slide-in-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; 
-        opacity: 0; 
-        will-change: transform, opacity;
-    }
-    .animate-bounce-in { 
-        animation: bounce-in 1s ease-out 0.5s forwards; 
-        opacity: 0; 
-        will-change: transform, opacity;
-    }
-    .animate-text-glow {
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.4), 0 0 25px rgba(255, 255, 255, 0.2);
+    .products-grid {
+        flex-direction: column;
+        width: auto;
+        height: auto;
+        gap: 3rem;
     }
     
-    /* Media query para reducir animaciones en dispositivos con preferencia de movimiento reducido */
-    @media (prefers-reduced-motion: reduce) {
-        .animate-slow-zoom {
-            animation: none;
-        }
-        
-        .animate-fade-in-up,
-        .animate-slide-in-up,
-        .animate-bounce-in {
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-        
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
+    .section-header {
+        width: auto;
+        height: auto;
     }
+    
+    .section-title {
+        font-size: 32px;
+        line-height: 1.3;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        height: 600px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .btn-outline,
+    .btn-primary {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .products-section {
+        padding: 60px 20px;
+    }
+    
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .product-card {
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto;
+    }
+    
+    .frame-1,
+    .frame-2 {
+        width: 100%;
+        left: 0;
+    }
+    
+    .product-logo-container,
+    .btn-red {
+        width: calc(100% - 48px);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        height: 500px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .product-card {
+        width: calc(100% - 2rem);
+        margin: 0 1rem;
+    }
+    
+    .product-name {
+        font-size: 24px;
+    }
+    
+    .frame-1 {
+        padding: 20px;
+    }
+    
+    .frame-2 {
+        padding: 20px;
+        height: auto;
+    }
+}
+
+/* High DPI Support */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero-section {
+        background-image: url('/images/servicios/Background-Productos@2x.png');
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
 </style>
+
+<script>
+// Intersection Observer para animaciones on scroll
+document.addEventListener('DOMContentLoaded', function() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const delay = (entry.target as HTMLElement).dataset.delay || 0;
+                setTimeout(() => {
+                    entry.target.classList.add('animate-in');
+                }, parseInt(delay as string));
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observar las tarjetas de productos
+    document.querySelectorAll('.scroll-animate').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Smooth scroll para el botón "Conoce más"
+    document.querySelector('a[href="#productos"]')?.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector('#productos');
+        if (target) {
+            const offset = 80;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
+    });
+
+    // Parallax effect en hero (opcional)
+    let ticking = false;
+    function updateParallax() {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero-section');
+        if (hero) {
+            const speed = 0.5;
+            (hero as HTMLElement).style.transform = `translateY(${scrolled * speed}px)`;
+        }
+        ticking = false;
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            window.requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    }
+
+    // Activar solo en desktop
+    if (window.innerWidth > 768) {
+        window.addEventListener('scroll', requestTick);
+    }
+});
+</script>
+
+</Layout>

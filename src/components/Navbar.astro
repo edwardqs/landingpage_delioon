@@ -2,41 +2,55 @@
 // src/components/Navbar.astro
 const { pathname } = Astro.url;
 
+// Función para determinar si una ruta está activa
+function isActiveRoute(linkHref: string, currentPath: string): boolean {
+    // Normalizar las rutas removiendo extensiones y barras finales
+    const normalizedCurrent = currentPath.replace(/\.(html|astro)$/, '').replace(/\/$/, '') || '/';
+    const normalizedLink = linkHref.replace(/\/$/, '') || '/';
+    
+    // Para la página de inicio
+    if (normalizedLink === '/' && normalizedCurrent === '/') {
+        return true;
+    }
+    
+    // Para otras páginas
+    if (normalizedLink !== '/' && normalizedCurrent.startsWith(normalizedLink)) {
+        return true;
+    }
+    
+    return false;
+}
+
 const navLinks = [
     { href: "/", label: "Inicio" },
     { href: "/productos", label: "Productos" },
     { href: "/servicios", label: "Servicios" },
-    { href: "/contacto", label: "Contacto" }
+    /* { href: "/nosotros", label: "Nosotros" }, */
 ];
 ---
 
-<style>
-    .link-active {
-        color: #DE1207; /* delion-red */
-        border-color: #DE1207; /* delion-red */
-    }
-</style>
-
-<nav id="main-navbar" class="w-full bg-gradient-to-r from-[#0A192F] to-[#4d0b1a] text-white py-3 z-40 transition-colors duration-300">
-    <div class="max-w-7xl w-11/12 mx-auto flex justify-between items-center">
+<nav class="navbar">
+    <div class="navbar-container">
         
-        <div>
-            <a href="/" class="block h-10 w-35 transition-transform duration-300 hover:scale-105">
-                <img src="/logo_delion.png" alt="Logo Delion blanco" class="h-full w-full object-cover" fetchpriority="high" />
+        <!-- Logo -->
+        <div class="logo-container">
+            <a href="/" class="logo-link">
+                <img src="/Logo-Delion-Color.svg" alt="Logo Delion a color" class="logo-image" fetchpriority="high" />
             </a>
         </div>
 
-        <div class="hidden md:flex items-center gap-x-8">
-            <ul class="flex items-center gap-x-8">
+        <!-- Menú de navegación desktop -->
+        <div class="items-navbar-container">
+            <ul class="items-navbar">
                 {navLinks.map(link => (
-                    <li>
+                    <li class="navbar-item">
                         <a 
                             href={link.href} 
                             class:list={[
-                                "text-base pb-1.5 border-b-2 transition-colors duration-300",
-                                pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))
-                                    ? "border-delion-red text-white font-semibold"
-                                    : "border-transparent hover:border-white/50"
+                                "navbar-link",
+                                isActiveRoute(link.href, pathname)
+                                    ? "item-select" 
+                                    : "item-no-select" 
                             ]}
                         >
                             {link.label}
@@ -44,149 +58,501 @@ const navLinks = [
                     </li>
                 ))}
             </ul>
-            <div class="relative">
-                <button id="lang-toggle-button" class="flex items-center gap-2.5 text-base text-white transition-opacity">
-                    <img id="current-lang-flag" src="/icons/Spain (ES).svg" alt="Bandera de España" class="h-5 w-5 object-contain rounded-full" loading="lazy" />
-                    <span id="current-lang-text">ESP</span>
-                    <svg id="chevron-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
-                </button>
-                <div id="lang-menu" class="absolute top-full mt-3 right-0 w-48 bg-white rounded-md shadow-lg hidden z-10">
-                    <div class="py-1" role="menu">
-                         <a href="/es" class="lang-option flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" data-lang="ESP" data-flag="/icons/Spain (ES).svg">
-                            <img src="/icons/Spain (ES).svg" alt="Bandera de España" class="h-5 w-5 object-contain rounded-full" loading="lazy">
-                            <span>Español (ES)</span>
-                         </a>
-                         <a href="/en" class="lang-option flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" data-lang="ENG" data-flag="/icons/English (EN).svg">
-                             <img src="/icons/English (EN).svg" alt="Bandera de Reino Unido" class="h-5 w-5 object-contain rounded-full" loading="lazy">
-                             <span>English (EN)</span>
-                         </a>
-                    </div>
-                </div>
-            </div>
         </div>
 
-         <div class="md:hidden">
-            <button id="hamburger-button" class="text-white z-50 relative">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        <!-- Botón de contacto desktop -->
+        <div class="contact-button-container">
+            <a href="/contacto" class="btn-blue">
+                Contáctanos
+            </a>
+        </div>
+        
+        <!-- Botón hamburguesa móvil -->
+        <div class="hamburger-container">
+            <button id="hamburger-button" class="hamburger-button">
+                <div class="hamburger-icon">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </div>
             </button>
         </div>
     </div>
 </nav>
 
-<div id="mobile-menu" class="fixed inset-0 bg-[#0C3C6F] text-white hidden z-40">
-    <div class="flex flex-col items-center justify-center h-full">
-        <button id="close-mobile-menu" class="absolute top-6 right-6 text-white text-2xl hover:text-gray-300">
+<!-- Menú móvil -->
+<div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-content">
+        <button id="close-mobile-menu" class="close-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
         </button>
-        <nav>
-            <ul class="flex flex-col items-center gap-y-8 text-2xl">
-                 {navLinks.map(link => (
-                    <li>
-                        <a href={link.href} class="hover:text-gray-300">{link.label}</a>
-                    </li>
-                ))}
-            </ul>
-        </nav>
+        
+        <ul class="mobile-nav-list">
+            {navLinks.map((link) => (
+                <li class="mobile-nav-item">
+                    <a href={link.href} class="mobile-nav-link">
+                        {link.label}
+                    </a>
+                </li>
+            ))}
+        </ul>
+        
+        <div class="mobile-contact-container">
+            <a href="/contacto" class="mobile-contact-button">
+                Contáctanos
+            </a>
+        </div>
     </div>
 </div>
 
-<script>
-    // Script optimizado para mejor rendimiento
+<script is:inline>
     document.addEventListener('DOMContentLoaded', () => {
-        // Cache de elementos DOM para evitar búsquedas repetidas
-        const elements = {
-            langToggleButton: document.getElementById('lang-toggle-button'),
-            langMenu: document.getElementById('lang-menu'),
-            currentLangFlag: document.getElementById('current-lang-flag'),
-            currentLangText: document.getElementById('current-lang-text'),
-            chevronIcon: document.getElementById('chevron-icon'),
-            langOptions: document.querySelectorAll('.lang-option'),
-            hamburgerButton: document.getElementById('hamburger-button'),
-            mobileMenu: document.getElementById('mobile-menu'),
-            closeMobileMenuButton: document.getElementById('close-mobile-menu')
-        };
+        setTimeout(() => {
+            const hamburgerButton = document.getElementById('hamburger-button');
+            const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.querySelector('.hamburger-icon');
 
-        // Función para manejar el toggle del menú de idiomas
-        function handleLangToggle(event: Event) {
-            event.stopPropagation();
-            if (elements.langMenu) {
-                elements.langMenu.classList.toggle('hidden');
-                if (elements.chevronIcon) {
-                    elements.chevronIcon.classList.toggle('rotate-180');
+            function openMobileMenu() {
+                if (mobileMenu) {
+                    mobileMenu.style.display = 'block';
+                    setTimeout(() => {
+                        mobileMenu.classList.add('show');
+                    }, 10);
+                    hamburgerIcon?.classList.add('active');
+                    document.body.style.overflow = 'hidden';
                 }
             }
-        }
 
-        // Función para manejar el cambio de idioma
-        function handleLangChange(event: Event) {
-            event.preventDefault(); 
-            const target = event.currentTarget as HTMLElement;
-            const newLang = target.dataset.lang;
-            const newFlag = target.dataset.flag;
-    
-            if (elements.currentLangFlag && elements.currentLangText) {
-                (elements.currentLangFlag as HTMLImageElement).src = newFlag || '';
-                elements.currentLangText.textContent = newLang || '';
+            function closeMobileMenu() {
+                if (mobileMenu) {
+                    mobileMenu.classList.remove('show');
+                    hamburgerIcon?.classList.remove('active');
+                    document.body.style.overflow = '';
+                    setTimeout(() => {
+                        mobileMenu.style.display = 'none';
+                    }, 400);
+                }
             }
-      
-            if (elements.langMenu) {
-                elements.langMenu.classList.add('hidden');
-            }
-            if (elements.chevronIcon) {
-                elements.chevronIcon.classList.remove('rotate-180');
-            }
-        }
 
-        // Función para manejar el menú móvil
-        function handleMobileMenu() {
-            if (elements.mobileMenu) {
-                elements.mobileMenu.classList.remove('hidden');
-                document.body.classList.add('overflow-hidden');
-            }
-        }
-
-        function closeMobileMenu() {
-            if (elements.mobileMenu) {
-                elements.mobileMenu.classList.add('hidden');
-                document.body.classList.remove('overflow-hidden');
-            }
-        }
-
-        // Event listeners optimizados
-        if (elements.langToggleButton && elements.langMenu) {
-            elements.langToggleButton.addEventListener('click', handleLangToggle);
-        }
-
-        elements.langOptions.forEach(option => {
-            option.addEventListener('click', handleLangChange);
-        });
-
-        if (elements.hamburgerButton && elements.mobileMenu) {
-            elements.hamburgerButton.addEventListener('click', handleMobileMenu);
-        }
-
-        if (elements.closeMobileMenuButton && elements.mobileMenu) {
-            elements.closeMobileMenuButton.addEventListener('click', closeMobileMenu);
-        }
-
-        if (elements.mobileMenu) {
-            const mobileMenuLinks = elements.mobileMenu.querySelectorAll('a');
-            mobileMenuLinks.forEach(link => {
+            hamburgerButton?.addEventListener('click', (e) => {
+                e.preventDefault();
+                openMobileMenu();
+            });
+            
+            closeMobileMenuButton?.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeMobileMenu();
+            });
+            
+            mobileMenu?.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', closeMobileMenu);
             });
-        }
-
-        // Cerrar menú de idiomas al hacer clic fuera
-        document.addEventListener('click', () => {
-            if (elements.langMenu && !elements.langMenu.classList.contains('hidden')) {
-                elements.langMenu.classList.add('hidden');
-                if (elements.chevronIcon) {
-                    elements.chevronIcon.classList.remove('rotate-180');
-                }
-            }
-        });
+        }, 100);
     });
 </script>
+
+<style>
+    /* Navbar Principal */
+    .navbar {
+        position: relative;
+        width: 100%;
+        height: 70px;
+        background: #FFFFFF;
+        border-radius: 0;
+    }
+
+    .navbar-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 64px;
+        gap: 63px;
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    /* Logo */
+    .logo-container {
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+    }
+
+    .logo-link {
+        display: block;
+        width: 116px;
+        height: 25px;
+        transition-transform: 0.3s ease;
+    }
+
+    .logo-link:hover {
+        transform: scale(1.05);
+    }
+
+    .logo-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    /* Contenedor de Items de Navegación */
+    .items-navbar-container {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+    }
+
+    /* Items-Navbar */
+    .items-navbar {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+        gap: 28px;
+        margin: 0 auto;
+        width: 354px;
+        height: 33px;
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+    }
+
+    .navbar-item {
+        flex: none;
+        flex-grow: 0;
+    }
+
+    .navbar-link {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    /* Item-NoSelect */
+    .item-no-select {
+        padding: 0px;
+        width: auto;
+        height: 17px;
+        flex: none;
+        flex-grow: 0;
+        
+        font-family: 'Inter', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #3D648D;
+    }
+
+    /* Item-Select */
+    .item-select {
+        padding: 8px 20px;
+        width: auto;
+        height: 33px;
+        border: 1px solid rgba(12, 61, 113, 0.2);
+        border-radius: 12px;
+        flex: none;
+        flex-grow: 0;
+        
+        font-family: 'Inter', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 17px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #0C3D71;
+    }
+
+    /* Contenedor del botón de contacto */
+    .contact-button-container {
+        flex: none;
+        order: 2;
+        flex-grow: 0;
+    }
+
+    /* Btn-Blue */
+    .btn-blue {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 24px;
+        border-radius: 8px;
+        gap: 10px;
+        margin: 0 auto;
+        width: 122px;
+        height: 39px;
+        background: #0C3D71;
+        box-shadow: 0px 0px 4px rgba(5, 25, 45, 0.5);
+        border-radius: 12px;
+        flex: none;
+        order: 2;
+        flex-grow: 0;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        
+        font-family: 'Inter', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 15px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #FFFFFF;
+    }
+
+    .btn-blue:hover {
+        background: #0A192F;
+        transform: translateY(-1px);
+    }
+
+    /* Hamburguesa móvil */
+    .hamburger-container {
+        display: none;
+        flex-shrink: 0;
+    }
+
+    .hamburger-button {
+        padding: 8px;
+        border-radius: 8px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .hamburger-button:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .hamburger-icon {
+        width: 24px;
+        height: 24px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .hamburger-line {
+        width: 18px;
+        height: 2px;
+        background-color: #0C3D71;
+        border-radius: 1px;
+        transition: all 0.3s ease;
+        transform-origin: center;
+    }
+
+    .hamburger-icon.active .hamburger-line:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger-icon.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    .hamburger-icon.active .hamburger-line:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Menú móvil */
+    .mobile-menu {
+        position: fixed;
+        inset: 0;
+        background: #0A192F;
+        color: white;
+        z-index: 99999;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        display: none;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    .mobile-menu.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .mobile-menu-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-center: center;
+        height: 100%;
+        padding: 24px;
+    }
+
+    .close-button {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        color: white;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 10000;
+        transition: color 0.3s ease;
+    }
+
+    .close-button:hover {
+        color: #ccc;
+    }
+
+    .mobile-nav-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        font-size: 20px;
+        margin-bottom: 32px;
+        color: white;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+    }
+
+    .mobile-menu.show .mobile-nav-list {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .mobile-nav-item {
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .mobile-menu.show .mobile-nav-item:nth-child(1) { transition-delay: 0.3s; }
+    .mobile-menu.show .mobile-nav-item:nth-child(2) { transition-delay: 0.4s; }
+    .mobile-menu.show .mobile-nav-item:nth-child(3) { transition-delay: 0.5s; }
+    .mobile-menu.show .mobile-nav-item:nth-child(4) { transition-delay: 0.6s; }
+
+    .mobile-menu.show .mobile-nav-item {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .mobile-nav-link {
+        display: block;
+        text-align: center;
+        padding: 12px 24px;
+        transition: all 0.3s ease;
+        color: white;
+        text-decoration: none;
+    }
+
+    .mobile-nav-link:hover {
+        color: #ccc;
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-contact-container {
+        display: flex;
+        justify-content: center;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.7s;
+    }
+
+    .mobile-menu.show .mobile-contact-container {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .mobile-contact-button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 24px;
+        gap: 10px;
+        width: 122px;
+        height: 39px;
+        background: white;
+        color: #0A192F;
+        box-shadow: 0px 0px 4px rgba(5, 25, 45, 0.5);
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 15px;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .mobile-contact-button:hover {
+        background: #f0f0f0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .navbar-container {
+            padding: 0px 24px;
+            gap: 20px;
+        }
+
+        .logo-link {
+            width: 100px;
+            height: 22px;
+        }
+
+        .items-navbar-container {
+            display: none;
+        }
+
+        .contact-button-container {
+            display: none;
+        }
+
+        .hamburger-container {
+            display: block;
+        }
+
+        .mobile-menu {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            height: 100dvh !important;
+            z-index: 99999 !important;
+        }
+    }
+
+    @media (min-width: 769px) {
+        .items-navbar-container {
+            display: block;
+        }
+
+        .contact-button-container {
+            display: block;
+        }
+    }
+</style>
