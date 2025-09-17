@@ -61,8 +61,8 @@ export default {
     // Deshabilitar plugins que no se usan
     container: false,
     accessibility: false,
-    backdropFilter: false,
-    backdropBlur: false,
+/*     backdropFilter: false,
+    backdropBlur: false, */
     backdropBrightness: false,
     backdropContrast: false,
     backdropGrayscale: false,

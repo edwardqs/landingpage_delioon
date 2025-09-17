@@ -1,0 +1,152 @@
+/* src/styles/pages/product-explorer.css */
+.product-explorer-page {
+  @apply bg-white text-gray-800;
+  overflow-x: hidden;
+}
+
+.section-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Contenedor específico para la sección 24/7 */
+.section-247-container {
+  @apply w-full;
+}
+
+.text-content {
+  @apply flex flex-col items-start;
+}
+
+/* Padding para alinear el texto de la sección 24/7 con el resto de la página */
+.text-content-247 {
+  @apply flex flex-col items-start pl-4 sm:pl-6 lg:pl-8;
+  /* Alineamos el padding con el .section-container */
+  max-width: calc((100vw - 1280px) / 2 + 640px); /* Formula para alinear con el contenedor principal */
+  margin-left: max(0px, (100vw - 1280px) / 2);
+}
+
+.text-content-right {
+  @apply lg:items-end lg:text-right;
+}
+
+.product-title {
+  @apply text-4xl sm:text-5xl font-bold text-delion-blue mb-2;
+}
+
+.product-subtitle {
+  @apply text-xl sm:text-2xl text-gray-600 mb-6;
+}
+
+.btn-cotizar-main {
+  @apply bg-delion-red text-white font-semibold py-3 px-10 rounded-xl shadow-md hover:bg-delion-redDark transition-transform duration-300 hover:scale-105;
+}
+
+.feature-list {
+  @apply w-full p-6 rounded-xl list-none;
+  background-color: rgba(7, 34, 63, 0.02);
+  overflow-x: auto;
+}
+
+.feature-list::-webkit-scrollbar { height: 4px; }
+.feature-list::-webkit-scrollbar-thumb {
+  background-color: rgba(7, 34, 63, 0.2);
+  border-radius: 4px;
+}
+
+.feature-item {
+  @apply flex items-center gap-4 whitespace-nowrap;
+  height: 48px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #07223F;
+}
+
+.feature-icon {
+  @apply flex-shrink-0;
+  width: 28px;
+  height: 28px;
+}
+
+.image-content {
+  @apply flex justify-center items-center;
+}
+
+.section-divider {
+  @apply w-full h-[13px] my-16;
+  background: linear-gradient(90deg, #D3290A 0%, #0C3D71 100%);
+}
+
+.portable-subtitle-group {
+  @apply flex flex-col items-end gap-y-1 mb-6;
+}
+
+.subtitle-wrapper {
+  @apply flex items-center gap-x-2;
+}
+
+.product-subtitle-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 24px;
+  color: rgba(7, 34, 63, 0.8);
+}
+
+.subtitle-icon {
+  width: 29px;
+  height: 29px;
+}
+
+/* --- ESTILOS CORREGIDOS PARA CARRUSEL 24/7 --- */
+.image-carousel-container {
+  @apply relative w-full h-[500px]; /* Altura fija para dar espacio a las imágenes */
+}
+
+.carousel-image {
+  @apply absolute top-0 left-0 w-auto h-full object-contain; /* 'h-full' y 'w-auto' para mantener proporción */
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  will-change: opacity;
+  /* Posicionamiento para efecto escalonado */
+  right: 0;
+}
+
+.carousel-image.active {
+  opacity: 1;
+}
+
+/* --- ESTILOS PARA CARRUSEL PORTABLE --- */
+.portable-carousel-container {
+  @apply relative w-full h-[460px] max-w-lg mx-auto;
+}
+
+.carousel-image-portable {
+  @apply absolute top-0 left-0 w-full h-full object-contain rounded-xl;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  will-change: opacity;
+}
+
+.carousel-image-portable.active {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .text-content-247 {
+    @apply items-center text-center pl-0;
+    margin-left: 0;
+    max-width: none;
+  }
+  .text-content-right {
+    @apply lg:items-center lg:text-center;
+  }
+  .portable-subtitle-group {
+    @apply justify-center items-center;
+  }
+  .image-carousel-container, .image-content {
+    @apply mt-8;
+  }
+  .image-content.lg\:order-1 {
+    order: -1;
+  }
+}
