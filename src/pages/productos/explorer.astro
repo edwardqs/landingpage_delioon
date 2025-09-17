@@ -11,7 +11,6 @@ const features247 = [
     "Disminuye atascos, pérdidas de disponibilidad y reducción de capacidad de planta",
     "Tiene integración con el FMS de la mina"
 ];
-
 const featuresPortable = [
     "Aplicación en minería superficial y subterránea",
     "Distancia de operación hasta 15 metros",
@@ -36,9 +35,11 @@ const featuresPortable = [
   ]}
 >
   <main class="product-explorer-page">
-    <section class="pt-32 pb-16">
+    {/* SECCIÓN EXPLORER 24/7 CON LAYOUT ESPECIAL */}
+    <section class="section-247-container pt-32 pb-16 pl-12">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        <div class="text-content pl-4 sm:pl-6 lg:pl-8 xl:pl-16">
+        {/* Columna de texto */}
+        <div class="text-content">
           <h1 class="product-title">Explorer 24/7</h1>
           <p class="product-subtitle">Medición autónoma de granulometría</p>
           <a href="/contacto" class="btn-cotizar-main">Cotizar</a>
@@ -52,6 +53,7 @@ const featuresPortable = [
           </ul>
         </div>
         
+        {/* Columna de imagen */}
         <div id="image-carousel-container" class="image-carousel-container">
           <img src="/images/product-explorer/Photo-1.svg" alt="Vista de Explorer 1" class="carousel-image active" />
           <img src="/images/product-explorer/Photo-2.svg" alt="Vista de Explorer 2" class="carousel-image" />
@@ -62,35 +64,39 @@ const featuresPortable = [
 
     <div class="section-divider"></div>
 
-    <section class="section-container py-16">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div id="portable-carousel-container" class="image-content lg:order-1 portable-carousel-container">
-          <img src="/images/product-explorer/Image.svg" alt="Reporte de Explorer Portable" class="carousel-image-portable active" />
-          <img src="/images/product-explorer/Image2.svg" alt="Detalle de granulometría" class="carousel-image-portable" />
-        </div>
-        <div class="text-content text-content-right lg:order-2">
-          <h2 class="product-title">Explorer Portable</h2>
-          <div class="portable-subtitle-group">
-            <div class="subtitle-wrapper">
-              <span class="product-subtitle-text">Cámara estéreo</span>
-              <img src="/images/productos/Icon-Binoculars.svg" alt="Icono de cámara estéreo" class="subtitle-icon" />
+    {/* SECCIÓN EXPLORER PORTABLE (SIN CAMBIOS) */}
+    <section class="section-portable-container py-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            {/* Columna de imagen */}
+            <div id="portable-carousel-container" class="image-content lg:order-1 portable-carousel-container">
+                <img src="/images/product-explorer/Image.svg" alt="Reporte de Explorer Portable" class="carousel-image-portable full-bleed-img active" />
+                <img src="/images/product-explorer/Image2.svg" alt="Detalle de granulometría" class="carousel-image-portable centered-img" />
             </div>
-            <div class="subtitle-wrapper">
-              <span class="product-subtitle-text">Drones</span>
-              <img src="/images/productos/Icon-Drone.svg" alt="Icono de drone" class="subtitle-icon" />
+            {/* Columna de texto */}
+            <div class="text-content text-content-right lg:order-2 pr-4 sm:pr-6 lg:pr-8">
+                <h2 class="product-title">Explorer Portable</h2>
+                <div class="portable-subtitle-group">
+                    <div class="subtitle-wrapper">
+                        <span class="product-subtitle-text">Cámara estéreo</span>
+                        <img src="/images/productos/Icon-Binoculars.svg" alt="Icono de cámara estéreo" class="subtitle-icon" />
+                    </div>
+                    <div class="subtitle-wrapper">
+                        <span class="product-subtitle-text">Drones</span>
+                        <img src="/images/productos/Icon-Drone.svg" alt="Icono de drone" class="subtitle-icon" />
+                    </div>
+                </div>
+                <a href="/contacto" class="btn-cotizar-main">Cotizar</a>
+                {/* Este es el contenedor de features que estaba mal posicionado antes */}
+                <ul class="feature-list feature-list-portable mt-8">
+                    {featuresPortable.map(feature => (
+                    <li class="feature-item">
+                        <img src="/images/productos/Check square.svg" alt="Checklist icon" class="feature-icon" />
+                        <span>{feature}</span>
+                    </li>
+                    ))}
+                </ul>
             </div>
-          </div>
-          <a href="/contacto" class="btn-cotizar-main">Cotizar</a>
-          <ul class="feature-list mt-8">
-            {featuresPortable.map(feature => (
-              <li class="feature-item">
-                <img src="/images/productos/Check square.svg" alt="Checklist icon" class="feature-icon" />
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
         </div>
-      </div>
     </section>
   </main>
 </Layout>
@@ -100,26 +106,22 @@ const featuresPortable = [
 </style>
 
 <script>
+  // El script no necesita cambios.
   document.addEventListener('DOMContentLoaded', () => {
-    // Lógica para el carrusel de Explorer 24/7
     const carouselContainer247 = document.getElementById('image-carousel-container');
     if (carouselContainer247) {
       const images247 = carouselContainer247.querySelectorAll('.carousel-image');
       let currentIndex247 = 0;
-
       setInterval(() => {
         images247[currentIndex247].classList.remove('active');
         currentIndex247 = (currentIndex247 + 1) % images247.length;
         images247[currentIndex247].classList.add('active');
       }, 5000);
     }
-
-    // Lógica para el carrusel de Explorer Portable
     const carouselContainerPortable = document.getElementById('portable-carousel-container');
     if (carouselContainerPortable) {
       const imagesPortable = carouselContainerPortable.querySelectorAll('.carousel-image-portable');
       let currentIndexPortable = 0;
-
       setInterval(() => {
         imagesPortable[currentIndexPortable].classList.remove('active');
         currentIndexPortable = (currentIndexPortable + 1) % imagesPortable.length;

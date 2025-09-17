@@ -8,20 +8,22 @@
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
-/* Contenedor específico para la sección 24/7 */
-.section-247-container {
+.section-247-container, .section-portable-container {
   @apply w-full;
+}
+
+.section-247-container {
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .text-content {
   @apply flex flex-col items-start;
 }
 
-/* Padding para alinear el texto de la sección 24/7 con el resto de la página */
 .text-content-247 {
   @apply flex flex-col items-start pl-4 sm:pl-6 lg:pl-8;
-  /* Alineamos el padding con el .section-container */
-  max-width: calc((100vw - 1280px) / 2 + 640px); /* Formula para alinear con el contenedor principal */
+  max-width: calc((100vw - 1280px) / 2 + 640px);
   margin-left: max(0px, (100vw - 1280px) / 2);
 }
 
@@ -44,28 +46,32 @@
 .feature-list {
   @apply w-full p-6 rounded-xl list-none;
   background-color: rgba(7, 34, 63, 0.02);
+  min-width: 100%;
   overflow-x: auto;
 }
 
-.feature-list::-webkit-scrollbar { height: 4px; }
-.feature-list::-webkit-scrollbar-thumb {
-  background-color: rgba(7, 34, 63, 0.2);
-  border-radius: 4px;
-}
-
 .feature-item {
-  @apply flex items-center gap-4 whitespace-nowrap;
-  height: 48px;
+  @apply flex items-start gap-4 py-2;
+  min-height: 48px;
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 16px;
   color: #07223F;
 }
 
+/* Estilos específicos para Explorer 24/7 - texto lineal sin saltos */
+.section-247-container .feature-list {
+  max-width: none;
+  width: fit-content;
+  min-width: 100%;
+}
+
+.section-247-container .feature-item span {
+  white-space: nowrap;
+}
+
 .feature-icon {
-  @apply flex-shrink-0;
-  width: 28px;
-  height: 28px;
+  @apply flex-shrink-0 w-7 h-7 mt-1; /* Pequeño ajuste de margen para alinear con texto de varias líneas */
 }
 
 .image-content {
@@ -96,18 +102,16 @@
   height: 29px;
 }
 
-/* --- ESTILOS CORREGIDOS PARA CARRUSEL 24/7 --- */
+/* --- ESTILOS CARRUSEL 24/7 --- */
 .image-carousel-container {
-  @apply relative w-full h-[500px]; /* Altura fija para dar espacio a las imágenes */
+  @apply relative w-full h-[500px];
 }
 
 .carousel-image {
-  @apply absolute top-0 left-0 w-auto h-full object-contain; /* 'h-full' y 'w-auto' para mantener proporción */
+  @apply absolute top-0 right-0 h-full w-auto object-contain;
   opacity: 0;
   transition: opacity 0.8s ease-in-out;
   will-change: opacity;
-  /* Posicionamiento para efecto escalonado */
-  right: 0;
 }
 
 .carousel-image.active {
@@ -116,37 +120,44 @@
 
 /* --- ESTILOS PARA CARRUSEL PORTABLE --- */
 .portable-carousel-container {
-  @apply relative w-full h-[460px] max-w-lg mx-auto;
+  @apply relative w-full h-[500px];
 }
 
 .carousel-image-portable {
-  @apply absolute top-0 left-0 w-full h-full object-contain rounded-xl;
+  @apply absolute top-0 transition-opacity duration-700 ease-in-out;
   opacity: 0;
-  transition: opacity 0.8s ease-in-out;
   will-change: opacity;
+}
+
+.carousel-image-portable.full-bleed-img {
+  @apply left-0 h-3/4 w-auto object-contain;
+}
+
+.carousel-image-portable.centered-img {
+  @apply left-1/2 -translate-x-1/2 h-full w-auto object-contain;
 }
 
 .carousel-image-portable.active {
   opacity: 1;
 }
 
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .text-content-247 {
-    @apply items-center text-center pl-0;
+/* Responsive para tablet y móvil */
+@media (max-width: 1023px) {
+  .text-content-247, .text-content-right {
+    @apply items-center text-center px-4;
     margin-left: 0;
     max-width: none;
   }
-  .text-content-right {
-    @apply lg:items-center lg:text-center;
+  .feature-list {
+    @apply max-w-full;
+  }
+  .image-carousel-container, .image-carousel-portable {
+    @apply mt-8 h-[350px];
+  }
+  .section-container-portable .image-carousel-portable {
+    order: -1;
   }
   .portable-subtitle-group {
-    @apply justify-center items-center;
-  }
-  .image-carousel-container, .image-content {
-    @apply mt-8;
-  }
-  .image-content.lg\:order-1 {
-    order: -1;
+    @apply items-center;
   }
 }
