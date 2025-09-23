@@ -123,7 +123,6 @@
 /* Primera card - solo muestra icon1 */
 .card:nth-child(1) .icon1 {
   display: block;
-  background: url('/images/compromiso/mision-icon.svg');
   order: 0;
 }
 
@@ -135,7 +134,6 @@
 /* Segunda card - solo muestra icon2 */
 .card:nth-child(2) .icon2 {
   display: block;
-  background: url('/images/compromiso/vision-icon.svg');
   order: 1;
 }
 
@@ -147,7 +145,6 @@
 /* Tercera card - solo muestra icon3 */
 .card:nth-child(3) .icon3 {
   display: block;
-  background: url('/images/compromiso/valores-icon.svg');
   order: 2;
 }
 
