@@ -1,0 +1,434 @@
+/* Estilos para la página de producto Hapza */
+
+.product-hapza-page {
+  @apply min-h-screen bg-white;
+  font-family: 'Inter', sans-serif;
+}
+
+/* --- ANIMACIONES OPTIMIZADAS --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.section-hapza-container {
+  @apply relative;
+}
+
+/* --- CONTENIDO DE TEXTO --- */
+.text-content {
+  @apply flex flex-col justify-center;
+  max-width: 500px;
+  animation: fadeInLeft 1s ease-out 0.2s both;
+  will-change: transform, opacity;
+}
+
+.product-title {
+  @apply text-5xl font-bold mb-6;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.1;
+  color: #07223F;
+  animation: fadeInUp 0.8s ease-out;
+  will-change: transform, opacity;
+}
+
+/* --- LISTA DE SERVICIOS --- */
+.services-list {
+  @apply flex flex-col gap-2;
+  animation: fadeInUp 1s ease-out 0.4s both;
+  will-change: transform, opacity;
+}
+
+.service-item {
+  @apply flex items-center gap-3;
+  font-size: 16px;
+  color: #07223FCC;
+  animation: fadeInLeft 0.6s ease-out calc(0.6s + var(--delay, 0s)) both;
+  will-change: transform, opacity;
+}
+
+.service-item:nth-child(1) { --delay: 0.1s; }
+.service-item:nth-child(2) { --delay: 0.2s; }
+.service-item:nth-child(3) { --delay: 0.3s; }
+.service-item:nth-child(4) { --delay: 0.4s; }
+.service-item:nth-child(5) { --delay: 0.5s; }
+
+.service-icon {
+  @apply text-2xl mr-3 flex items-center justify-center;
+  min-width: 32px;
+  height: 32px;
+  animation: scaleIn 0.5s ease-out calc(0.8s + var(--delay, 0s)) both;
+  will-change: transform, opacity;
+}
+
+.service-svg-icon {
+  @apply w-6 h-6;
+}
+
+.service-text {
+  @apply font-medium;
+  color: #07223FCC;
+}
+
+/* --- IMAGEN DEL MONITO --- */
+.hapza-photo {
+  @apply w-full h-auto max-w-md mx-auto;
+  object-fit: contain;
+}
+
+/* --- IMAGEN DEL MONITO AL LADO DEL MONITOR --- */
+.hapza-photo-beside-monitor {
+  @apply w-32 h-auto absolute;
+  object-fit: contain;
+  bottom: 0;
+  right: -40px;
+  z-index: 10;
+}
+
+/* --- CONTENIDO DE IMAGEN --- */
+.image-content {
+  @apply flex justify-center items-center relative;
+  animation: fadeInRight 1s ease-out 0.6s both;
+  will-change: transform, opacity;
+}
+
+/* --- BOTÓN COTIZAR --- */
+.btn-cotizar-main {
+  @apply inline-block bg-red-600 text-white px-8 py-3 rounded-lg font-semibold text-center transition-colors duration-300 hover:bg-red-700;
+  max-width: 200px;
+  animation: fadeInUp 0.8s ease-out 1.2s both;
+  will-change: transform, opacity;
+  transition: all 0.3s ease;
+}
+
+.btn-cotizar-main:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+}
+
+/* --- LISTA DE CARACTERÍSTICAS --- */
+.feature-list {
+  @apply space-y-3;
+  max-width: 450px;
+  animation: fadeInUp 1s ease-out 0.8s both;
+  will-change: transform, opacity;
+}
+
+.feature-item {
+  @apply flex items-start gap-3;
+  white-space: nowrap;
+  animation: fadeInLeft 0.6s ease-out calc(1s + var(--feature-delay, 0s)) both;
+  will-change: transform, opacity;
+  font-family: 'Inter', sans-serif;
+  color: #07223F;
+}
+
+.feature-item:nth-child(1) { --feature-delay: 0.1s; }
+.feature-item:nth-child(2) { --feature-delay: 0.2s; }
+.feature-item:nth-child(3) { --feature-delay: 0.3s; }
+.feature-item:nth-child(4) { --feature-delay: 0.4s; }
+.feature-item:nth-child(5) { --feature-delay: 0.5s; }
+
+.feature-check-icon {
+  @apply w-7 h-7 flex-shrink-0;
+  margin-top: 2px;
+  animation: scaleIn 0.5s ease-out calc(1.2s + var(--feature-delay, 0s)) both;
+  will-change: transform, opacity;
+}
+
+/* --- CONTENIDO DE IMAGEN --- */
+.image-content {
+  @apply flex justify-center items-center;
+}
+
+/* --- MOCKUP DEL MONITOR --- */
+.hapza-mockup-container {
+  @apply relative;
+  max-width: 600px;
+  width: 100%;
+  animation: scaleIn 1.2s ease-out 0.8s both;
+  will-change: transform, opacity;
+}
+
+.monitor-frame {
+  @apply relative;
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  padding: 25px 25px 0 25px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  animation: fadeInUp 0.8s ease-out 1.2s both;
+  will-change: transform, opacity;
+  transition: transform 0.3s ease;
+}
+
+.monitor-frame:hover {
+  transform: translateY(-5px);
+}
+
+.monitor-screen {
+  @apply bg-white overflow-hidden;
+  aspect-ratio: 16/10;
+  border-radius: 4px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.6s ease-out 1.4s both;
+  will-change: transform, opacity;
+}
+
+.monitor-stand {
+  @apply mx-auto;
+  background: linear-gradient(145deg, #8a8a8a, #6a6a6a);
+  width: 140px;
+  height: 50px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 0.5s ease-out 1.6s both;
+  will-change: transform, opacity;
+}
+
+/* --- INTERFAZ DE LA APLICACIÓN HAPZA --- */
+.hapza-interface {
+  @apply h-full flex flex-col;
+}
+
+/* Header de la aplicación */
+.app-header {
+  @apply bg-gray-50 border-b border-gray-200 px-4 py-3 flex items-center justify-between;
+}
+
+.app-logo {
+  @apply flex items-center;
+}
+
+.logo-circle {
+  @apply w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center;
+}
+
+.logo-text {
+  @apply text-white text-xs font-bold;
+}
+
+.app-nav {
+  @apply flex gap-6;
+}
+
+.nav-item {
+  @apply text-sm text-gray-600 cursor-pointer hover:text-blue-600 transition-colors;
+}
+
+.nav-item.active {
+  @apply text-blue-600 font-semibold;
+}
+
+/* Layout principal */
+.hapza-interface {
+  @apply flex;
+}
+
+.app-sidebar {
+  @apply w-48 bg-blue-900 text-white p-4 flex-shrink-0;
+  font-size: 12px;
+}
+
+.sidebar-section {
+  @apply mb-6;
+}
+
+.sidebar-section h4 {
+  @apply text-xs font-semibold text-blue-200 mb-2 uppercase tracking-wide;
+}
+
+.sidebar-list {
+  @apply space-y-1;
+}
+
+.sidebar-list li {
+  @apply text-blue-100 cursor-pointer hover:text-white transition-colors py-1;
+}
+
+/* Área principal con vista 3D */
+.app-main {
+  @apply flex-1 bg-gray-100 relative overflow-hidden;
+}
+
+.terrain-view {
+  @apply w-full h-full relative flex items-center justify-center;
+  background: #ffffff;
+}
+
+.hapza-interface-image {
+  @apply w-full h-full object-contain;
+  max-width: 100%;
+  max-height: 100%;
+  animation: float 3s ease-in-out 2s infinite;
+  will-change: transform;
+}
+
+/* Puntos de perforación - ELIMINADOS */
+
+/* Líneas de la malla - ELIMINADOS */
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1023px) {
+  .text-content {
+    @apply items-center text-center px-4 mb-8;
+    max-width: none;
+  }
+  
+  .feature-list {
+    @apply max-w-full;
+  }
+  
+  .hapza-mockup-container {
+    @apply mt-8;
+    max-width: 500px;
+  }
+  
+  .app-sidebar {
+    @apply w-32;
+  }
+  
+  .sidebar-section h4 {
+    @apply text-xs;
+  }
+  
+  .sidebar-list {
+    font-size: 10px;
+  }
+}
+
+/* --- OPTIMIZACIONES DE RENDIMIENTO --- */
+/* Reducir repaints y reflows */
+* {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Optimización para elementos animados */
+.product-title,
+.text-content,
+.services-list,
+.service-item,
+.service-icon,
+.btn-cotizar-main,
+.feature-list,
+.feature-item,
+.feature-check-icon,
+.image-content,
+.hapza-mockup-container,
+.monitor-frame,
+.monitor-screen,
+.monitor-stand,
+.hapza-interface-image {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Prefiere GPU para animaciones */
+@media (prefers-reduced-motion: no-preference) {
+  .hapza-interface-image {
+    animation-play-state: running;
+  }
+}
+
+/* Respeta preferencias de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .hapza-interface-image {
+    animation: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .product-title {
+    @apply text-4xl;
+  }
+  
+  .hapza-mockup-container {
+    max-width: 400px;
+  }
+  
+  .monitor-frame {
+    padding: 15px 15px 0 15px;
+  }
+  
+  .app-sidebar {
+    @apply w-24;
+  }
+  
+  .sidebar-section h4 {
+    font-size: 9px;
+  }
+  
+  .sidebar-list {
+    font-size: 9px;
+  }
+  
+  .nav-item {
+    font-size: 11px;
+  }
+}

@@ -60,7 +60,7 @@ const {
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Play:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@500;700&family=Play:wght@400;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&display=swap" rel="stylesheet" />
   
 
@@ -116,19 +116,23 @@ const {
     }
 
     .loader-logo {
-      animation: logoFloat 3s ease-in-out infinite;
-      filter: drop-shadow(0 10px 20px rgba(222, 18, 7, 0.2));
-      z-index: 2;
+      width: 7.5rem;
+      height: 7.5rem;
       position: relative;
+      z-index: 2;
+      animation: logoFloat 3s ease-in-out infinite;
+      filter: drop-shadow(0 0.25rem 0.5rem rgba(12, 61, 113, 0.2));
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
     }
 
     .loader-pulse {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 140px;
-      height: 140px;
-      background: radial-gradient(circle, rgba(222, 18, 7, 0.3) 0%, rgba(222, 18, 7, 0.1) 50%, transparent 70%);
+      width: 9rem;
+      height: 9rem;
+      background: radial-gradient(circle, rgba(12, 61, 113, 0.1) 0%, transparent 70%);
       border-radius: 50%;
       transform: translate(-50%, -50%);
       animation: pulse 2s ease-in-out infinite;
@@ -139,14 +143,13 @@ const {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 160px;
-      height: 160px;
-      border: 3px solid transparent;
-      border-top: 3px solid #DE1207;
-      border-right: 3px solid #0C3D71;
+      width: 10rem;
+      height: 10rem;
+      border: 0.125rem solid transparent;
+      border-top: 0.125rem solid #DE1207;
       border-radius: 50%;
       transform: translate(-50%, -50%);
-      animation: rotate 2s linear infinite;
+      animation: rotate 1.5s linear infinite;
       z-index: 0;
     }
 
@@ -209,16 +212,16 @@ const {
 
     /* Responsive adjustments for loader */
     @media (max-width: 768px) {
-      .loader-logo { width: 80px; height: 80px; }
-      .loader-pulse { width: 100px; height: 100px; }
-      .loader-ring { width: 120px; height: 120px; }
+      .loader-logo { width: 5rem; height: 5rem; }
+      .loader-pulse { width: 6.25rem; height: 6.25rem; }
+      .loader-ring { width: 7.5rem; height: 7.5rem; }
       .loader-text { font-size: 1rem; }
     }
   </style>
 </head>
 <body class={bodyClass}>
   {showLoader && (
-    <div id="global-loader" class="fixed inset-0 bg-gradient-to-br from-white via-gray-50 to-blue-50 z-[9999] flex items-center justify-center">
+    <div id="global-loader" class="fixed inset-0 bg-gradient-to-br from-white via-gray-50 to-blue-50 z-[9999] flex items-center justify-center opacity-100 transition-opacity duration-500">
       <div class="text-center">
         <div class="loader-container mb-6">
           <img 
@@ -227,6 +230,9 @@ const {
             class="loader-logo mx-auto"
             width="120" 
             height="120"
+            loading="eager"
+            decoding="sync"
+            fetchpriority="high"
           />
           <div class="loader-pulse"></div>
           <div class="loader-ring"></div>
@@ -290,28 +296,42 @@ const {
         getDefaultImages() {
           return [
             '/Logo-Delion-Color.svg',
-            '/Background-Hero.svg'
+            '/Background-Hero.svg',
+            '/ISOLOGO.png'
           ];
         }
 
         preloadImages() {
           return new Promise((resolve) => {
             if (this.images.length === 0) {
-              resolve();
+              // Incluso sin imágenes, mantener un delay mínimo
+              setTimeout(() => {
+                resolve();
+              }, 1000);
               return;
             }
 
+            // Precargar el ISOLOGO con máxima prioridad
+            const loaderLogo = new Image();
+            loaderLogo.loading = 'eager';
+            loaderLogo.decoding = 'sync';
+            loaderLogo.fetchPriority = 'high';
+            loaderLogo.src = '/ISOLOGO.png';
+            
             this.images.forEach((src, index) => {
               const img = new Image();
               
               img.onload = () => {
                 this.loadedCount++;
                 this.updateProgress();
+                console.log(`Imagen cargada: ${src} (${this.loadedCount}/${this.totalImages})`);
                 
                 if (this.loadedCount === this.totalImages) {
+                  // Delay adicional para asegurar que todas las imágenes estén completamente renderizadas
                   setTimeout(() => {
+                    console.log('Todas las imágenes cargadas, mostrando contenido');
                     resolve();
-                  }, 300);
+                  }, 500);
                 }
               };
               
@@ -323,13 +343,13 @@ const {
                 if (this.loadedCount === this.totalImages) {
                   setTimeout(() => {
                     resolve();
-                  }, 300);
+                  }, 500);
                 }
               };
               
               setTimeout(() => {
                 img.src = src;
-              }, index * (this.loaderType === 'full' ? 50 : 20));
+              }, index * (this.loaderType === 'full' ? 100 : 50));
             });
           });
         }
@@ -342,16 +362,19 @@ const {
         }
 
         showContent() {
+          console.log('Iniciando transición para ocultar loader');
           if (this.loader) {
             this.loader.style.opacity = '0';
             setTimeout(() => {
               this.loader.style.display = 'none';
+              console.log('Loader ocultado completamente');
             }, 500);
           }
           
           if (this.mainContent) {
             setTimeout(() => {
               this.mainContent.style.opacity = '1';
+              console.log('Contenido principal mostrado');
             }, 250);
           }
         }
@@ -359,14 +382,42 @@ const {
 
       // Inicializar sistema de carga
       document.addEventListener('DOMContentLoaded', async () => {
+        console.log('Iniciando sistema de carga');
         const preloader = new GlobalImagePreloader(preloadImages, loaderType);
         
+        // Detectar si es móvil
+        const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        console.log('Dispositivo móvil detectado:', isMobile);
+        
+        // Delay mínimo más largo para asegurar visibilidad
+        const minDelay = isMobile ? 1500 : 1000;
+        const startTime = Date.now();
+        
         try {
+          console.log('Iniciando precarga de imágenes...');
           await preloader.preloadImages();
-          preloader.showContent();
+          console.log('Precarga completada');
+          
+          // Asegurar delay mínimo especialmente en móvil
+          const elapsedTime = Date.now() - startTime;
+          const remainingDelay = Math.max(0, minDelay - elapsedTime);
+          
+          console.log(`Tiempo transcurrido: ${elapsedTime}ms, delay restante: ${remainingDelay}ms`);
+          
+          setTimeout(() => {
+            preloader.showContent();
+          }, remainingDelay);
+          
         } catch (error) {
           console.error('Error en la precarga global:', error);
-          preloader.showContent();
+          
+          // Incluso con error, mantener delay mínimo en móvil
+          const elapsedTime = Date.now() - startTime;
+          const remainingDelay = Math.max(0, minDelay - elapsedTime);
+          
+          setTimeout(() => {
+            preloader.showContent();
+          }, remainingDelay);
         }
       });
     </script>

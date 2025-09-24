@@ -1,0 +1,82 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo azul claro -->
+  <rect width="800" height="600" fill="#e3f2fd"/>
+  
+  <!-- Título -->
+  <text x="400" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1976d2">
+    Interfaz Hapza - Prueba
+  </text>
+  
+  <!-- Panel principal -->
+  <rect x="50" y="80" width="700" height="450" fill="#ffffff" stroke="#1976d2" stroke-width="2" rx="10"/>
+  
+  <!-- Barra superior -->
+  <rect x="60" y="90" width="680" height="40" fill="#1976d2"/>
+  <text x="400" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="white">
+    Sistema de Análisis Geológico
+  </text>
+  
+  <!-- Área de datos -->
+  <rect x="70" y="150" width="300" height="200" fill="#f5f5f5" stroke="#ccc" stroke-width="1" rx="5"/>
+  <text x="220" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">
+    Datos del Proyecto
+  </text>
+  
+  <!-- Simulación de datos -->
+  <text x="80" y="200" font-family="Arial, sans-serif" font-size="12" fill="#666">
+    • Profundidad: 150m
+  </text>
+  <text x="80" y="220" font-family="Arial, sans-serif" font-size="12" fill="#666">
+    • Tipo de suelo: Arcilloso
+  </text>
+  <text x="80" y="240" font-family="Arial, sans-serif" font-size="12" fill="#666">
+    • Resistencia: 2.5 MPa
+  </text>
+  <text x="80" y="260" font-family="Arial, sans-serif" font-size="12" fill="#666">
+    • Humedad: 15%
+  </text>
+  
+  <!-- Área de visualización -->
+  <rect x="390" y="150" width="340" height="200" fill="#f9f9f9" stroke="#ccc" stroke-width="1" rx="5"/>
+  <text x="560" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">
+    Vista 3D del Terreno
+  </text>
+  
+  <!-- Simulación de terreno 3D -->
+  <polygon points="450,200 650,200 680,250 420,250" fill="#8bc34a" stroke="#689f38" stroke-width="1"/>
+  <polygon points="420,250 680,250 650,300 450,300" fill="#4caf50" stroke="#388e3c" stroke-width="1"/>
+  <polygon points="450,300 650,300 620,330 480,330" fill="#2e7d32" stroke="#1b5e20" stroke-width="1"/>
+  
+  <!-- Puntos de perforación -->
+  <circle cx="500" cy="220" r="3" fill="#f44336"/>
+  <circle cx="580" cy="230" r="3" fill="#f44336"/>
+  <circle cx="620" cy="270" r="3" fill="#f44336"/>
+  
+  <!-- Botones de control -->
+  <rect x="70" y="380" width="80" height="30" fill="#4caf50" rx="5"/>
+  <text x="110" y="400" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    Iniciar
+  </text>
+  
+  <rect x="170" y="380" width="80" height="30" fill="#ff9800" rx="5"/>
+  <text x="210" y="400" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    Pausar
+  </text>
+  
+  <rect x="270" y="380" width="80" height="30" fill="#f44336" rx="5"/>
+  <text x="310" y="400" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">
+    Detener
+  </text>
+  
+  <!-- Estado del sistema -->
+  <rect x="450" y="380" width="200" height="30" fill="#e8f5e8" stroke="#4caf50" stroke-width="1" rx="5"/>
+  <text x="550" y="400" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2e7d32">
+    Sistema Operativo
+  </text>
+  
+  <!-- Indicador de conexión -->
+  <circle cx="680" cy="395" r="8" fill="#4caf50"/>
+  <text x="700" y="400" font-family="Arial, sans-serif" font-size="10" fill="#4caf50">
+    Conectado
+  </text>
+</svg>

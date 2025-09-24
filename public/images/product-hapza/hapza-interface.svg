@@ -1,0 +1,238 @@
+<svg width="1440" height="1024" viewBox="0 0 1440 1024" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo principal -->
+  <rect width="1440" height="1024" fill="#1a1a1a"/>
+  
+  <!-- Barra superior -->
+  <rect x="0" y="0" width="1440" height="60" fill="#2d2d2d"/>
+  <rect x="0" y="60" width="1440" height="2" fill="#4a90e2"/>
+  
+  <!-- Logo y título -->
+  <text x="20" y="35" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff">
+    HAPZA - Sistema de Análisis Geológico
+  </text>
+  
+  <!-- Menú superior -->
+  <text x="1200" y="35" font-family="Arial, sans-serif" font-size="14" fill="#cccccc">
+    Archivo | Editar | Ver | Herramientas | Ayuda
+  </text>
+  
+  <!-- Panel lateral izquierdo -->
+  <rect x="0" y="62" width="300" height="962" fill="#252525"/>
+  <rect x="300" y="62" width="2" height="962" fill="#404040"/>
+  
+  <!-- Título del panel lateral -->
+  <rect x="10" y="80" width="280" height="30" fill="#4a90e2"/>
+  <text x="150" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">
+    PROYECTOS
+  </text>
+  
+  <!-- Lista de proyectos -->
+  <rect x="15" y="120" width="270" height="25" fill="#333333" rx="3"/>
+  <circle cx="30" cy="132" r="3" fill="#4caf50"/>
+  <text x="45" y="137" font-family="Arial, sans-serif" font-size="12" fill="#ffffff">
+    Todos
+  </text>
+  
+  <rect x="15" y="150" width="270" height="25" fill="#2a2a2a" rx="3"/>
+  <circle cx="30" cy="162" r="3" fill="#ff9800"/>
+  <text x="45" y="167" font-family="Arial, sans-serif" font-size="12" fill="#cccccc">
+    Recientes
+  </text>
+  
+  <rect x="15" y="180" width="270" height="25" fill="#2a2a2a" rx="3"/>
+  <circle cx="30" cy="192" r="3" fill="#f44336"/>
+  <text x="45" y="197" font-family="Arial, sans-serif" font-size="12" fill="#cccccc">
+    Favoritos
+  </text>
+  
+  <rect x="15" y="210" width="270" height="25" fill="#2a2a2a" rx="3"/>
+  <circle cx="30" cy="222" r="3" fill="#2196f3"/>
+  <text x="45" y="227" font-family="Arial, sans-serif" font-size="12" fill="#cccccc">
+    Análisis de Perforaciones
+  </text>
+  
+  <rect x="15" y="240" width="270" height="25" fill="#2a2a2a" rx="3"/>
+  <circle cx="30" cy="252" r="3" fill="#9c27b0"/>
+  <text x="45" y="257" font-family="Arial, sans-serif" font-size="12" fill="#cccccc">
+    Detonaciones
+  </text>
+  
+  <!-- Sección de análisis de datos -->
+  <rect x="10" y="300" width="280" height="30" fill="#4a90e2"/>
+  <text x="150" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">
+    ANÁLISIS DE DATOS
+  </text>
+  
+  <!-- Área principal de trabajo -->
+  <rect x="302" y="62" width="1138" height="962" fill="#1e1e1e"/>
+  
+  <!-- Barra de herramientas -->
+  <rect x="312" y="80" width="1118" height="40" fill="#2d2d2d"/>
+  <rect x="312" y="120" width="1118" height="1" fill="#404040"/>
+  
+  <!-- Botones de herramientas -->
+  <rect x="325" y="87" width="60" height="26" fill="#4a90e2" rx="3"/>
+  <text x="355" y="103" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#ffffff">
+    Cotizar
+  </text>
+  
+  <rect x="395" y="87" width="80" height="26" fill="#333333" rx="3"/>
+  <text x="435" y="103" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#cccccc">
+    Perforaciones
+  </text>
+  
+  <rect x="485" y="87" width="70" height="26" fill="#333333" rx="3"/>
+  <text x="520" y="103" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#cccccc">
+    Análisis
+  </text>
+  
+  <!-- Área de visualización 3D -->
+  <rect x="320" y="140" width="800" height="600" fill="#0a0a0a" stroke="#404040" stroke-width="1"/>
+  
+  <!-- Simulación de terreno 3D -->
+  <defs>
+    <linearGradient id="terrainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8bc34a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#4caf50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2e7d32;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="rockGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#795548;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5d4037;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Capas del terreno -->
+  <polygon points="350,200 1050,180 1080,250 320,270" fill="url(#terrainGradient)" opacity="0.8"/>
+  <polygon points="320,270 1080,250 1100,350 300,370" fill="#6d4c41" opacity="0.7"/>
+  <polygon points="300,370 1100,350 1120,450 280,470" fill="url(#rockGradient)" opacity="0.6"/>
+  <polygon points="280,470 1120,450 1140,550 260,570" fill="#424242" opacity="0.5"/>
+  
+  <!-- Puntos de perforación -->
+  <circle cx="450" cy="220" r="4" fill="#f44336"/>
+  <circle cx="600" cy="210" r="4" fill="#f44336"/>
+  <circle cx="750" cy="205" r="4" fill="#f44336"/>
+  <circle cx="900" cy="200" r="4" fill="#f44336"/>
+  
+  <!-- Líneas de perforación -->
+  <line x1="450" y1="220" x2="450" y2="550" stroke="#ff5722" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="600" y1="210" x2="600" y2="540" stroke="#ff5722" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="750" y1="205" x2="750" y2="535" stroke="#ff5722" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="900" y1="200" x2="900" y2="530" stroke="#ff5722" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  <!-- Etiquetas de profundidad -->
+  <text x="460" y="235" font-family="Arial, sans-serif" font-size="10" fill="#ffffff">
+    P1: 150m
+  </text>
+  <text x="610" y="225" font-family="Arial, sans-serif" font-size="10" fill="#ffffff">
+    P2: 180m
+  </text>
+  <text x="760" y="220" font-family="Arial, sans-serif" font-size="10" fill="#ffffff">
+    P3: 200m
+  </text>
+  <text x="910" y="215" font-family="Arial, sans-serif" font-size="10" fill="#ffffff">
+    P4: 175m
+  </text>
+  
+  <!-- Grid de referencia -->
+  <defs>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#333333" stroke-width="0.5" opacity="0.3"/>
+    </pattern>
+  </defs>
+  <rect x="320" y="140" width="800" height="600" fill="url(#grid)"/>
+  
+  <!-- Panel de datos lateral derecho -->
+  <rect x="1140" y="140" width="290" height="600" fill="#252525" stroke="#404040" stroke-width="1"/>
+  
+  <!-- Título del panel de datos -->
+  <rect x="1150" y="155" width="270" height="25" fill="#4a90e2"/>
+  <text x="1285" y="172" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">
+    DATOS DEL PROYECTO
+  </text>
+  
+  <!-- Información del proyecto -->
+  <text x="1160" y="200" font-family="Arial, sans-serif" font-size="11" fill="#cccccc">
+    Proyecto: Análisis Geotécnico Norte
+  </text>
+  <text x="1160" y="220" font-family="Arial, sans-serif" font-size="11" fill="#cccccc">
+    Fecha: 15/01/2024
+  </text>
+  <text x="1160" y="240" font-family="Arial, sans-serif" font-size="11" fill="#cccccc">
+    Área: 2.5 hectáreas
+  </text>
+  
+  <!-- Datos de perforación -->
+  <rect x="1150" y="260" width="270" height="20" fill="#333333"/>
+  <text x="1285" y="274" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#ffffff">
+    DATOS DE PERFORACIÓN
+  </text>
+  
+  <text x="1160" y="295" font-family="Arial, sans-serif" font-size="10" fill="#4caf50">
+    P1: Arcilla compacta - 2.8 MPa
+  </text>
+  <text x="1160" y="310" font-family="Arial, sans-serif" font-size="10" fill="#4caf50">
+    P2: Roca sedimentaria - 15.2 MPa
+  </text>
+  <text x="1160" y="325" font-family="Arial, sans-serif" font-size="10" fill="#4caf50">
+    P3: Granito - 45.8 MPa
+  </text>
+  <text x="1160" y="340" font-family="Arial, sans-serif" font-size="10" fill="#4caf50">
+    P4: Esquisto - 28.5 MPa
+  </text>
+  
+  <!-- Gráfico de barras simple -->
+  <rect x="1160" y="360" width="250" height="100" fill="#1a1a1a" stroke="#404040" stroke-width="1"/>
+  <text x="1285" y="375" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#cccccc">
+    Resistencia por Punto
+  </text>
+  
+  <!-- Barras del gráfico -->
+  <rect x="1170" y="420" width="15" height="30" fill="#4caf50"/>
+  <rect x="1200" y="400" width="15" height="50" fill="#2196f3"/>
+  <rect x="1230" y="380" width="15" height="70" fill="#ff9800"/>
+  <rect x="1260" y="405" width="15" height="45" fill="#9c27b0"/>
+  
+  <!-- Etiquetas del gráfico -->
+  <text x="1177" y="470" font-family="Arial, sans-serif" font-size="8" fill="#cccccc">P1</text>
+  <text x="1207" y="470" font-family="Arial, sans-serif" font-size="8" fill="#cccccc">P2</text>
+  <text x="1237" y="470" font-family="Arial, sans-serif" font-size="8" fill="#cccccc">P3</text>
+  <text x="1267" y="470" font-family="Arial, sans-serif" font-size="8" fill="#cccccc">P4</text>
+  
+  <!-- Estado del sistema -->
+  <rect x="1150" y="500" width="270" height="30" fill="#1b5e20"/>
+  <circle cx="1170" cy="515" r="5" fill="#4caf50"/>
+  <text x="1185" y="520" font-family="Arial, sans-serif" font-size="12" fill="#ffffff">
+    Sistema Conectado - Operativo
+  </text>
+  
+  <!-- Botones de acción -->
+  <rect x="1160" y="550" width="70" height="25" fill="#4caf50" rx="3"/>
+  <text x="1195" y="567" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#ffffff">
+    Exportar
+  </text>
+  
+  <rect x="1240" y="550" width="70" height="25" fill="#2196f3" rx="3"/>
+  <text x="1275" y="567" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#ffffff">
+    Imprimir
+  </text>
+  
+  <rect x="1320" y="550" width="70" height="25" fill="#ff9800" rx="3"/>
+  <text x="1355" y="567" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#ffffff">
+    Guardar
+  </text>
+  
+  <!-- Barra de estado inferior -->
+  <rect x="302" y="980" width="1138" height="44" fill="#2d2d2d"/>
+  <rect x="302" y="980" width="1138" height="1" fill="#404040"/>
+  
+  <!-- Información de estado -->
+  <text x="320" y="1005" font-family="Arial, sans-serif" font-size="11" fill="#cccccc">
+    Listo | 4 perforaciones activas | Última actualización: 14:32:15
+  </text>
+  
+  <!-- Coordenadas del cursor -->
+  <text x="1200" y="1005" font-family="Arial, sans-serif" font-size="11" fill="#cccccc">
+    X: 1250.5m | Y: 850.2m | Z: -45.8m
+  </text>
+</svg>

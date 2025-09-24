@@ -1,0 +1,89 @@
+---
+// src/pages/productos/hapza.astro
+import Layout from '../../layouts/BaseLayout.astro';
+
+const features = [
+    "Base de datos en la nube",
+    "Aplicación móvil para conciliación de datos en terreno",
+    "Diseño de mallas de voladuras con IA",
+    "Compatible con detonadores electrónicos y pirotécnicos",
+    "Simulación de vibraciones campo cercano y lejano"
+];
+
+const services = [
+    { icon: "/images/product-hapza/Vector.svg", text: "Polvorín" },
+    { icon: "/images/product-hapza/Icon.svg", text: "Servicios técnicos" },
+    { icon: "/images/product-hapza/Voladura.svg", text: "Diseño de voladuras" },
+    { icon: "/images/product-hapza/QA_QC.svg", text: "QA/QC" }
+];
+---
+
+<Layout 
+  title="Producto - Hapza | Delion"
+  showFooter={true}
+  footerBackground={true}
+  showLoader={true}
+  loaderType="minimal"
+  preloadImages={[
+    '/images/servicios/LogoHapza.svg',
+    '/ISOLOGO.png'
+  ]}
+>
+  <main class="product-hapza-page" id="main-content">
+    {/* SECCIÓN PRINCIPAL HAPZA */}
+    <section class="section-hapza-container pt-32 pb-16">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-32 items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Columna de texto */}
+        <div class="text-content">
+          <h1 class="product-title">Hapza</h1>
+          
+          {/* Lista de servicios con iconos */}
+          <div class="services-list mb-6">
+            {services.map(service => (
+              <div class="service-item">
+                <span class="service-icon">
+                  {service.icon.endsWith('.svg') ? (
+                    <img src={service.icon} alt={service.text} class="service-svg-icon" />
+                  ) : (
+                    service.icon
+                  )}
+                </span>
+                <span class="service-text">{service.text}</span>
+              </div>
+            ))}
+          </div>
+          
+          <a href="/contacto" class="btn-cotizar-main">Cotizar</a>
+          
+          {/* Lista de características */}
+          <ul class="feature-list mt-8">
+            {features.map(feature => (
+              <li class="feature-item">
+                <img src="/images/productos/Check square.svg" alt="Check" class="feature-check-icon" />
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        {/* Columna de imagen - Mockup de la aplicación */}
+        <div class="image-content">
+          <div class="hapza-mockup-container">
+            <div class="monitor-frame">
+              <div class="monitor-screen">
+                <div class="terrain-view">
+                  <img src="/images/product-hapza/Cap.svg" alt="Contenido del monitor Hapza" class="hapza-interface-image" />
+                </div>
+              </div>
+              <div class="monitor-stand"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  @import '../../styles/pages/product-hapza.css';
+</style>
